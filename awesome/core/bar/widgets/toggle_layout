@@ -1,0 +1,8 @@
+#!/bin/bash
+ibus_layout=$(ibus engine)
+
+if [ "$ibus_layout" = "Bamboo" ]; then
+    ibus engine BambooUs
+else
+    ibus engine Bamboo
+fi

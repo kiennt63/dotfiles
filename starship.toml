@@ -1,0 +1,61 @@
+# Get editor completions based on the config schema
+# "$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = false
+
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_commit\
+$git_status\
+$git_metrics\
+$c\
+$conda\
+$cmd_duration\
+$line_break\
+$character"""
+
+# format = """
+# [╭](bold #A3BE8C)$directory$git_branch$git_status$cmd_duration
+# [╰─>](bold #A3BE8C) """
+
+# format = """
+# [╭](bold #B48EAD)$directory
+# [│](bold #A3BE8C) $git_branch$git_status$cmd_duration
+# [╰─>](bold #81A1C1) """
+
+[character]
+success_symbol = "[➜](bold #B48EAD)"
+error_symbol = "[✗](bold #D08770)"
+vimcmd_symbol = "[➜](bold #A3BE8C)"
+vimcmd_replace_one_symbol = "[➜](bold #A3BE8C)"
+vimcmd_replace_symbol = "[➜](bold #A3BE8C)"
+vimcmd_visual_symbol = "[➜](bold #A3BE8C)"
+
+[username]
+format = '[\[](#EBCB8B bold)[$user](#88C0D0 bold)[\]](#A3BE8C bold) '
+disabled = true
+show_always = false
+
+[directory]
+read_only = " "
+read_only_style = "#D08770" 
+format = '[\[](#B48EAD bold)[$path]($style)[$read_only]($read_only_style)[\]](#EBCB8B bold) '
+
+[git_branch]
+style = "#A3BE8C"
+symbol = ""
+format = "[on $symbol$branch(:$remote_branch)]($style) "
+
+[git_status]
+ahead = "[⇡${count}](#A3BE8C)"
+diverged = "[⇕⇡${ahead_count}⇣${behind_count}](#A3BE8C)"
+behind = "[⇣${count}](#A3BE8C)"
+modified = "[!${count}](#EBCB8B)"
+staged = "[+${count}](#B48EAD)"
+deleted = "[!✘${count}](#D08770)"
+untracked = "[?${count}](#81A1C1)"
+format = '([[\[](#A3BE8C)$ahead$behind$staged$modified$deleted$untracked$ahead_behind[\]](#A3BE8C)]($style) )'

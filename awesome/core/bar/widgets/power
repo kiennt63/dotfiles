@@ -1,0 +1,8 @@
+#!/bin/bash
+
+temp="$(sed "s/\(..\).*/\1°C/" /sys/class/hwmon/hwmon2/temp1_input)"
+
+icon=""
+
+echo " $icon $temp "
+

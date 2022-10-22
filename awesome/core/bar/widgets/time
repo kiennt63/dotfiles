@@ -1,0 +1,4 @@
+#!/bin/bash
+
+LC_TIME=en_US.utf8
+echo " $(date '+%r') "
