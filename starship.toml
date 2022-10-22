@@ -12,7 +12,6 @@ $git_branch\
 $git_commit\
 $git_status\
 $git_metrics\
-$c\
 $conda\
 $cmd_duration\
 $line_break\
