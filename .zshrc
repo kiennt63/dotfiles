@@ -114,3 +114,4 @@ alias quanta="export ROS_IP=192.168.0.10; export ROS_MASTER_URI=http://192.168.0
 alias ssh-quanta="ssh nvidia@192.168.0.10"
 
 eval "$(starship init zsh)"
+bunnyfetch

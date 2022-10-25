@@ -3,6 +3,7 @@
 
 # Inserts a blank line between shell prompts
 add_newline = false
+command_timeout = 10000
 
 format = """
 $username\
@@ -58,3 +59,4 @@ staged = "[+${count}](#B48EAD)"
 deleted = "[!✘${count}](#D08770)"
 untracked = "[?${count}](#81A1C1)"
 format = '([[\[](#A3BE8C)$ahead$behind$staged$modified$deleted$untracked$ahead_behind[\]](#A3BE8C)]($style) )'
+

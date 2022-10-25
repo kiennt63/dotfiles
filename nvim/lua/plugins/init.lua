@@ -46,6 +46,13 @@ return packer.startup(function(use)
     -- Bufferline
     use { 'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons' }
     use 'moll/vim-bbye'
+
+    -- Breadcrumbs
+
+    use {
+        "SmiteshP/nvim-navic",
+    }
+
     -- Other
     use "nvim-lua/plenary.nvim"
     use "kyazdani42/nvim-web-devicons"
@@ -151,5 +158,6 @@ return packer.startup(function(use)
     require 'colorizer'.setup {}
     require('Comment').setup()
     require('plugins/lsp')
+    require('plugins/breadcrumbs').setup()
 
 end)

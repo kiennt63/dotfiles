@@ -53,7 +53,7 @@ theme.pallete = pallete
 theme.useless_gap   = dpi(6)
 theme.border_width  = dpi(2)
 theme.border_normal = "#4c566a"
-theme.border_focus  = "#5E81AC"
+theme.border_focus  = "#88C0D0"
 theme.border_marked = "#D08770"
 -- }}}
 
@@ -147,7 +147,7 @@ theme.titlebar_maximized_button_focus_inactive  = themes_path .. "default/titleb
 theme.titlebar_maximized_button_normal_active   = themes_path .. "default/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active    = themes_path .. "default/titlebar/maximized_focus_active.png"
 
-theme.wallpaper = "/home/kiennt54/themes/wallpapers/nord_big.png"
+theme.wallpaper = "/home/kiennt54/themes/wallpapers/nordic-wallpapers/wallpapers/ign_endeavour2.png"
 
 -- -- You can use your own layout icons like this:
 -- theme.layout_fairh      = themes_path .. "default/layouts/fairhw.png"

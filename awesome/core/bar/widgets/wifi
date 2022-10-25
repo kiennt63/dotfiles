@@ -14,4 +14,4 @@ else
     echo " $state "
 fi
 
-echo " $state $interface "
+echo " $state $currentwfi "

@@ -43,5 +43,5 @@ memory=($(free -t | grep Mem:))
 used=$(echo "${memory[2]} / ${memory[1]} * 100" | bc -l)
 
 mem_output=$(LC_NUMERIC="en_US.UTF-8" printf "%0.1f\n" $used)
-echo "  $usage%  $mem_output% "
+echo "  $usage% $mem_output% "
 

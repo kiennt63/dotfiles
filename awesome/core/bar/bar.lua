@@ -185,5 +185,6 @@ awful.screen.connect_for_each_screen(function(s)
         left = dpi(13), -- don't forget to increase wibar height
         right = dpi(13), -- don't forget to increase wibar height
         widget = wibox.container.margin,
+        color = "#00000000"
     }
 end)
