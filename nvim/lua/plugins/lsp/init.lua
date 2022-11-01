@@ -1,5 +1,5 @@
 local telescope = require('telescope.builtin')
-local navic = require("nvim-navic")
+-- local navic = require("nvim-navic")
 ON_ATTACH = function(client, bufnr)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -22,9 +22,9 @@ ON_ATTACH = function(client, bufnr)
     vim.keymap.set('n', 'gr', telescope.lsp_references, bufopts)
     vim.keymap.set('n', '<space>lf', function() vim.lsp.buf.format { async = true } end, bufopts)
 
-    if client.server_capabilities.documentSymbolProvider then
-        navic.attach(client, bufnr)
-    end
+    -- if client.server_capabilities.documentSymbolProvider then
+    --     navic.attach(client, bufnr)
+    -- end
 end
 
 require('plugins/lsp/pyright')

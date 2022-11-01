@@ -41,6 +41,9 @@ nvim_tree.setup {
                     ignored = "◌",
                 },
             },
+            show = {
+                folder_arrow = false
+            }
         },
     },
     diagnostics = {

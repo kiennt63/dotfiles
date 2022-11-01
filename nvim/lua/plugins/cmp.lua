@@ -140,6 +140,7 @@ cmp.setup {
     window = {
         documentation = {
             border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+            max_height = 5
         },
     },
     experimental = {

@@ -28,6 +28,7 @@ o.expandtab = true
 o.autowriteall = true
 o.breakindent = true
 o.noswapfile = true
+o.pumheight = 15
 
 bo.autoindent = true
 bo.smartindent = true
@@ -37,3 +38,7 @@ wo.number = true
 wo.relativenumber = true
 wo.signcolumn = 'yes'
 wo.wrap = true
+
+vim.api.nvim_command [[autocmd FileType * setlocal formatoptions-=o]] -- equivalent to set formatoptions-=cro
+-- vim.opt.list = true
+-- vim.opt.listchars:append "space:⋅"

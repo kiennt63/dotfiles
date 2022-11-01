@@ -1,5 +1,4 @@
 local conditions = require "plugins.lualine.conditions"
-local colors = require "plugins.lualine.colors"
 
 local function diff_source()
   local gitsigns = vim.b.gitsigns_status_dict
@@ -36,11 +35,11 @@ return {
     "diff",
     source = diff_source,
     symbols = { added = "  ", modified = " ", removed = " " },
-    diff_color = {
-      added = { fg = colors.green },
-      modified = { fg = colors.yellow },
-      removed = { fg = colors.red },
-    },
+    -- diff_color = {
+    --   added = { fg = colors.green },
+    --   modified = { fg = colors.yellow },
+    --   removed = { fg = colors.red },
+    -- },
     cond = nil,
   },
   python_env = {
@@ -59,7 +58,7 @@ return {
       end
       return ""
     end,
-    color = { fg = colors.green },
+    -- color = { fg = colors.green },
     cond = conditions.hide_in_width,
   },
   diagnostics = {
@@ -76,7 +75,7 @@ return {
       end
       return ""
     end,
-    color = { fg = colors.green },
+    -- color = { fg = colors.green },
     cond = conditions.hide_in_width,
   },
   lsp = {
@@ -149,7 +148,7 @@ return {
       return chars[index]
     end,
     padding = { left = 0, right = 0 },
-    color = { fg = colors.yellow, bg = colors.bg },
+    -- color = { fg = colors.yellow, bg = colors.bg },
     cond = nil,
   },
 }

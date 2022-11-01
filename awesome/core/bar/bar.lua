@@ -48,7 +48,7 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     awful.tag({ "  ",
-        "﬏  ",
+        "  ",
         "  ",
         "  ",
         "  ",
@@ -86,7 +86,7 @@ awful.screen.connect_for_each_screen(function(s)
             awful.spawn("pamixer -i 5 --allow-boost --set-limit 150", false)
             s.volume_timer:emit_signal("timeout")
         elseif button == 5 then
-            awful.spawn("pamixer -d 5", false)
+            awful.spawn("pamixer -d 5 --allow-boost --set-limit 150", false)
             s.volume_timer:emit_signal("timeout")
         end
     end)
@@ -110,9 +110,14 @@ awful.screen.connect_for_each_screen(function(s)
         {
             layout = wibox.layout.align.horizontal,
             { -- Left widgets
-                layout = wibox.layout.fixed.horizontal,
-                s.mytaglist,
-                s.mypromptbox,
+                {
+                    layout = wibox.layout.fixed.horizontal,
+                    s.mytaglist,
+                    s.mypromptbox,
+                },
+                bg = beautiful.pallete.taglist_bg,
+                -- fg = beautiful.titlebar_bg_normal,
+                widget = wibox.container.background,
             },
             -- s.mytasklist, -- Middle widget
             nil,
@@ -169,13 +174,13 @@ awful.screen.connect_for_each_screen(function(s)
                 -- },
                 {
                     mytextclock,
-                    bg = "#6e8db4",
+                    bg = beautiful.pallete.frost0,
                     fg = beautiful.titlebar_bg_normal,
                     widget = wibox.container.background
                 },
                 {
                     s.mylayoutbox,
-                    bg = "#6e8db4",
+                    bg = beautiful.pallete.frost0,
                     fg = beautiful.titlebar_bg_normal,
                     widget = wibox.container.background
                 },

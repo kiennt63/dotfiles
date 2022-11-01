@@ -1,14 +1,18 @@
 configuration {
-    modes: [ combi ];
-    combi-modes: [ window, drun, run ];
-    /* modi: [window, drun, run, ssh, calc]; */
+    /* modes: [ combi ]; */
+    /* combi-modes: [ window, drun, run ]; */
+    modi: "window,drun,run,ssh,calc";
 	display-drun: " ";
-	display-run: " ";
+	display-run: "  ";
 	display-window: "缾 ";
 	display-calc: " ";
+
+    matching: "fuzzy";
+
 	icon-theme: "Papirus-Light";
+    drun-display-format: "{name}";
 	/* fixed-num-lines: true; */
-	font: "Ligamononoki Nerd Font Regular 15";
+	font: "SFMono Nerd Font Regular 13";
 
     /* keybinding */
     kb-remove-to-eol: "";
@@ -24,6 +28,15 @@ configuration {
     background-color:      @bg;
     text-color:            @fg;
     border-color:          @bg;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+box {
+    border: 0;
+    margin: 0;
+    padding: 0;
 }
 
 scrollbar {
@@ -36,17 +49,15 @@ window {
     position: center;
 	children: [mainbox];
     background-color: @bg;
+    padding: 0;
+    margin: 0;
     border: 0;
 }
 
 mainbox {
-	/* y-offset: 0%; */
-	/* location: center; */
-	/* anchor: north; */
-	/* spacing: 10; */
 	background-color: @bg;
 	/* border: 0; */
-    margin: 5px;
+    margin: 0;
 	transparency: "real";
 	children: [inputbar, listview];
 }
@@ -54,6 +65,7 @@ mainbox {
 inputbar {
 	background-color: @bg;
 	text-color: @fg;
+    padding: 10px 20px;
 	children: [ prompt, entry ];
 }
 
@@ -71,15 +83,13 @@ entry {
 }
 
 listview {
-    lines: 7;
+    lines: 8;
 	background-color: @bg;
     color: @bg;
-	/* cycle: false; */
-	/* dynamic: true; */
-	padding: 0 0 0 0;
+	padding: 0;
+    spacing: 0;
+    margin: 0 10px 10px;
 	border: 0;
-	columns: 1;
-	/* spacing: 10px 10px; */
 	children: [element];
 }
 
@@ -96,7 +106,7 @@ button selected {
 element {
     orientation: horizontal;
     border: 0;
-    padding: 5px;
+    padding: 5px 20px;
     background-color: @bg;
     color: @bg;
     children: [ element-text ];

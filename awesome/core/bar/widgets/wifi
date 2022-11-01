@@ -14,4 +14,4 @@ else
     echo " $state "
 fi
 
-echo " $state $currentwfi "
+echo "$state $currentwfi "

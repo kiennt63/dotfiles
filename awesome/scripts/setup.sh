@@ -25,7 +25,7 @@ do
 done
 
 # redshift
-redshift -O 4500 -v
+redshift -O 3500 -v
 
 
 

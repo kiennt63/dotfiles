@@ -9,7 +9,7 @@ telescope.setup {
     defaults = {
 
         prompt_prefix = " ",
-        selection_caret = " ",
+        selection_caret = " ",
         path_display = { "smart" },
 
         mappings = {
@@ -86,12 +86,12 @@ telescope.setup {
         -- Now the picker_config_key will be applied every time you call this
         -- builtin picker
     },
-    extensions = {
-        media_files = {
-            -- filetypes whitelist
-            -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
-            filetypes = { "png", "webp", "jpg", "jpeg" },
-            find_cmd = "rg" -- find command (defaults to `fd`)
-        }
-    },
+    -- extensions = {
+    --     media_files = {
+    --         -- filetypes whitelist
+    --         -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
+    --         filetypes = { "png", "webp", "jpg", "jpeg" },
+    --         find_cmd = "rg" -- find command (defaults to `fd`)
+    --     }
+    -- },
 }

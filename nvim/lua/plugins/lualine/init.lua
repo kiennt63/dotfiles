@@ -15,7 +15,7 @@ require('lualine').setup {
         },
         ignore_focus = { 'NvimTree' },
         always_divide_middle = true,
-        globalstatus = false,
+        globalstatus = true,
         refresh = {
             statusline = 1000,
             tabline = 1000,
@@ -24,14 +24,14 @@ require('lualine').setup {
     },
     sections = {
         lualine_a = { 'mode' },
-        lualine_b = { 'branch', components.diff, 'diagnostics' },
+        lualine_b = { 'branch', components.diff },
         lualine_c = {
             'filename',
         },
         -- lualine_d = {require('auto-session-library').current_session_name},
         lualine_x = {
             components.diagnostics,
-            components.treesitter,
+            -- components.treesitter,
             components.lsp,
             components.filetype,
         },

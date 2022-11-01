@@ -47,21 +47,6 @@ return packer.startup(function(use)
     use { 'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons' }
     use 'moll/vim-bbye'
 
-    -- Breadcrumbs
-
-    use {
-        "SmiteshP/nvim-navic",
-    }
-
-    -- Other
-    use "nvim-lua/plenary.nvim"
-    use "kyazdani42/nvim-web-devicons"
-    use "ahmedkhalf/project.nvim"
-    use "lewis6991/impatient.nvim"
-    use "lukas-reineke/indent-blankline.nvim"
-    use "goolord/alpha-nvim"
-    use "folke/which-key.nvim"
-
     -- Session
     use 'rmagatti/auto-session'
     -- Treesitter
@@ -70,6 +55,7 @@ return packer.startup(function(use)
         run = ":TSUpdate"
     }
     use 'p00f/nvim-ts-rainbow'
+    use 'nvim-treesitter/nvim-treesitter-context'
 
     -- nvim-tree
     use "kyazdani42/nvim-tree.lua"
@@ -86,6 +72,10 @@ return packer.startup(function(use)
 
     -- Autopair
     use "windwp/nvim-autopairs"
+    use {
+        "kylechui/nvim-surround",
+        tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    }
 
     -- Telescope
     use {
@@ -96,11 +86,17 @@ return packer.startup(function(use)
     use {
         'nvim-telescope/telescope-fzf-native.nvim',
         run = 'cmake -S. -Bbuild \
-      -DCMAKE_BUILD_TYPE=Release && \
-      cmake --build build --config Release && \
-      cmake --install build --prefix build'
+               -DCMAKE_BUILD_TYPE=Release && \
+               cmake --build build --config Release && \
+               cmake --install build --prefix build'
     }
-    use 'nvim-telescope/telescope-media-files.nvim'
+    -- use 'nvim-telescope/telescope-media-files.nvim'
+
+    -- FZF
+    use { 'ibhagwan/fzf-lua',
+        -- optional for icon support
+        requires = { 'kyazdani42/nvim-web-devicons' }
+    }
 
     -- Gitsigns
     use {
@@ -108,6 +104,8 @@ return packer.startup(function(use)
     }
     -- Colorschemes
     use 'shaunsingh/nord.nvim'
+
+    use 'sainnhe/gruvbox-material'
 
     -- Show colors
     use 'NvChad/nvim-colorizer.lua'
@@ -127,28 +125,37 @@ return packer.startup(function(use)
 
     -- Scrollbar
     use 'lewis6991/satellite.nvim'
+
+    -- Whichkey
+    use "folke/which-key.nvim"
+
+    -- Other
+    use "nvim-lua/plenary.nvim"
+    use "kyazdani42/nvim-web-devicons"
+    use "lewis6991/impatient.nvim"
+    use "lukas-reineke/indent-blankline.nvim"
+
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if PACKER_BOOTSTRAP then
         require("packer").sync()
     end
 
-    require 'plugins/nord'
+    require 'plugins/theme'
     require 'plugins/autopairs'
     require 'plugins/lualine'
     require 'plugins/bufferline'
     require 'plugins/cmp'
     require 'plugins/lsp-signature'
     require 'plugins/telescope'
-    require('telescope').load_extension('media_files')
+    -- require('telescope').load_extension('media_files')
+    require 'plugins/fzf'
     require 'plugins/nvim-tree'
     require 'plugins/treesitter'
     require 'plugins/toggleterm'
     require 'plugins/autosession'
-    require 'plugins/wk'
+    -- require 'plugins/wk'
     require 'plugins/scrollbar'
-
-    -- require("nnn").setup()
 
     require("mason").setup {}
     require("mason-lspconfig").setup {
@@ -156,8 +163,15 @@ return packer.startup(function(use)
     }
     require('gitsigns').setup {}
     require 'colorizer'.setup {}
+    require('nvim-surround').setup {}
     require('Comment').setup()
     require('plugins/lsp')
-    require('plugins/breadcrumbs').setup()
+    require('impatient')
+
+    -- require("indent_blankline").setup {
+    --     space_char_blankline = " ",
+    -- }
+
+    -- require('plugins/breadcrumbs').setup()
 
 end)

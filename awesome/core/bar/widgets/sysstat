@@ -1,26 +1,11 @@
 #!/bin/bash
 
-# Write the current state to a temp file
 save_current() {
     grep 'cpu ' /proc/stat > /tmp/cpustat
 }
-
-# If the temp file doesn't exist, save it now.
-# This means the current reading will be pretty inaccurate,
-# usually too high, because it measures CPU usage from now
-# until 2 lines later in this program.
 [ ! -e /tmp/cpustat ] && save_current
-
-# Load the previous state from the temp file, and capture
-# the current output.
 previous=$(cat /tmp/cpustat)
 current=$(grep 'cpu ' /proc/stat)
-
-# Define the awk script to parse the two lines of input.
-# For the first line (NR == 1), save the values.
-# For subsequent rows (NR > 1), calculate the difference
-# between this line and the first line and calculate the
-# total average percentage.
 awkscript='NR == 1 {
              owork=($2+$4);
              oidle=$5;
@@ -28,20 +13,17 @@ awkscript='NR == 1 {
            NR > 1 {
              work=($2+$4)-owork;
              idle=$5-oidle;
-             printf "%.1f", 100 * work / (work+idle)
+             printf "%.2f", 100 * work / (work+idle)
            }'
 
-# Execute the awk script against the two lines of input
-# and save the string.
 usage=$(echo -e "$previous\n$current" | awk "$awkscript")
-
-# Save the current value. The next time you run this script
-# will calculate average usage since this line was run.
 save_current
+if (( $(echo "$usage > 10.0" |bc -l) )); then
+    usage=$(LC_NUMERIC="en_US.UTF-8" printf "%0.1f\n" $usage)
+fi
 
 memory=($(free -t | grep Mem:))
-used=$(echo "${memory[2]} / ${memory[1]} * 100" | bc -l)
+memory_used=$(echo "${memory[2]} / ${memory[1]} * 100" | bc -l)
+memory_used=$(LC_NUMERIC="en_US.UTF-8" printf "%0.1f\n" $memory_used)
 
-mem_output=$(LC_NUMERIC="en_US.UTF-8" printf "%0.1f\n" $used)
-echo "  $usage% $mem_output% "
-
+echo "  $usage% $memory_used% "

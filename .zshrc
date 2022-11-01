@@ -4,7 +4,9 @@ fi
 
 
 export ZSH="/home/kiennt54/.oh-my-zsh"
-HISTORY_IGNORE="exa*"
+# ----------------- Ignore history ---------------
+HISTORY_IGNORE="(ls|pwd|clear)"
+
 # ZSH_THEME="powerlevel10k/powerlevel10k"
 # POWERLEVEL9K_MODE="nerdfont-complete"
 # ENABLE_CORRECTION="true"
@@ -17,6 +19,8 @@ ZSH_HIGHLIGHT_STYLES[function]='fg=green,bold'
 ZSH_HIGHLIGHT_STYLES[command]='fg=green,bold'
 ZSH_HIGHLIGHT_STYLES[precommand]='fg=green,bold,underline'
 # ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=1'
+
+
 
 plugins=(git fzf-tab tmux web-search zsh-z zsh-autosuggestions zsh-syntax-highlighting)
 
@@ -76,6 +80,7 @@ unset __conda_setup
 source ~/.config/zsh/alias.sh
 
 # ----------------- EXPORT -----------------
+export PATH=$HOME/.local/bin:$PATH
 export PATH=/opt/cmake/cmake-3.24.2-linux-x86_64/bin:$PATH
 export PATH=/opt/ipg/bin/:$PATH
 export PATH=/usr/src/tensorrt/bin/:$PATH
