@@ -36,6 +36,11 @@ return packer.startup(function(use)
         tag = '*'
     }
 
+    -- Autosave
+    use {
+        "Pocco81/auto-save.nvim"
+    }
+
     -- Commenting
     use {
         'numToStr/Comment.nvim',
@@ -141,8 +146,9 @@ return packer.startup(function(use)
         require("packer").sync()
     end
 
-    require 'plugins/theme'
+    require 'plugins/themes'
     require 'plugins/autopairs'
+    require 'plugins/autosave'
     require 'plugins/lualine'
     require 'plugins/bufferline'
     require 'plugins/cmp'

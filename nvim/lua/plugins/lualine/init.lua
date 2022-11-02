@@ -35,7 +35,7 @@ require('lualine').setup {
             components.lsp,
             components.filetype,
         },
-        -- lualine_x = {'filetype'},
+        -- lualine_x = {'searchcount'},
         lualine_y = { components.scrollbar },
         lualine_z = { 'location' }
     },

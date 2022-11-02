@@ -148,7 +148,7 @@ return {
       return chars[index]
     end,
     padding = { left = 0, right = 0 },
-    -- color = { fg = colors.yellow, bg = colors.bg },
+    color = 'lualine_scrollbar',
     cond = nil,
   },
 }
