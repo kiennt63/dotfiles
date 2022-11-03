@@ -3,7 +3,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 
-export ZSH="/home/kiennt54/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 # ----------------- Ignore history ---------------
 HISTORY_IGNORE="(ls|pwd|clear)"
 
@@ -63,14 +63,14 @@ echo -ne '\e[5 q' # Use beam shape cursor on startup.
 # ----------------- 3rdparty setup --------
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/kiennt54/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('$HOME/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/kiennt54/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/kiennt54/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "$HOME/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/kiennt54/miniconda3/bin:$PATH"
+        export PATH="$HOME/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
@@ -86,11 +86,11 @@ export PATH=/opt/ipg/bin/:$PATH
 export PATH=/usr/src/tensorrt/bin/:$PATH
 export PATH=/usr/local/cuda/bin/:$PATH
 export CUDA_HOME=/usr/local/cuda
-export ANDROID_NDK_HOME=/home/kiennt54/Android/Sdk/ndk/21.3.6528147
-export ANDROID_NDK=/home/kiennt54/Android/Sdk/ndk/21.3.6528147
-export NDK=/home/kiennt54/Android/Sdk/ndk/21.3.6528147
+export ANDROID_NDK_HOME=$HOME/Android/Sdk/ndk/21.3.6528147
+export ANDROID_NDK=$HOME/Android/Sdk/ndk/21.3.6528147
+export NDK=$HOME/Android/Sdk/ndk/21.3.6528147
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=/home/kiennt54/Downloads/installations/cudnn-10.2-linux-x64-v7.6.5.32/cuda/lib64/:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=$HOME/Downloads/installations/cudnn-10.2-linux-x64-v7.6.5.32/cuda/lib64/:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=/opt/opencv/opencv-4.4.0/lib:$LD_LIBRARY_PATH
 
 # ----------------- SOURCING -----------------
