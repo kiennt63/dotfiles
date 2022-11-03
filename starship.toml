@@ -3,11 +3,9 @@
 
 # Inserts a blank line between shell prompts
 add_newline = false
-command_timeout = 10000
+# command_timeout = 10000
 
 format = """
-$username\
-$hostname\
 $directory\
 $git_branch\
 $git_commit\
@@ -51,6 +49,7 @@ symbol = ""
 format = "[on $symbol$branch(:$remote_branch)]($style) "
 
 [git_status]
+disabled = false
 ahead = "[⇡${count}](#A3BE8C)"
 diverged = "[⇕⇡${ahead_count}⇣${behind_count}](#A3BE8C)"
 behind = "[⇣${count}](#A3BE8C)"

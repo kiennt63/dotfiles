@@ -55,7 +55,7 @@ theme.pallete = pallete
 theme.useless_gap   = dpi(6)
 theme.border_width  = dpi(2)
 theme.border_normal = "#4c566a"
-theme.border_focus  = "#88C0D0"
+theme.border_focus  = "#81A1C1"
 theme.border_marked = "#D08770"
 -- }}}
 
