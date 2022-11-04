@@ -15,3 +15,6 @@ alias source_adas="export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/adas/3rdparty/Vi
 alias zshrc="vim ~/.zshrc"
 alias picomrc="vim ~/.config/picom/picom.conf"
 alias kittyrc="vim ~/.config/kitty/kitty.conf"
+
+alias quanta="export ROS_IP=192.168.0.10; export ROS_MASTER_URI=http://192.168.0.10:11311"
+alias ssh-quanta="ssh nvidia@192.168.0.10"
