@@ -10,3 +10,6 @@
 [submodule "ranger/plugins/ranger_devicons"]
 	path = ranger/plugins/ranger_devicons
 	url = git@github.com:alexanderjeurissen/ranger_devicons.git
+[submodule "zsh/.oh-my-zsh"]
+	path = zsh/.oh-my-zsh
+	url = git@github.com:ohmyzsh/ohmyzsh.git
