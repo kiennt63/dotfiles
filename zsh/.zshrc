@@ -15,4 +15,4 @@ source $HOME/dotfiles/zsh/fzf.sh
 # Theming
 source $HOME/dotfiles/zsh/theme.sh
 # Cute fetch on start-up
-# bunnyfetch
+bunnyfetch
