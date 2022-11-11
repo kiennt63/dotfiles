@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # setup dual monitor
-num_monitor=$(xrandr | grep " connected " | awk '{ print$1 }' | wc -l)
-if [[ $(xrandr | grep " connected " | awk '{ print$1 }' | wc -l) -ge 2 ]]; then
-  xrandr --output HDMI-0 --mode 1920x1080 --rate 144 --right-of eDP-1-1
-fi
+# num_monitor=$(xrandr | grep " connected " | awk '{ print$1 }' | wc -l)
+# if [[ $(xrandr | grep " connected " | awk '{ print$1 }' | wc -l) -ge 2 ]]; then
+#   xrandr --output HDMI-0 --mode 1920x1080 --rate 144 --right-of eDP-1-1
+# fi
 # enable tap to click on touchpad
 xinput --set-prop 'DELL09E2:00 04F3:30CB Touchpad' 'libinput Tapping Enabled' 1
 # enable natural scrolling on touchpad
@@ -25,8 +25,4 @@ do
 done
 
 # redshift
-redshift -O 3500 -v
-
-
-
-
+redshift -O 4000 -v

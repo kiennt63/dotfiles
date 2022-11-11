@@ -73,7 +73,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = 37 })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(28) })
 
     -- Custom widget
     s.volume, s.volume_timer = awful.widget.watch(".config/awesome/core/bar/widgets/volume", 1)
@@ -111,84 +111,81 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.align.horizontal,
             { -- Left widgets
                 {
-                    layout = wibox.layout.fixed.horizontal,
-                    s.mytaglist,
-                    s.mypromptbox,
+                    {
+                        layout = wibox.layout.fixed.horizontal,
+                        s.mytaglist,
+                        s.mypromptbox,
+                    },
+                    -- fg = beautiful.pallete.taglist_bg,
+                    -- fg = beautiful.titlebar_bg_normal,
+                    widget = wibox.container.background,
                 },
-                bg = beautiful.pallete.taglist_bg,
-                -- fg = beautiful.titlebar_bg_normal,
-                widget = wibox.container.background,
+                left = dpi(6), -- don't forget to increase wibar height
+                widget = wibox.container.margin
             },
             -- s.mytasklist, -- Middle widget
             nil,
             { -- Right widgets
-                layout = wibox.layout.fixed.horizontal,
-                -- wibox.widget.systray(),
                 {
-                    s.volume,
-                    bg = beautiful.pallete.frost3,
-                    fg = beautiful.titlebar_bg_normal,
-                    widget = wibox.container.background,
+
+                    layout = wibox.layout.fixed.horizontal,
+                    -- wibox.widget.systray(),
+                    {
+                        s.volume,
+                        fg = beautiful.pallete.frost3,
+                        -- fg = beautiful.titlebar_bg_normal,
+                        widget = wibox.container.background,
+                    },
+                    {
+                        s.battery,
+                        fg = beautiful.pallete.frost3,
+                        -- fg = beautiful.titlebar_bg_normal,
+                        widget = wibox.container.background
+                    },
+                    {
+                        s.layout,
+                        fg = beautiful.pallete.frost2,
+                        -- fg = beautiful.titlebar_bg_normal,
+                        widget = wibox.container.background
+                    },
+                    {
+                        s.wifi,
+                        fg = beautiful.pallete.frost2,
+                        -- fg = beautiful.titlebar_bg_normal,
+                        widget = wibox.container.background
+                    },
+                    {
+                        s.sysstat,
+                        fg = beautiful.pallete.frost1,
+                        -- fg = beautiful.titlebar_bg_normal,
+                        widget = wibox.container.background
+                    },
+                    {
+                        s.power,
+                        fg = beautiful.pallete.frost1,
+                        -- fg = beautiful.titlebar_bg_normal,
+                        widget = wibox.container.background
+                    },
+                    {
+                        mytextclock,
+                        fg = beautiful.pallete.frost0,
+                        -- fg = beautiful.titlebar_bg_normal,
+                        widget = wibox.container.background
+                    },
+                    {
+                        s.mylayoutbox,
+                        fg = beautiful.pallete.frost0,
+                        -- fg = beautiful.titlebar_bg_normal,
+                        widget = wibox.container.background
+                    },
                 },
-                {
-                    s.battery,
-                    bg = beautiful.pallete.frost3,
-                    fg = beautiful.titlebar_bg_normal,
-                    widget = wibox.container.background
-                },
-                {
-                    s.layout,
-                    bg = beautiful.pallete.frost2,
-                    fg = beautiful.titlebar_bg_normal,
-                    widget = wibox.container.background
-                },
-                {
-                    s.wifi,
-                    bg = beautiful.pallete.frost2,
-                    fg = beautiful.titlebar_bg_normal,
-                    widget = wibox.container.background
-                },
-                {
-                    s.sysstat,
-                    bg = beautiful.pallete.frost1,
-                    fg = beautiful.titlebar_bg_normal,
-                    widget = wibox.container.background
-                },
-                {
-                    s.power,
-                    bg = beautiful.pallete.frost1,
-                    fg = beautiful.titlebar_bg_normal,
-                    widget = wibox.container.background
-                },
-                -- {
-                --     s.date,
-                --     bg = beautiful.pallete.frost1,
-                --     fg = beautiful.titlebar_bg_normal,
-                --     widget = wibox.container.background
-                -- },
-                -- {
-                --     s.time,
-                --     bg = beautiful.pallete.frost0,
-                --     fg = beautiful.titlebar_bg_normal,
-                --     widget = wibox.container.background
-                -- },
-                {
-                    mytextclock,
-                    bg = beautiful.pallete.frost0,
-                    fg = beautiful.titlebar_bg_normal,
-                    widget = wibox.container.background
-                },
-                {
-                    s.mylayoutbox,
-                    bg = beautiful.pallete.frost0,
-                    fg = beautiful.titlebar_bg_normal,
-                    widget = wibox.container.background
-                },
+                right = dpi(3),
+                widget = wibox.container.margin
             }
         },
-        top = dpi(13), -- don't forget to increase wibar height
-        left = dpi(13), -- don't forget to increase wibar height
-        right = dpi(13), -- don't forget to increase wibar height
+        -- top = dpi(13), -- don't forget to increase wibar height
+        -- left = dpi(13), -- don't forget to increase wibar height
+        -- right = dpi(13), -- don't forget to increase wibar height
         widget = wibox.container.margin,
         color = "#00000000"
     }

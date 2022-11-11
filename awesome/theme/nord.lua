@@ -14,7 +14,7 @@ local custom_themes_path = string.format("%s/dotfiles/awesome/theme/", os.getenv
 local theme = {}
 local pallete = {}
 
-theme.font = "Ligamononoki Nerd Font, Medium 14"
+theme.font = "SFMono Nerd Font, Medium 12"
 
 pallete.aurora0 = "#B48EAD"
 pallete.aurora1 = "#A3BE8C"
@@ -22,10 +22,10 @@ pallete.aurora2 = "#EBCB8B"
 pallete.aurora3 = "#D08770"
 pallete.aurora4 = "#BF616A"
 
-pallete.frost0 = "#6e8db4"
-pallete.frost1 = "#81A1C1"
-pallete.frost2 = "#88C0D0"
-pallete.frost3 = "#8FBCBB"
+pallete.frost0 = "#81A1C1"
+pallete.frost1 = "#A3BE8C"
+pallete.frost2 = "#EBCB8B"
+pallete.frost3 = "#B48EAD"
 
 pallete.snow0 = "#ECEFF4"
 pallete.snow1 = "#E5E9F0"
@@ -33,9 +33,9 @@ pallete.snow2 = "#D8DEE9"
 
 
 pallete.night0 = "#2E3440"
-pallete.night0 = "#3B4252"
-pallete.night0 = "#434C5E"
-pallete.night0 = "#4C566A"
+pallete.night1 = "#3B4252"
+pallete.night2 = "#434C5E"
+pallete.night3 = "#4C566A"
 
 pallete.taglist_bg = "#00000000"
 
@@ -52,7 +52,7 @@ theme.bg_systray = theme.bg_normal
 theme.pallete = pallete
 
 -- {{{ Borders
-theme.useless_gap   = dpi(6)
+theme.useless_gap   = dpi(3)
 theme.border_width  = dpi(2)
 theme.border_normal = "#4c566a"
 theme.border_focus  = "#81A1C1"
@@ -109,10 +109,10 @@ theme.menu_height       = dpi(15)
 theme.menu_width        = dpi(100)
 
 -- Wallpaper
-theme.wallpaper = "/home/kiennt54/dotfiles/wallpapers/nordic-wallpapers/wallpapers/ign_endeavour2.png"
+theme.wallpaper = "/home/kiennt54/dotfiles/wallpapers/ign_endeavour2.png"
 
 -- Layout icons
-theme.layout_tile       = custom_themes_path .. "nord/layouts/tile_nord_350.png"
+theme.layout_tile       = custom_themes_path .. "nord/tile.png"
 theme.layout_tileleft   = custom_themes_path .. "nord/layouts/tileleft.png"
 theme.layout_tilebottom = custom_themes_path .. "nord/layouts/tilebottom.png"
 theme.layout_tiletop    = custom_themes_path .. "nord/layouts/tiletop.png"
@@ -120,7 +120,7 @@ theme.layout_fairv      = custom_themes_path .. "nord/layouts/fairv.png"
 theme.layout_fairh      = custom_themes_path .. "nord/layouts/fairh.png"
 theme.layout_spiral     = custom_themes_path .. "nord/layouts/spiral.png"
 theme.layout_dwindle    = custom_themes_path .. "nord/layouts/dwindle.png"
-theme.layout_max        = custom_themes_path .. "nord/layouts/float_nord_350.png"
+theme.layout_max        = custom_themes_path .. "nord/float.png"
 theme.layout_fullscreen = custom_themes_path .. "nord/layouts/fullscreen.png"
 theme.layout_magnifier  = custom_themes_path .. "nord/layouts/magnifier.png"
 theme.layout_floating   = custom_themes_path .. "nord/layouts/float.png"
@@ -130,6 +130,6 @@ theme.layout_cornersw   = custom_themes_path .. "nord/layouts/cornersw.png"
 theme.layout_cornerse   = custom_themes_path .. "nord/layouts/cornerse.png"
 
 theme.wibar_opacity = 1.0
-theme.wibar_bg = "#ffffff00"
+theme.wibar_bg = "#242933"
 
 return theme
