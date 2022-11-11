@@ -7,7 +7,7 @@ configuration {
 	display-window: "缾 ";
 	display-calc: " ";
 
-    matching: "fuzzy";
+    matching: "normal";
 
 	icon-theme: "Papirus-Light";
     drun-display-format: "{name}";
