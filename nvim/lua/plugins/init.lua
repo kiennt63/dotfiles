@@ -66,15 +66,23 @@ return packer.startup(function(use)
     use "kyazdani42/nvim-tree.lua"
 
     -- File explorer
+    vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+
+    use {
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v2.x",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+            "MunifTanjim/nui.nvim",
+        }
+    }
+
+    -- File explorer
     use {
         "kevinhwang91/rnvimr",
         updater = nil
     }
-    -- use {
-    --     "luukvbaal/nnn.nvim",
-    -- }
-
-
     -- Autopair
     use "windwp/nvim-autopairs"
     use {
@@ -95,14 +103,6 @@ return packer.startup(function(use)
                cmake --build build --config Release && \
                cmake --install build --prefix build'
     }
-    -- use 'nvim-telescope/telescope-media-files.nvim'
-
-    -- FZF
-    use { 'ibhagwan/fzf-lua',
-        -- optional for icon support
-        requires = { 'kyazdani42/nvim-web-devicons' }
-    }
-
     -- Gitsigns
     use {
         'lewis6991/gitsigns.nvim',
@@ -134,6 +134,21 @@ return packer.startup(function(use)
     -- Whichkey
     use "folke/which-key.nvim"
 
+    -- Remote
+    use {
+        'chipsenkbeil/distant.nvim',
+        config = function()
+            require('distant').setup {
+                -- Applies Chip's personal settings to every machine you connect to
+                --
+                -- 1. Ensures that distant servers terminate with no connections
+                -- 2. Provides navigation bindings for remote directories
+                -- 3. Provides keybinding to jump into a remote file's parent directory
+                ['*'] = require('distant.settings').chip_default()
+            }
+        end
+    }
+
     -- Other
     use "nvim-lua/plenary.nvim"
     use "kyazdani42/nvim-web-devicons"
@@ -146,38 +161,37 @@ return packer.startup(function(use)
         require("packer").sync()
     end
 
-    require 'plugins/themes'
-    require 'plugins/autopairs'
-    require 'plugins/autosave'
-    require 'plugins/lualine'
-    require 'plugins/bufferline'
-    require 'plugins/cmp'
-    require 'plugins/lsp-signature'
-    require 'plugins/telescope'
-    -- require('telescope').load_extension('media_files')
-    require 'plugins/fzf'
-    require 'plugins/nvim-tree'
-    require 'plugins/treesitter'
-    require 'plugins/toggleterm'
-    require 'plugins/autosession'
-    -- require 'plugins/wk'
-    require 'plugins/scrollbar'
+    if vim.g.vscode then
+        require 'colorizer'.setup {}
+        require('nvim-surround').setup {}
+        require('Comment').setup()
+    else
+        require 'plugins/themes'
+        require 'plugins/autopairs'
+        require 'plugins/autosave'
+        require 'plugins/lualine'
+        require 'plugins/bufferline'
+        require 'plugins/cmp'
+        require 'plugins/lsp-signature'
+        require 'plugins/telescope'
+        -- require('telescope').load_extension('media_files')
+        -- require 'plugins/nvim-tree'
+        require 'plugins/neotree'
+        require 'plugins/treesitter'
+        require 'plugins/toggleterm'
+        require 'plugins/autosession'
+        -- require 'plugins/wk'
+        require 'plugins/scrollbar'
 
-    require("mason").setup {}
-    require("mason-lspconfig").setup {
-        ensure_installed = { "sumneko_lua", "rust_analyzer" }
-    }
-    require('gitsigns').setup {}
-    require 'colorizer'.setup {}
-    require('nvim-surround').setup {}
-    require('Comment').setup()
-    require('plugins/lsp')
-    require('impatient')
-
-    -- require("indent_blankline").setup {
-    --     space_char_blankline = " ",
-    -- }
-
-    -- require('plugins/breadcrumbs').setup()
-
+        require("mason").setup {}
+        require("mason-lspconfig").setup {
+            ensure_installed = { "sumneko_lua", "rust_analyzer" }
+        }
+        require('gitsigns').setup {}
+        require 'colorizer'.setup {}
+        require('nvim-surround').setup {}
+        require('Comment').setup()
+        require('plugins/lsp')
+        require('impatient')
+    end
 end)

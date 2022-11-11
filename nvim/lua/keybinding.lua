@@ -23,8 +23,9 @@ vim.g.maplocalleader = " "
 -- Normal --
 
 -- Open sidebar
-keymap("n", "<leader>e", ":NvimTreeFocus<cr>", opts)
-keymap("n", "<leader>b", ":NvimTreeToggle<cr>", opts)
+keymap("n", "<leader>e", ":Neotree filesystem reveal left<cr>", opts)
+keymap("n", "<leader>b", ":Neotree toggle=true<cr>", opts)
+keymap("n", "<c-p>", ":Neotree focus buffers<cr>", opts)
 
 -- Better window navigation
 -- keymap("n", "<C-h>", "<C-w>h", opts)
