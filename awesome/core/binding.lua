@@ -99,7 +99,7 @@ globalkeys = gears.table.join(
         { description = "restore minimized", group = "client" }),
 
     -- Launcher
-    awful.key({ modkey          }, "r", function() awful.spawn(apps.rofi_drun, false) end,
+    awful.key({ modkey }, "r", function() awful.spawn(apps.rofi_drun, false) end,
         { description = "run rofi drun", group = "launcher" }),
     awful.key({ modkey, "Shift" }, "r", function() awful.spawn(apps.rofi_run, false) end,
         { description = "run rofi run", group = "launcher" }),
@@ -107,13 +107,13 @@ globalkeys = gears.table.join(
         { description = "run rofi window", group = "launcher" }),
     awful.key({ modkey, "Shift" }, "e", function() awful.spawn.with_shell(apps.rofi_calc, false) end,
         { description = "run rofi calc", group = "launcher" }),
-    awful.key({ modkey,    }, "Return", function() awful.spawn(apps.terminal, false) end,
+    awful.key({ modkey, }, "Return", function() awful.spawn(apps.terminal, false) end,
         { description = "open terminal", group = "launcher" }),
-    awful.key({ modkey,         }, "w", function() awful.spawn(apps.browser, false) end,
+    awful.key({ modkey, }, "w", function() awful.spawn(apps.browser, false) end,
         { description = "open browser", group = "launcher" }),
     awful.key({ modkey, "Shift" }, "q", function() awful.spawn.with_shell(apps.files, false) end,
         { description = "open ranger", group = "launcher" }),
-    awful.key({ modkey,         }, "q", function() awful.spawn.with_shell(apps.ranger, false) end,
+    awful.key({ modkey, }, "q", function() awful.spawn.with_shell(apps.ranger, false) end,
         { description = "open files", group = "launcher" }),
 
     -- Screenshot

@@ -14,7 +14,7 @@ local custom_themes_path = string.format("%s/dotfiles/awesome/theme/", os.getenv
 local theme = {}
 local pallete = {}
 
-theme.font = "SFMono Nerd Font, Medium 12"
+theme.font = "Ligamononoki Nerd Font, Medium 12"
 
 pallete.aurora0 = "#B48EAD"
 pallete.aurora1 = "#A3BE8C"
@@ -46,7 +46,10 @@ theme.fg_urgent  = "#D08770"
 theme.bg_normal  = "#2E3440"
 theme.bg_focus   = "#3B4252"
 theme.bg_urgent  = "#3B4252"
-theme.bg_systray = theme.bg_normal
+theme.wibar_opacity = 1.0
+theme.wibar_bg = "#242933"
+theme.bg_systray = "#242933"
+
 -- }}}
 
 theme.pallete = pallete
@@ -128,8 +131,5 @@ theme.layout_cornernw   = custom_themes_path .. "nord/layouts/cornernw.png"
 theme.layout_cornerne   = custom_themes_path .. "nord/layouts/cornerne.png"
 theme.layout_cornersw   = custom_themes_path .. "nord/layouts/cornersw.png"
 theme.layout_cornerse   = custom_themes_path .. "nord/layouts/cornerse.png"
-
-theme.wibar_opacity = 1.0
-theme.wibar_bg = "#242933"
 
 return theme
