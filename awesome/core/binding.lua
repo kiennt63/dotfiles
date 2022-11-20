@@ -116,6 +116,15 @@ globalkeys = gears.table.join(
     awful.key({ modkey, }, "q", function() awful.spawn.with_shell(apps.ranger, false) end,
         { description = "open files", group = "launcher" }),
 
+    -- Media control
+    awful.key({}, "XF86AudioPlay", function() awful.util.spawn("playerctl --player=cider play-pause") end),
+    awful.key({}, "XF86AudioNext", function() awful.util.spawn("playerctl --player=cider next") end),
+    awful.key({}, "XF86AudioPrev", function() awful.util.spawn("playerctl --player=cider previous") end),
+    awful.key({}, "XF86AudioRaiseVolume", function() awful.util.spawn("pamixer -i 5 --allow-boost --set-limit 150") end),
+    awful.key({}, "XF86AudioLowerVolume", function() awful.util.spawn("pamixer -d 5 --allow-boost --set-limit 150") end),
+    awful.key({}, "XF86AudioMute", function() awful.util.spawn("pamixer -t") end),
+
+
     -- Screenshot
 
     awful.key({ modkey, "Shift" }, "backslash",

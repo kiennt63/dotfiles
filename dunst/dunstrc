@@ -24,7 +24,7 @@
     idle_threshold = 0
 
     ### Text ###
-    font = monospace 12
+    font = SFMono Nerd Font 12
     line_height = 0
     markup = full
 
@@ -100,7 +100,7 @@
 [urgency_low]
     background = "#2E3440"
     foreground = "#D8DEE9"
-    frame_color = "#A3BE8C"
+    frame_color = "#D8DEE9"
     timeout = 5
     #default_icon = /path/to/icon
 

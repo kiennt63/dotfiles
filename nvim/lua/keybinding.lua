@@ -1,7 +1,5 @@
 local opts = { noremap = true, silent = true }
 
-local term_opts = { silent = true }
-
 -- Shorten function name
 local keymap = vim.keymap.set
 
@@ -21,10 +19,8 @@ if vim.g.vscode then
     keymap("n", "<c-w>l", "<cmd> lua vim.fn.VSCodeNotify('workbench.action.focusActiveEditorGroup')<cr>", opts)
 else
     -- Open sidebar
-    keymap("n", "<leader>e", ":Neotree filesystem reveal left<cr>", opts)
-    keymap("n", "<leader>b", ":Neotree toggle=true<cr>", opts)
-    keymap("n", "<c-p>", ":Neotree focus buffers<cr>", opts)
-
+    keymap("n", "<leader>e", ":NvimTreeFocus<cr>", opts)
+    keymap("n", "<leader>b", ":NvimTreeToggle<cr>", opts)
     -- Better window navigation
     -- keymap("n", "<C-h>", "<C-w>h", opts)
     keymap("n", "<C-j>", "<C-w>w", opts)

@@ -2,8 +2,18 @@
 
 # setup dual monitor
 num_monitor=$(xrandr | grep " connected " | awk '{ print$1 }' | wc -l)
+
+
+xrandr --output eDP-1-1 --mode 1920x1080
 if [[ $(xrandr | grep " connected " | awk '{ print$1 }' | wc -l) -ge 2 ]]; then
-  xrandr --output HDMI-0 --mode 1920x1080 --rate 144 --right-of eDP-1-1
+    external=$(xrandr --query | grep -A 1 " connected" | head -2 | tail -1 | awk '{ print$1 }')
+    if [[ $external = "3840x2160" ]]; then
+        xrdb $HOME/dotfiles/reso/Xresources_4K
+        xrandr --output HDMI-0 --mode "$external" --rate 60 --right-of eDP-1-1
+    else
+        xrdb $HOME/dotfiles/reso/Xresources_1080p
+        xrandr --output HDMI-0 --mode "$external" --rate 144 --right-of eDP-1-1
+    fi
 fi
 
 # enable tap to click on touchpad
@@ -26,4 +36,4 @@ do
 done
 
 # redshift
-redshift -O 4000 -v
+redshift -O 4500 -v

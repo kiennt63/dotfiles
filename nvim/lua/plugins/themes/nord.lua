@@ -21,8 +21,6 @@ vim.cmd('highlight rainbowcol7 guifg=#88C0D0')
 vim.cmd('highlight lualine_scrollbar guifg=#D8DEE9 guibg=#3B4252')
 
 vim.cmd('highlight NvimTreeFolderIcon guifg=#81A1C1')
-vim.cmd('highlight NeoTreeGitUntracked guifg=#81A1C1')
-vim.cmd('highlight NeoTreeGitUnstaged guifg=#EBCB8B')
 
 local nord0 = "#2E3440"
 

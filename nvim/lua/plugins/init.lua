@@ -66,17 +66,17 @@ return packer.startup(function(use)
     use "kyazdani42/nvim-tree.lua"
 
     -- File explorer
-    vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
-
-    use {
-        "nvim-neo-tree/neo-tree.nvim",
-        branch = "v2.x",
-        requires = {
-            "nvim-lua/plenary.nvim",
-            "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
-            "MunifTanjim/nui.nvim",
-        }
-    }
+    -- vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+    --
+    -- use {
+    --     "nvim-neo-tree/neo-tree.nvim",
+    --     branch = "v2.x",
+    --     requires = {
+    --         "nvim-lua/plenary.nvim",
+    --         "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+    --         "MunifTanjim/nui.nvim",
+    --     }
+    -- }
 
     -- File explorer
     use {
@@ -109,8 +109,8 @@ return packer.startup(function(use)
     }
     -- Colorschemes
     use 'shaunsingh/nord.nvim'
-
     use 'sainnhe/gruvbox-material'
+    use { "catppuccin/nvim", as = "catppuccin" }
 
     -- Show colors
     use 'NvChad/nvim-colorizer.lua'
@@ -175,8 +175,8 @@ return packer.startup(function(use)
         require 'plugins/lsp-signature'
         require 'plugins/telescope'
         -- require('telescope').load_extension('media_files')
-        -- require 'plugins/nvim-tree'
-        require 'plugins/neotree'
+        require 'plugins/nvim-tree'
+        -- require 'plugins/neotree'
         require 'plugins/treesitter'
         require 'plugins/toggleterm'
         require 'plugins/autosession'

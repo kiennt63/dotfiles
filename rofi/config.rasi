@@ -12,7 +12,7 @@ configuration {
 	icon-theme: "Papirus-Light";
     drun-display-format: "{name}";
 	/* fixed-num-lines: true; */
-	font: "SFMono Nerd Font Regular 13";
+	font: "Ligamononoki Nerd Font Regular 30";
 
     /* keybinding */
     kb-remove-to-eol: "";

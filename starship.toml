@@ -3,7 +3,7 @@
 
 # Inserts a blank line between shell prompts
 add_newline = false
-# command_timeout = 10000
+command_timeout = 150
 
 format = """
 $directory\

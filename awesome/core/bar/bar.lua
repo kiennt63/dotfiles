@@ -6,7 +6,7 @@ local beautiful = require("beautiful")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 
-
+local custom_themes_path = string.format("%s/dotfiles/awesome/theme/", os.getenv("HOME"))
 
 mytextclock = wibox.widget.textclock()
 
@@ -66,14 +66,14 @@ awful.screen.connect_for_each_screen(function(s)
         awful.button({}, 4, function() awful.layout.inc(1) end),
         awful.button({}, 5, function() awful.layout.inc(-1) end)))
 
+
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
 
-    -- Create a tasklist widget
-    -- s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
-
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(28) })
+    s.systray = wibox.widget.systray(true)
+    s.systray:set_base_size(dpi(20))
 
     -- Custom widget
     s.volume, s.volume_timer = awful.widget.watch(".config/awesome/core/bar/widgets/volume", 1)
@@ -129,7 +129,6 @@ awful.screen.connect_for_each_screen(function(s)
                 {
 
                     layout = wibox.layout.fixed.horizontal,
-                    -- wibox.widget.systray(),
                     {
                         s.volume,
                         fg = beautiful.pallete.frost3,
@@ -173,6 +172,13 @@ awful.screen.connect_for_each_screen(function(s)
                         widget = wibox.container.background
                     },
                     {
+                        s.systray,
+                        top = dpi(4),
+                        left = dpi(2),
+                        right = dpi(3),
+                        widget = wibox.container.margin
+                    },
+                    {
                         s.mylayoutbox,
                         fg = beautiful.pallete.frost0,
                         -- fg = beautiful.titlebar_bg_normal,
@@ -183,6 +189,7 @@ awful.screen.connect_for_each_screen(function(s)
                 widget = wibox.container.margin
             }
         },
+        bottom = dpi(3),
         -- top = dpi(13), -- don't forget to increase wibar height
         -- left = dpi(13), -- don't forget to increase wibar height
         -- right = dpi(13), -- don't forget to increase wibar height
