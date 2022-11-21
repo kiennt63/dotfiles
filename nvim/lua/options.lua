@@ -33,6 +33,7 @@ o.pumheight = 15
 bo.autoindent = true
 bo.smartindent = true
 bo.swapfile = false
+o.nofixendofline = true
 
 wo.number = true
 wo.relativenumber = true

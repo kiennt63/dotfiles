@@ -18,6 +18,7 @@ if vim.g.vscode then
     keymap("n", "<leader>b", "<cmd> lua vim.fn.VSCodeNotify('workbench.action.toggleSidebarVisibility')<cr>", opts)
     keymap("n", "<c-w>l", "<cmd> lua vim.fn.VSCodeNotify('workbench.action.focusActiveEditorGroup')<cr>", opts)
 else
+    -- =======================================================
     -- Open sidebar
     keymap("n", "<leader>e", ":NvimTreeFocus<cr>", opts)
     keymap("n", "<leader>b", ":NvimTreeToggle<cr>", opts)
@@ -33,6 +34,7 @@ else
     keymap("n", "<C-l>", ":vertical resize -2<CR>", opts)
     keymap("n", "<C-h>", ":vertical resize +2<CR>", opts)
 
+    -- =======================================================
     -- Navigate buffers
     keymap("n", "<S-h>", ":bprevious<CR>", opts)
     keymap("n", "<S-l>", ":bnext<CR>", opts)
@@ -51,6 +53,7 @@ else
     keymap("n", "<leader>bp", "<cmd>BufferLineTogglePin<CR>", opts)
     keymap("n", "<leader>bl", "<cmd>b#<CR>", opts)
 
+    -- =======================================================
     -- Saving and stuff
     keymap("n", "<leader>q", ":q<CR>", opts)
     keymap("n", "<leader>qa", ":qa<CR>", opts)
@@ -61,14 +64,18 @@ else
     keymap("n", "<leader>wq", ":wq<CR>", opts)
     keymap("n", "<leader>wqa", ":wqa<CR>", opts)
 
+    -- =======================================================
+    -- Normal
     -- Move text up and down
     keymap("n", "<A-j>", "<Esc>:m .+1<CR>==", opts)
     keymap("n", "<A-k>", "<Esc>:m .-2<CR>==", opts)
 
+    -- =======================================================
     -- Insert --
     -- Press jk fast to exit insert mode
     -- keymap("i", "jk", "<ESC>", opts)
 
+    -- =======================================================
     -- Visual --
     -- Stay in indent mode
     keymap("v", "<", "<gv", opts)
@@ -79,6 +86,10 @@ else
     keymap("v", "<A-k>", ":m .-2<CR>==", opts)
     keymap("v", "p", '"_dP', opts)
 
+    -- Copy to clipboard
+    keymap("v", "<leader>y", '"+y', opts)
+
+    -- =======================================================
     -- Visual Block --
     -- Move text up and down
     keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
@@ -86,6 +97,10 @@ else
     keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
     keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
+    -- Copy to clipboard
+    keymap("x", "<leader>y", '"+y', opts)
+
+    -- =======================================================
     -- Terminal --
     -- Better terminal navigation
     -- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)

@@ -46,6 +46,12 @@ return packer.startup(function(use)
         'numToStr/Comment.nvim',
     }
 
+    -- Markdown preview
+    use { "ellisonleao/glow.nvim" }
+
+    -- Git diff
+    use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+
     -- Lualine
     use "nvim-lualine/lualine.nvim"
     -- Bufferline
@@ -193,5 +199,7 @@ return packer.startup(function(use)
         require('Comment').setup()
         require('plugins/lsp')
         require('impatient')
+        require('plugins/snippet')
+        require('plugins/markdown')
     end
 end)
