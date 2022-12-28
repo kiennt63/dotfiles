@@ -30,6 +30,10 @@ return packer.startup(function(use)
         "neovim/nvim-lspconfig",
     }
 
+    -- Formatter
+    use "lukas-reineke/lsp-format.nvim"
+
+
     -- Toggle term
     use {
         "akinsho/toggleterm.nvim",
@@ -135,7 +139,7 @@ return packer.startup(function(use)
     use "ray-x/lsp_signature.nvim"
 
     -- Scrollbar
-    use 'lewis6991/satellite.nvim'
+    use 'petertriho/nvim-scrollbar'
 
     -- Whichkey
     use "folke/which-key.nvim"
@@ -187,13 +191,13 @@ return packer.startup(function(use)
         require 'plugins/toggleterm'
         require 'plugins/autosession'
         -- require 'plugins/wk'
-        require 'plugins/scrollbar'
+        -- require 'plugins/scrollbar'
 
         require("mason").setup {}
         require("mason-lspconfig").setup {
             ensure_installed = { "sumneko_lua", "rust_analyzer" }
         }
-        require('gitsigns').setup {}
+        require('gitsigns').setup()
         require 'colorizer'.setup {}
         require('nvim-surround').setup {}
         require('Comment').setup()

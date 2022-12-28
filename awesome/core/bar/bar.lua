@@ -178,12 +178,12 @@ awful.screen.connect_for_each_screen(function(s)
                         right = dpi(3),
                         widget = wibox.container.margin
                     },
-                    {
-                        s.mylayoutbox,
-                        fg = beautiful.pallete.frost0,
-                        -- fg = beautiful.titlebar_bg_normal,
-                        widget = wibox.container.background
-                    },
+                    -- {
+                    --     s.mylayoutbox,
+                    --     fg = beautiful.pallete.frost0,
+                    --     -- fg = beautiful.titlebar_bg_normal,
+                    --     widget = wibox.container.background
+                    -- },
                 },
                 right = dpi(3),
                 widget = wibox.container.margin

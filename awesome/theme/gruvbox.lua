@@ -112,15 +112,15 @@ theme.taglist_fg_empty      = pallete.snow0
 theme.taglist_fg_urgent     = pallete.snow0
 theme.taglist_fg_focus      = pallete.aurora1
 
-theme.taglist_squares_sel   = custom_themes_path .. "nord/taglist/gruv_sel.png"
-theme.taglist_squares_unsel = custom_themes_path .. "nord/taglist/gruv_unsel.png"
+theme.taglist_squares_sel   = custom_themes_path .. "gruvbox/taglist/gruvbox_sel.png"
+theme.taglist_squares_unsel = custom_themes_path .. "gruvbox/taglist/gruvbox_unsel.png"
 
 theme.menu_submenu_icon = themes_path .. "default/submenu.png"
 theme.menu_height       = dpi(15)
 theme.menu_width        = dpi(100)
 
 -- Wallpaper
-theme.wallpaper = "/home/kiennt54/dotfiles/wallpapers/wallpapers-master/gruvbox/wolf.jpg"
+theme.wallpaper = "/home/kiennt54/dotfiles/wallpapers/ign_legendary.png"
 
 -- Layout icons
 theme.layout_tile       = custom_themes_path .. "nord/layouts/tile_nord_350.png"

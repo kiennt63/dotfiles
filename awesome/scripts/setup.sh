@@ -14,6 +14,9 @@ if [[ $(xrandr | grep " connected " | awk '{ print$1 }' | wc -l) -ge 2 ]]; then
         xrdb $HOME/dotfiles/reso/Xresources_1080p
         xrandr --output HDMI-0 --mode "$external" --rate 144 --right-of eDP-1-1
     fi
+else
+    xrdb $HOME/dotfiles/reso/Xresources_1080p
+    xrandr --output eDP-1-1 --mode 1920x1080 --rate 60
 fi
 
 # enable tap to click on touchpad

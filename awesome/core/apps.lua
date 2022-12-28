@@ -8,5 +8,6 @@ local apps = {
     rofi_window = "rofi -dpi 60 -show window",
     ranger = "kitty -e ranger",
     files = "nautilus",
+    clickup = "~/.local/bin/ClickUp",
 }
 return apps
