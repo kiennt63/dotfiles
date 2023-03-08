@@ -164,6 +164,7 @@ return packer.startup(function(use)
     use "kyazdani42/nvim-web-devicons"
     use "lewis6991/impatient.nvim"
     use "lukas-reineke/indent-blankline.nvim"
+    use "tpope/vim-abolish"
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
@@ -195,7 +196,7 @@ return packer.startup(function(use)
 
         require("mason").setup {}
         require("mason-lspconfig").setup {
-            ensure_installed = { "sumneko_lua", "rust_analyzer" }
+            ensure_installed = { "lua_ls", "rust_analyzer" }
         }
         require('gitsigns').setup()
         require 'colorizer'.setup {}

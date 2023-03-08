@@ -28,7 +28,7 @@ ON_ATTACH = function(client, bufnr)
 end
 
 require('plugins/lsp/pyright')
-require('plugins/lsp/sumneko_lua')
+require('plugins/lsp/luals')
 require('plugins/lsp/clangd')
 require('plugins/lsp/cmake')
 require('plugins/lsp/bashls')

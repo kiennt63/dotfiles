@@ -6,6 +6,6 @@ DISABLE_MAGIC_FUNCTIONS="true"
 # ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"
 typeset -A ZSH_HIGHLIGHT_STYLES
 
-plugins=(git fzf-tab tmux web-search zsh-z zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git tmux fzf-tab web-search zsh-z zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
