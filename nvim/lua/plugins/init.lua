@@ -59,7 +59,9 @@ return packer.startup(function(use)
     -- Lualine
     use "nvim-lualine/lualine.nvim"
     -- Bufferline
-    use { 'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons' }
+    -- use { 'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons' }
+    use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
+
     use 'moll/vim-bbye'
 
     -- Session

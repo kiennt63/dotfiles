@@ -1,7 +1,4 @@
-local status_ok, bufferline = pcall(require, "bufferline")
-if not status_ok then
-    return
-end
+local status_ok, bufferline = pcall(require, "bufferline") if not status_ok then return end
 
 bufferline.setup {
     options = {
@@ -48,8 +45,7 @@ bufferline.setup {
         --   if vim.bo[buf_number].filetype ~= "<i-dont-want-to-see-this>" then
         --     return true
         --   end
-        --   -- filter out by buffer name
-        --   if vim.fn.bufname(buf_number) ~= "<buffer-name-I-dont-want>" then
+        --   -- filter out by buffer name --   if vim.fn.bufname(buf_number) ~= "<buffer-name-I-dont-want>" then
         --     return true
         --   end
         --   -- filter out based on arbitrary rules
@@ -71,14 +67,14 @@ bufferline.setup {
         always_show_bufferline = true,
         sort_by = 'id', -- | 'extension' | 'relative_directory' | 'directory' | 'tabs' | function(buffer_a, buffer_b)
     },
-    -- highlights = {
-    --     fill = {
-    --         bg = "#2E3440"
-    --     },
-    --     -- background = {
-    --     --     bg = "#434C5E"
-    --     -- },
-    -- }
+    highlights = {
+        fill = {
+            bg = "#2E3440"
+        },
+        -- background = {
+        --     bg = "#434C5E"
+        -- },
+    }
     --
     --     -- buffer_selected = {
     --     --     bg = "#4C566A",
