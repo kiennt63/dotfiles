@@ -2,7 +2,7 @@ local fn = vim.fn
 local packer = require('packer')
 
 -- Automatically install packer and sync when save file
--- require('plugins/autosync')
+require('plugins/autosync')
 
 
 -- Have packer use a popup window
@@ -28,6 +28,11 @@ return packer.startup(function(use)
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         "neovim/nvim-lspconfig",
+    }
+
+    use {
+        "folke/trouble.nvim",
+        requires = "nvim-tree/nvim-web-devicons"
     }
 
     -- Formatter
@@ -206,6 +211,7 @@ return packer.startup(function(use)
         require('nvim-surround').setup {}
         require('Comment').setup()
         require('plugins/lsp')
+        require('plugins/trouble')
         require('impatient')
         require('plugins/snippet')
         require('plugins/markdown')
