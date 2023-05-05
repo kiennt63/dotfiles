@@ -2,7 +2,7 @@ local fn = vim.fn
 local packer = require('packer')
 
 -- Automatically install packer and sync when save file
-require('plugins/autosync')
+-- require('plugins/autosync')
 
 
 -- Have packer use a popup window
@@ -188,6 +188,7 @@ return packer.startup(function(use)
         require 'plugins/lsp-signature'
         require 'plugins/telescope'
         -- require('telescope').load_extension('media_files')
+        require 'plugins/devicons'
         require 'plugins/nvim-tree'
         -- require 'plugins/neotree'
         require 'plugins/treesitter'
