@@ -1,10 +1,22 @@
+# navigation
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+
+# git 
 alias gc="git checkout"
+alias gst="git status"
+
+# save rm
 alias rm="rm -i"
+
+# exa
 alias ls="exa --icons --group-directories-first"
 alias ll="exa -l --icons --group-directories-first"
 alias l="exa -l --icons --group-directories-first -a"
 alias la="exa -l --icons --group-directories-first -a"
 alias tree="exa --icons -T -L"
+
 alias untar="tar -xvf"
 alias c="xclip -selection clipboard"
 alias untar="tar -xvf"
