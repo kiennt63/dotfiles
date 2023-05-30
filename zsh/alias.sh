@@ -10,6 +10,10 @@ alias gst="git status"
 # save rm
 alias rm="rm -i"
 
+# tmux 
+alias ts="tmux new -s"
+alias ta="tmux attach -t"
+
 # exa
 alias ls="exa --icons --group-directories-first"
 alias ll="exa -l --icons --group-directories-first"

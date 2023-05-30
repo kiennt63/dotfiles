@@ -2,6 +2,8 @@ bindkey -v
 export KEYTIMEOUT=1
 bindkey '^[[13;5u' autosuggest-accept
 bindkey '^[[13;2u' autosuggest-execute
+bindkey "^H" backward-delete-char
+bindkey "^?" backward-delete-char
 
 # Change cursor shape for different vi modes.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
