@@ -120,7 +120,7 @@ theme.menu_height       = dpi(15)
 theme.menu_width        = dpi(100)
 
 -- Wallpaper
-theme.wallpaper = "/home/kiennt54/dotfiles/wallpapers/ign_endeavour2.png"
+theme.wallpaper = "/home/kiennt63/dotfiles/wallpapers/ign_endeavour2.png"
 
 -- Layout icons
 theme.layout_tile       = custom_themes_path .. "nord/tile.png"

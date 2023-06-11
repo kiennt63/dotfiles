@@ -92,9 +92,9 @@ awful.screen.connect_for_each_screen(function(s)
     end)
 
     s.battery = awful.widget.watch(".config/awesome/core/bar/widgets/battery", 10)
-    s.wifi = awful.widget.watch(".config/awesome/core/bar/widgets/wifi", 10)
+    -- s.wifi = awful.widget.watch(".config/awesome/core/bar/widgets/wifi", 10)
     -- s.brightness = awful.widget.watch(".config/awesome/core/bar/widgets/brightness", 1)
-    s.layout = awful.widget.watch(".config/awesome/core/bar/widgets/layout", 1)
+    -- s.layout = awful.widget.watch(".config/awesome/core/bar/widgets/layout", 1)
     -- s.layout:connect_signal("button::press", function()
     --     awful.spawn(".config/awesome/core/bar/widgets/toggle_layout")
     --     s.layout_timer:emit_signal("timeout")
@@ -103,7 +103,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.date = awful.widget.watch(".config/awesome/core/bar/widgets/date", 10)
     s.time = awful.widget.watch(".config/awesome/core/bar/widgets/time", 1)
     s.power = awful.widget.watch(".config/awesome/core/bar/widgets/power", 5)
-    s.sysstat = awful.widget.watch(".config/awesome/core/bar/widgets/sysstat", 2)
+    s.sysstat = awful.widget.watch(".config/awesome/core/bar/widgets/sysstat", 5)
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -141,18 +141,18 @@ awful.screen.connect_for_each_screen(function(s)
                         -- fg = beautiful.titlebar_bg_normal,
                         widget = wibox.container.background
                     },
-                    {
-                        s.layout,
-                        fg = beautiful.pallete.frost2,
-                        -- fg = beautiful.titlebar_bg_normal,
-                        widget = wibox.container.background
-                    },
-                    {
-                        s.wifi,
-                        fg = beautiful.pallete.frost2,
-                        -- fg = beautiful.titlebar_bg_normal,
-                        widget = wibox.container.background
-                    },
+                    -- {
+                    --     s.layout,
+                    --     fg = beautiful.pallete.frost2,
+                    --     -- fg = beautiful.titlebar_bg_normal,
+                    --     widget = wibox.container.background
+                    -- },
+                    -- {
+                    --     s.wifi,
+                    --     fg = beautiful.pallete.frost2,
+                    --     -- fg = beautiful.titlebar_bg_normal,
+                    --     widget = wibox.container.background
+                    -- },
                     {
                         s.sysstat,
                         fg = beautiful.pallete.frost1,
