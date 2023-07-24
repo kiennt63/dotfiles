@@ -15,7 +15,5 @@ source $HOME/dotfiles/zsh/ros.sh
 source $HOME/dotfiles/zsh/fzf.sh
 # Theming
 source $HOME/dotfiles/zsh/theme.sh
-# General options
-source $HOME/dotfiles/zsh/options.sh
 # Cute fetch on start-up
-bunnyfetch
+# bunnyfetch
