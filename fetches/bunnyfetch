@@ -18,16 +18,14 @@ sep=
 s=$d$f0$sep$t
 
 w='wi'
-wifiname="$(iwgetid | cut -d \" -f2)"
+CURRENT_WIFI="$(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I)"
+wifiname="$(echo "$CURRENT_WIFI" | grep -o "SSID: .*" | sed 's/^SSID: //')"
 
 h='wm'
-wmname="$(xprop -id $(xprop -root -notype | awk '$1=="_NET_SUPPORTING_WM_CHECK:"{print $5}') -notype -f _NET_WM_NAME 8t | grep "WM_NAME" | cut -f2 -d \")"
+wmname="aqua"
 
 k='kr'
 kernel="$(uname -r | cut -d '-' -f1)"
-
-r='up'
-uptime="$(uptime -p | cut -c 4- | cut -d ',' -f -2)"
 
 sh='sh'
 shell=$(basename $SHELL)
@@ -41,12 +39,10 @@ cat << EOF
            $d$f1$h   $t$wmname
  (\ /)     $f3$k   $t$kernel
  ( $d. .$t)    $f2$sh   $t$shell
- c($f1"$t)($f1"$t)   $f5$r   $t$uptime
-           $f4$w   $t$wifiname
+ c($f1"$t)($f1"$t)   $f4$w   $t$wifiname
 
 EOF
 
-# tput clear
 # cat << EOF
 #            $d$f1$h    $t$wmname
 #  $f3(\ /)     3$k   $t$kernel

@@ -1,0 +1,81 @@
+# Open alacritty
+# alt - return : /Applications/Alacritty.app/Contents/MacOS/alacritty --working-directory ~
+alt - return : $HOME/dotfiles/skhd/open_kitty.sh
+alt - w : /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser
+
+# Close focused window
+# shift + alt - c: yabai -m signal --add event=window_destroyed action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus recent || yabai -m window --focus first"; yabai -m signal --add event=application_terminated action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus recent || yabai -m window --focus first"
+shift + alt - c: yabai -m window --close
+
+# Window navigation
+# alt - j : yabai -m window --focus next || yabai -m window --focus first
+# alt - k : yabai -m window --focus prev || yabai -m window --focus last
+
+alt - j : $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "/Users/neik/.config/skhd/focus_next_bsp.sh" else "yabai-stack-navigator --next" end')
+
+alt - k : $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "/Users/neik/.config/skhd/focus_prev_bsp.sh" else "yabai-stack-navigator --prev" end')
+
+shift + alt - j : /Users/neik/.config/skhd/cycle_window_clockwise.sh
+shift + alt - k : /Users/neik/.config/skhd/cycle_window_counter_clockwise.sh
+
+# Spaces navigation
+alt - 1 : yabai -m space --focus 1
+alt - 2 : yabai -m space --focus 2
+alt - 3 : yabai -m space --focus 3
+alt - 4 : yabai -m space --focus 4
+alt - 5 : yabai -m space --focus 5
+alt - 6 : yabai -m space --focus 6
+alt - 7 : yabai -m space --focus 7
+alt - 8 : yabai -m space --focus 8
+alt - 9 : yabai -m space --focus 9
+alt - 0 : yabai -m space --focus 10
+# alt - p : yabai -m space --focus recent
+#
+shift + alt - 1 : yabai -m window --space 1; 
+shift + alt - 2 : yabai -m window --space 2; 
+shift + alt - 3 : yabai -m window --space 3; 
+shift + alt - 4 : yabai -m window --space 4; 
+shift + alt - 5 : yabai -m window --space 5; 
+shift + alt - 6 : yabai -m window --space 6; 
+shift + alt - 7 : yabai -m window --space 7; 
+shift + alt - 8 : yabai -m window --space 8; 
+shift + alt - 9 : yabai -m window --space 9; 
+shift + alt - 0 : yabai -m window --space 10;
+
+# Display navigation
+# lctrl + alt - j : yabai -m display --focus next || yabai -m display --focus first
+# lctrl + alt - k : yabai -m display --focus prev || yabai -m display --focus last
+
+# Different layouts
+alt - space : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "stack" else "bsp" end')
+
+# Resizing windows
+alt - h : yabai -m window --resize left:-50:0; \
+          yabai -m window --resize right:-50:0
+alt - l : yabai -m window --resize right:50:0; \
+          yabai -m window --resize left:50:0
+lctrl + alt - j : yabai -m window --resize bottom:0:50; \
+                  yabai -m window --resize top:0:50
+lctrl + alt - k : yabai -m window --resize top:0:-50; \
+                  yabai -m window --resize bottom:0:-50
+shift + alt - e : yabai -m space --balance
+
+# Toggle gaps in current workspace
+# lctrl + alt - g : yabai -m space --toggle padding; yabai -m space --toggle gap
+
+# Float / Unfloat window
+# alt - m : \
+#     yabai -m window --toggle float; \
+#     yabai -m window --toggle border
+
+# Restart Yabai
+# shift + lctrl + alt - r : \
+#     /usr/bin/env osascript <<< \
+#         "display notification \"Restarting Yabai\" with title \"Yabai\""; \
+#     launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+
+# lctrl + alt - r : \
+# brew services restart yabai \
+# brew services restart sketchybar \
+# brew services restart skhd \
+

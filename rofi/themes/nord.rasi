@@ -1,8 +1,0 @@
-
-* {
-    fg: #D8DEE9;
-    fg-matched: #81A1C1;
-    fg-active: #81A1C1;
-    bg: #2E3440;
-    bg-selected: #3B4252;
-}

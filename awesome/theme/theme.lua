@@ -1,1 +1,0 @@
-/home/kiennt63/dotfiles/awesome/theme/nord.lua

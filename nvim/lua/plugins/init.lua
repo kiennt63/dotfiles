@@ -80,7 +80,18 @@ return packer.startup(function(use)
     use 'nvim-treesitter/nvim-treesitter-context'
 
     -- nvim-tree
-    use "kyazdani42/nvim-tree.lua"
+    -- use "kyazdani42/nvim-tree.lua"
+
+    -- neotree
+    use {
+    "nvim-neo-tree/neo-tree.nvim",
+      branch = "v3.x",
+      requires = { 
+        "nvim-lua/plenary.nvim",
+        "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+        "MunifTanjim/nui.nvim",
+      }
+    }
 
     -- File explorer
     -- vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
@@ -194,8 +205,8 @@ return packer.startup(function(use)
         require 'plugins/telescope'
         -- require('telescope').load_extension('media_files')
         require 'plugins/devicons'
-        require 'plugins/nvim-tree'
-        -- require 'plugins/neotree'
+        -- require 'plugins/nvim-tree'
+        require 'plugins/neotree'
         require 'plugins/treesitter'
         require 'plugins/toggleterm'
         require 'plugins/autosession'

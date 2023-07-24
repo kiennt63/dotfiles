@@ -1,7 +1,0 @@
-#!/bin/bash
-
-memory=($(free -t | grep Mem:))
-used=$(echo "${memory[2]} / ${memory[1]} * 100" | bc -l)
-
-output=$(LC_NUMERIC="en_US.UTF-8" printf "%0.2f\n" $used)
-echo $output

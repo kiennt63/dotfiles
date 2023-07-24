@@ -20,8 +20,8 @@ if vim.g.vscode then
 else
     -- =======================================================
     -- Open sidebar
-    keymap("n", "<leader>e", ":NvimTreeFocus<cr>", opts)
-    keymap("n", "<leader>b", ":NvimTreeToggle<cr>", opts)
+    keymap("n", "<leader>e", ":Neotree<cr>", opts)
+    -- keymap("n", "<leader>b", ":NvimTreeToggle<cr>", opts)
     -- Better window navigation
     -- keymap("n", "<C-h>", "<C-w>h", opts)
     keymap("n", "<C-j>", "<C-w>w", opts)

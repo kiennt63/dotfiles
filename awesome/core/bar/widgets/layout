@@ -1,7 +1,0 @@
-#!/bin/bash
-ibus_layout=$(ibus engine)
-if [ "$ibus_layout" = "Bamboo" ]; then
-    echo "  vi "
-else
-    echo "  us "
-fi

@@ -1,8 +1,0 @@
-#!/bin/bash
-
-temp="$(sed "s/\(..\).*/\1°C/" /sys/class/thermal/thermal_zone2/temp)"
-
-icon=""
-
-echo "$icon $temp "
-

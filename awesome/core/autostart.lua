@@ -1,7 +1,0 @@
-local awful = require("awful")
-
-awful.spawn.with_shell("picom -b")
-awful.spawn.with_shell("~/.config/awesome/scripts/setup.sh")
-awful.spawn.with_shell("ibus-daemon -r -d")
-awful.spawn.with_shell("killall dunst")
-awful.spawn.with_shell("dunst -conf $HOME/dotfiles/dunst/dunstrc")
