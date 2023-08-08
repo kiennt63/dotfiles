@@ -1,6 +1,3 @@
--- Unless you are still migrating, remove the deprecated commands from v1.x
-vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
-
 -- If you want icons for diagnostic errors, you'll need to define them somewhere:
 vim.fn.sign_define("DiagnosticSignError",
     { text = " ", texthl = "DiagnosticSignError" })
@@ -92,6 +89,7 @@ require("neo-tree").setup({
                 nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
             },
             ["<2-LeftMouse>"] = "open",
+            ["l"] = "open",
             ["<cr>"] = "open",
             ["<esc>"] = "revert_preview",
             ["P"] = { "toggle_preview", config = { use_float = true } },

@@ -26,12 +26,13 @@ o.softtabstop = 4
 o.shiftwidth = 4
 o.expandtab = true
 o.autowriteall = true
-o.breakindent = true
+-- o.breakindent = true
 o.noswapfile = true
 o.pumheight = 15
 
-bo.autoindent = true
-bo.smartindent = true
+-- bo.autoindent = true
+-- bo.smartindent = true
+bo.indentexpr = true;
 bo.swapfile = false
 vim.opt.fixendofline = false
 

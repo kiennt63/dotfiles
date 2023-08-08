@@ -42,7 +42,6 @@ cat << EOF
  (\ /)     $f3$k   $t$kernel
  ( $d. .$t)    $f2$sh   $t$shell
  c($f1"$t)($f1"$t)   $f5$r   $t$uptime
-           $f4$w   $t$wifiname
 
 EOF
 

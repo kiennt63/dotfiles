@@ -18,4 +18,4 @@ source $HOME/dotfiles/zsh/theme.sh
 # General options
 source $HOME/dotfiles/zsh/options.sh
 # Cute fetch on start-up
-bunnyfetch
+# bunnyfetch

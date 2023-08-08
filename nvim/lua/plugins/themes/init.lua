@@ -1,1 +1,1 @@
-/home/kiennt54/dotfiles/nvim/lua/plugins/themes/nord.lua
+/home/kiennt63/dotfiles/nvim/lua/plugins/themes/nord.lua

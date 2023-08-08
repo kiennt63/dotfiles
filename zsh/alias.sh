@@ -6,9 +6,17 @@ alias .....="cd ../../../.."
 # git 
 alias gc="git checkout"
 alias gst="git status"
+alias gf="git fetch"
+
+# dds
+alias ddsbag="/opt/dds_utilities/ddsbag/x64-linux/ddsbag"
+alias ddstopic='f(){ (cd /opt/dds_utilities/ddstopic/x64-linux && ./ddstopic "$@");  unset -f f; }; f'
 
 # save rm
 alias rm="rm -i"
+
+# grep
+alias grep="grep --color=always"
 
 # tmux 
 alias ts="tmux new -s"
