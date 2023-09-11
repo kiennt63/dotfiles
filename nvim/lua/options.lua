@@ -32,7 +32,7 @@ o.pumheight = 15
 
 -- bo.autoindent = true
 -- bo.smartindent = true
-bo.indentexpr = true;
+-- bo.indentexpr = true;
 bo.swapfile = false
 vim.opt.fixendofline = false
 

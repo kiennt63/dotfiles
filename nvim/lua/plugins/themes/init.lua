@@ -1,1 +1,0 @@
-/home/kiennt63/dotfiles/nvim/lua/plugins/themes/nord.lua
