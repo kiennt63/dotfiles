@@ -1,230 +1,327 @@
-local fn = vim.fn
-local packer = require('packer')
+local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system {
+        'git',
+        'clone',
+        '--filter=blob:none',
+        'https://github.com/folke/lazy.nvim.git',
+        '--branch=stable', -- latest stable release
+        lazypath,
+    }
+end
+vim.opt.rtp:prepend(lazypath)
 
--- Automatically install packer and sync when save file
-require('plugins/autosync')
+-- lazy loading stuff
+require('lazy').setup({
+    'tpope/vim-fugitive',
+    'tpope/vim-rhubarb',
 
+    -- Detect tabstop and shiftwidth automatically
+    'tpope/vim-sleuth',
 
--- Have packer use a popup window
-local util = require('packer.util')
-packer.init({
-    display = {
-        open_fn = function()
-            return util.float({ border = "rounded" })
+    {
+        'neovim/nvim-lspconfig',
+        dependencies = {
+            { 'williamboman/mason.nvim', config = true },
+            'williamboman/mason-lspconfig.nvim',
+            { 'j-hui/fidget.nvim',       tag = 'legacy', opts = {} },
+            'folke/neodev.nvim',
+        },
+    },
+
+    {
+        -- Autocompletion
+        'hrsh7th/nvim-cmp',
+        dependencies = {
+            'L3MON4D3/LuaSnip',
+            'saadparwaiz1/cmp_luasnip',
+            'hrsh7th/cmp-nvim-lsp',
+            'rafamadriz/friendly-snippets',
+        },
+    },
+
+    -- whichkey
+    { 'folke/which-key.nvim',  opts = {} },
+
+    {
+        "nvim-tree/nvim-web-devicons",
+        opts = {
+            override_by_filename = {
+                [".dockerignore"] = {
+                    icon = "",
+                    name = "DOCKERFILE"
+                },
+                ["dockerfile"] = {
+                    icon = "",
+                    name = "DOCKERFILE"
+                }
+            },
+        },
+    },
+
+    {
+        "nvim-tree/nvim-tree.lua",
+        version = "*",
+        lazy = false,
+        dependencies = {
+            "nvim-tree/nvim-web-devicons",
+        },
+        opts = {
+            renderer = {
+                indent_markers = {
+                    enable = false,
+                    inline_arrows = false,
+                },
+                icons = {
+                    glyphs = {
+                        default = "",
+                        symlink = "",
+                        folder = {
+                            default = "",
+                            open = "",
+                            symlink = "",
+                            symlink_open = "",
+                        },
+                        git = {
+                            unstaged = "",
+                            staged = "✓",
+                            unmerged = "",
+                            renamed = "➜",
+                            untracked = "",
+                            deleted = "",
+                            ignored = "◌",
+                        },
+                    },
+                    show = {
+                        folder_arrow = false
+                    }
+                }
+            }
+        }
+    },
+
+    {
+        -- Adds git related signs to the gutter, as well as utilities for managing changes
+        'lewis6991/gitsigns.nvim',
+        opts = {
+            -- See `:help gitsigns.txt`
+            signs = {
+                add = { text = '+' },
+                change = { text = '~' },
+                delete = { text = '_' },
+                topdelete = { text = '‾' },
+                changedelete = { text = '~' },
+            },
+            on_attach = function (bufnr)
+                vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk,
+                    { buffer = bufnr, desc = 'Preview git hunk' })
+
+                -- don't override the built-in and fugitive keymaps
+                local gs = package.loaded.gitsigns
+                vim.keymap.set({ 'n', 'v' }, ']c', function ()
+                    if vim.wo.diff then return ']c' end
+                    vim.schedule(function () gs.next_hunk() end)
+                    return '<Ignore>'
+                end, { expr = true, buffer = bufnr, desc = "Jump to next hunk" })
+                vim.keymap.set({ 'n', 'v' }, '[c', function ()
+                    if vim.wo.diff then return '[c' end
+                    vim.schedule(function () gs.prev_hunk() end)
+                    return '<Ignore>'
+                end, { expr = true, buffer = bufnr, desc = "Jump to previous hunk" })
+            end,
+        },
+    },
+
+    {
+        -- Theme inspired by Atom
+        'shaunsingh/nord.nvim',
+        config = function ()
+            vim.cmd.colorscheme 'nord'
         end,
     },
-    compile_path = util.join_paths(fn.stdpath('data'), 'plugin', 'packer_compiled.lua'),
-})
 
--- Install your plugins here
-return packer.startup(function(use)
-    -- My plugins here
+    {
+        -- Set lualine as statusline
+        'nvim-lualine/lualine.nvim',
+        opts = {
+            options = {
+                icons_enabled = true,
+                theme = 'nord',
+                section_separators = { left = '', right = '' },
+                component_separators = { left = '', right = '' },
+                -- component_separators = { left = '', right = ''},
+                -- section_separators = { left = '', right = ''},
+                -- component_separators = { left = '', right = '' },
+                -- section_separators = { left = '', right = '' },
+                disabled_filetypes = {
+                    statusline = {},
+                    winbar = {},
+                },
+                ignore_focus = { 'NvimTree' },
+                always_divide_middle = true,
+                globalstatus = true,
+                refresh = {
+                    statusline = 1000,
+                    tabline = 1000,
+                    winbar = 1000,
+                }
+            },
+            sections = {
+                lualine_a = { 'mode' },
+                lualine_b = { 'branch', {
+                    "diff",
+                    source = function ()
+                        local gitsigns = vim.b.gitsigns_status_dict
+                        if gitsigns then
+                            return {
+                                added = gitsigns.added,
+                                modified = gitsigns.changed,
+                                removed = gitsigns.removed,
+                            }
+                        end
+                    end
+                    ,
+                    symbols = { added = "  ", modified = " ", removed = " " },
+                    -- diff_color = {
+                    --   added = { fg = colors.green },
+                    --   modified = { fg = colors.yellow },
+                    --   removed = { fg = colors.red },
+                    -- },
+                    cond = nil,
+                } },
+                lualine_c = {
+                    'filename',
+                },
+                -- lualine_d = {require('auto-session-library').current_session_name},
+                lualine_x = {
+                    {
+                        "diagnostics",
+                        sources = { "nvim_diagnostic" },
+                        symbols = { error = " ", warn = " ", info = " ", hint = " " },
+                        cond = function ()
+                            return vim.fn.winwidth(0) > 70
+                        end,
+                    },
+                    -- components.treesitter,
+                    {
+                        function (msg)
+                            msg = msg or "LS Inactive"
+                            local buf_clients = vim.lsp.get_active_clients()
+                            if next(buf_clients) == nil then
+                                -- TODO: clean up this if statement
+                                if type(msg) == "boolean" or #msg == 0 then
+                                    return "nolang"
+                                end
+                                return msg
+                            end
+                            local buf_ft = vim.bo.filetype
+                            local buf_client_names = {}
 
-    -- Self manage
-    use "wbthomason/packer.nvim"
+                            -- add client
+                            for _, client in pairs(buf_clients) do
+                                if client.name ~= "null-ls" then
+                                    table.insert(buf_client_names, client.name)
+                                end
+                            end
 
-    -- LSP
-    use {
-        "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
-        "neovim/nvim-lspconfig",
-    }
+                            -- add formatter
+                            local formatters = require "lvim.lsp.null-ls.formatters"
+                            local supported_formatters = formatters.list_registered(buf_ft)
+                            vim.list_extend(buf_client_names, supported_formatters)
 
-    use {
-        "folke/trouble.nvim",
-        requires = "nvim-tree/nvim-web-devicons"
-    }
+                            -- add linter
+                            local linters = require "lvim.lsp.null-ls.linters"
+                            local supported_linters = linters.list_registered(buf_ft)
+                            vim.list_extend(buf_client_names, supported_linters)
 
-    -- Formatter
-    use "lukas-reineke/lsp-format.nvim"
+                            local unique_client_names = vim.fn.uniq(buf_client_names)
+                            return "[" .. table.concat(unique_client_names, ", ") .. "]"
+                        end,
+                        color = { gui = "bold" },
+                        cond = function ()
+                            return vim.fn.winwidth(0) > 70
+                        end,
+                    },
+                    {
+                        "filetype",
+                        cond = function ()
+                            return vim.fn.winwidth(0) > 70
+                        end,
+                    },
+                },
+                -- lualine_x = {'searchcount'},
+                lualine_y = { 'progress' },
+                lualine_z = { 'location' }
+            },
+            inactive_sections = {
+                lualine_a = {},
+                lualine_b = {},
+                lualine_c = { 'filename' },
+                lualine_x = { 'location' },
+                lualine_y = {},
+                lualine_z = {}
+            },
+            tabline = {},
+            winbar = {},
+            inactive_winbar = {},
+            extensions = {}
+        },
+    },
 
+    -- Indentation
+    {
+        'lukas-reineke/indent-blankline.nvim',
+        opts = {
+            char = '│',
+            show_trailing_blankline_indent = false,
+        },
+    },
 
-    -- Toggle term
-    use {
-        "akinsho/toggleterm.nvim",
-        tag = '*'
-    }
+    -- Automatically add pair for brackets
+    {
+        'windwp/nvim-autopairs',
+        event = "InsertEnter",
+        opts = {}
+    },
 
-    -- Autosave
-    use {
-        "Pocco81/auto-save.nvim"
-    }
+    -- Diagnostics
+    {
+        'folke/trouble.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        opts = {},
+    },
 
-    -- Commenting
-    use {
-        'numToStr/Comment.nvim',
-    }
+    -- "gc" to comment visual regions/lines
+    { 'numToStr/Comment.nvim', opts = {} },
 
-    -- Markdown preview
-    use { "ellisonleao/glow.nvim" }
+    -- Fuzzy Finder (files, lsp, etc)
+    {
+        'nvim-telescope/telescope.nvim',
+        branch = '0.1.x',
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            {
+                'nvim-telescope/telescope-fzf-native.nvim',
+                build = 'make',
+                cond = function ()
+                    return vim.fn.executable 'make' == 1
+                end,
+            },
+        },
+    },
 
-    -- Git diff
-    use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+    {
+        -- Highlight, edit, and navigate code
+        'nvim-treesitter/nvim-treesitter',
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter-textobjects',
+        },
+        build = ':TSUpdate',
+    },
+}, {})
 
-    -- Lualine
-    use "nvim-lualine/lualine.nvim"
-    -- Bufferline
-    -- use { 'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons' }
-    use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
-
-    use 'moll/vim-bbye'
-
-    -- Session
-    use 'rmagatti/auto-session'
-    -- Treesitter
-    use {
-        "nvim-treesitter/nvim-treesitter",
-        run = ":TSUpdate"
-    }
-    use 'p00f/nvim-ts-rainbow'
-    use 'nvim-treesitter/nvim-treesitter-context'
-
-    -- nvim-tree
-    -- use "kyazdani42/nvim-tree.lua"
-
-    -- neotree
-    use {
-    "nvim-neo-tree/neo-tree.nvim",
-      branch = "v3.x",
-      requires = { 
-        "nvim-lua/plenary.nvim",
-        "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-        "MunifTanjim/nui.nvim",
-      }
-    }
-
-    -- File explorer
-    -- vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
-    --
-    -- use {
-    --     "nvim-neo-tree/neo-tree.nvim",
-    --     branch = "v2.x",
-    --     requires = {
-    --         "nvim-lua/plenary.nvim",
-    --         "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
-    --         "MunifTanjim/nui.nvim",
-    --     }
-    -- }
-
-    -- File explorer
-    use {
-        "kevinhwang91/rnvimr",
-        updater = nil
-    }
-    -- Autopair
-    use "windwp/nvim-autopairs"
-    use {
-        "kylechui/nvim-surround",
-        tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-    }
-
-    -- Telescope
-    use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.0',
-        -- or                            , branch = '0.1.x',
-        requires = { { 'nvim-lua/plenary.nvim' } }
-    }
-    use {
-        'nvim-telescope/telescope-fzf-native.nvim',
-        run = 'cmake -S. -Bbuild \
-               -DCMAKE_BUILD_TYPE=Release && \
-               cmake --build build --config Release && \
-               cmake --install build --prefix build'
-    }
-    -- Gitsigns
-    use {
-        'lewis6991/gitsigns.nvim',
-    }
-    -- Colorschemes
-    use 'shaunsingh/nord.nvim'
-    use 'sainnhe/gruvbox-material'
-    use { "catppuccin/nvim", as = "catppuccin" }
-
-    -- Show colors
-    use 'NvChad/nvim-colorizer.lua'
-
-    -- cmp plugins
-    use "hrsh7th/nvim-cmp"
-    use "hrsh7th/cmp-buffer"
-    use "hrsh7th/cmp-path"
-    use "saadparwaiz1/cmp_luasnip"
-    use "hrsh7th/cmp-nvim-lsp"
-    use "hrsh7th/cmp-nvim-lua"
-    use "L3MON4D3/LuaSnip"
-    use "rafamadriz/friendly-snippets"
-
-    -- Function signatures
-    use "ray-x/lsp_signature.nvim"
-
-    -- Scrollbar
-    use 'petertriho/nvim-scrollbar'
-
-    -- Whichkey
-    use "folke/which-key.nvim"
-
-    -- Remote
-    use {
-        'chipsenkbeil/distant.nvim',
-        config = function()
-            require('distant').setup {
-                -- Applies Chip's personal settings to every machine you connect to
-                --
-                -- 1. Ensures that distant servers terminate with no connections
-                -- 2. Provides navigation bindings for remote directories
-                -- 3. Provides keybinding to jump into a remote file's parent directory
-                ['*'] = require('distant.settings').chip_default()
-            }
-        end
-    }
-
-    -- Other
-    use "nvim-lua/plenary.nvim"
-    use "kyazdani42/nvim-web-devicons"
-    use "lewis6991/impatient.nvim"
-    use "lukas-reineke/indent-blankline.nvim"
-    use "tpope/vim-abolish"
-
-    -- Automatically set up your configuration after cloning packer.nvim
-    -- Put this at the end after all plugins
-    if PACKER_BOOTSTRAP then
-        require("packer").sync()
-    end
-
-    if vim.g.vscode then
-        require 'colorizer'.setup {}
-        require('nvim-surround').setup {}
-        require('Comment').setup()
-    else
-        require 'plugins/themes'
-        require 'plugins/autopairs'
-        require 'plugins/autosave'
-        require 'plugins/lualine'
-        require 'plugins/bufferline'
-        require 'plugins/cmp'
-        require 'plugins/lsp-signature'
-        require 'plugins/telescope'
-        -- require('telescope').load_extension('media_files')
-        require 'plugins/devicons'
-        -- require 'plugins/nvim-tree'
-        require 'plugins/neotree'
-        require 'plugins/treesitter'
-        require 'plugins/toggleterm'
-        require 'plugins/autosession'
-        -- require 'plugins/wk'
-        -- require 'plugins/scrollbar'
-
-        require("mason").setup {}
-        require("mason-lspconfig").setup {
-            ensure_installed = { "lua_ls", "rust_analyzer" }
-        }
-        require('gitsigns').setup()
-        require 'colorizer'.setup {}
-        require('nvim-surround').setup {}
-        require('Comment').setup()
-        require('plugins/lsp')
-        require('plugins/trouble')
-        require('impatient')
-        require('plugins/snippet')
-        require('plugins/markdown')
-    end
-end)
+-- custom configurations
+require('plugins/config/telescope')
+require('plugins/config/treesitter')
+require('plugins/config/lsp')
+require('plugins/config/cmp')

@@ -7,6 +7,13 @@ local g = vim.g
 g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
 
+local vim = vim
+vim.g.nord_contrast = true
+vim.g.nord_borders = false
+vim.g.nord_disable_background = true
+vim.g.nord_italic = false
+vim.g.nord_uniform_diff_background = true
+
 o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 o.cursorline = true
 o.ignorecase = true
@@ -26,12 +33,13 @@ o.softtabstop = 4
 o.shiftwidth = 4
 o.expandtab = true
 o.autowriteall = true
-o.breakindent = true
+-- o.breakindent = true
 o.noswapfile = true
 o.pumheight = 15
 
-bo.autoindent = true
-bo.smartindent = true
+-- bo.autoindent = true
+-- bo.smartindent = true
+-- bo.indentexpr = true;
 bo.swapfile = false
 vim.opt.fixendofline = false
 
