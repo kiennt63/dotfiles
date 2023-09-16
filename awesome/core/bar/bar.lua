@@ -8,25 +8,7 @@ local dpi = xresources.apply_dpi
 
 local custom_themes_path = string.format("%s/dotfiles/awesome/theme/", os.getenv("HOME"))
 
-mytextclock = wibox.widget.textclock()
-
--- Create a wibox for each screen and add it
-local taglist_buttons = gears.table.join(
-    awful.button({}, 1, function(t) t:view_only() end),
-    awful.button({ modkey }, 1, function(t)
-        if client.focus then
-            client.focus:move_to_tag(t)
-        end
-    end),
-    awful.button({}, 3, awful.tag.viewtoggle),
-    awful.button({ modkey }, 3, function(t)
-        if client.focus then
-            client.focus:toggle_tag(t)
-        end
-    end),
-    awful.button({}, 4, function(t) awful.tag.viewnext(t.screen) end),
-    awful.button({}, 5, function(t) awful.tag.viewprev(t.screen) end)
-)
+local mytextclock = wibox.widget.textclock()
 
 local function set_wallpaper(s)
     -- Wallpaper
@@ -47,15 +29,16 @@ awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
 
-    awful.tag({ "  ",
-        "  ",
-        "  ",
-        "  ",
-        "  ",
-        "  ",
-        "  ",
-        "  ",
-        "  ",
+    awful.tag({
+        "1 ",
+        "1 ",
+        "1 ",
+        "1 ",
+        "1 ",
+        "1 ",
+        "1 ",
+        "1 ",
+        "1 ",
     }, s, awful.layout.layouts[1])
 
     -- We need one layoutbox per screen.
@@ -68,7 +51,8 @@ awful.screen.connect_for_each_screen(function(s)
 
 
     -- Create a taglist widget
-    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
+    -- s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
+    s.mytaglist = require('core.bar.taglist')(s)
 
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(28) })
@@ -81,7 +65,8 @@ awful.screen.connect_for_each_screen(function(s)
         if button == 1 then
             awful.spawn("pamixer -t", false)
             s.volume_timer:emit_signal("timeout")
-        elseif button == 3 then awful.spawn.with_shell("pavucontrol")
+        elseif button == 3 then
+            awful.spawn.with_shell("pavucontrol")
         elseif button == 4 then
             awful.spawn("pamixer -i 5 --allow-boost --set-limit 150", false)
             s.volume_timer:emit_signal("timeout")
@@ -131,13 +116,13 @@ awful.screen.connect_for_each_screen(function(s)
                     layout = wibox.layout.fixed.horizontal,
                     {
                         s.volume,
-                        fg = beautiful.pallete.frost3,
+                        fg = beautiful.pallete.frost1,
                         -- fg = beautiful.titlebar_bg_normal,
                         widget = wibox.container.background,
                     },
                     {
                         s.battery,
-                        fg = beautiful.pallete.frost3,
+                        fg = beautiful.pallete.frost1,
                         -- fg = beautiful.titlebar_bg_normal,
                         widget = wibox.container.background
                     },
@@ -154,14 +139,14 @@ awful.screen.connect_for_each_screen(function(s)
                     --     widget = wibox.container.background
                     -- },
                     {
-                        s.sysstat,
+                        s.power,
                         fg = beautiful.pallete.frost1,
                         -- fg = beautiful.titlebar_bg_normal,
                         widget = wibox.container.background
                     },
                     {
-                        s.power,
-                        fg = beautiful.pallete.frost1,
+                        s.sysstat,
+                        fg = beautiful.pallete.frost2,
                         -- fg = beautiful.titlebar_bg_normal,
                         widget = wibox.container.background
                     },
@@ -173,7 +158,7 @@ awful.screen.connect_for_each_screen(function(s)
                     },
                     {
                         s.systray,
-                        top = dpi(4),
+                        top = dpi(3),
                         left = dpi(2),
                         right = dpi(3),
                         widget = wibox.container.margin

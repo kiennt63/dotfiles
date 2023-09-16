@@ -4,13 +4,15 @@
 num_monitor=$(xrandr | grep " connected " | awk '{ print$1 }' | wc -l)
 
 if [[ $num_monitor -ge 2 ]]; then
-    xrandr --output DP-2 --mode 1920x1080 --rate 239.76
-    xrandr --output DP-3 --mode 3840x2160 --rate 60 --right-of DP-2
-    xrdb $HOME/dotfiles/reso/Xresources_4K
+    xrandr --output DP-0 --off --output DP-1 --off --output HDMI-0 --off \
+	   --output DP-2 --primary --mode 3840x2160 --pos 3840x0 --rotate normal \
+	   --output DP-3 --off --output HDMI-1 --off \
+	   --output DP-4 --mode 1920x1080 --pos 0x0 --scale 2x2 --rotate normal \
+	   --output DP-5 --off
 else
     xrandr --output DP-2 --mode 1920x1080 --rate 239.76
-    xrdb $HOME/dotfiles/reso/Xresources_1080p
 fi
+
 
 # enable tap to click on touchpad
 xinput --set-prop 'DELL09E2:00 04F3:30CB Touchpad' 'libinput Tapping Enabled' 1
@@ -40,3 +42,5 @@ done
 
 # redshift
 redshift -P -O 3500
+
+xrdb -merge ~/.Xresources

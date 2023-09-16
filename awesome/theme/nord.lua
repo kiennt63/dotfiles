@@ -19,11 +19,11 @@ local theme = {}
 local pallete = {}
 
 function create_taglist_indicator(size, fg)
-    local img = cairo.ImageSurface(cairo.Format.ARGB32, size, size)
-    local cr = cairo.Context(img)
-    cr:set_source(gears_color(fg))
-    cr:paint()
-    return img
+	local img = cairo.ImageSurface(cairo.Format.ARGB32, size, size)
+	local cr = cairo.Context(img)
+	cr:set_source(gears_color(fg))
+	cr:paint()
+	return img
 end
 
 -- function create_taglist_indicator(size, fg)
@@ -36,7 +36,7 @@ end
 --     return img
 -- end
 
-theme.font = "Ligamononoki Nerd Font, Medium 12"
+theme.font = "Liga SFMono Nerd Font, Medium 12"
 
 pallete.aurora0 = "#B48EAD"
 pallete.aurora1 = "#A3BE8C"
@@ -45,52 +45,52 @@ pallete.aurora3 = "#D08770"
 pallete.aurora4 = "#BF616A"
 
 pallete.frost0 = "#81A1C1"
-pallete.frost1 = "#A3BE8C"
-pallete.frost2 = "#EBCB8B"
-pallete.frost3 = "#B48EAD"
+pallete.frost1 = "#88C0D0"
+pallete.frost2 = "#8FBCBB"
+pallete.frost3 = "#5E81AC"
 
 pallete.snow0 = "#ECEFF4"
 pallete.snow1 = "#E5E9F0"
 pallete.snow2 = "#D8DEE9"
 
 
-pallete.night0 = "#2E3440"
-pallete.night1 = "#3B4252"
-pallete.night2 = "#434C5E"
-pallete.night3 = "#242933"
+pallete.night0              = "#2E3440"
+pallete.night1              = "#3B4252"
+pallete.night2              = "#434C5E"
+pallete.night3              = "#242933"
 
-pallete.taglist_bg = "#00000000"
+pallete.taglist_bg          = "#00000000"
 
 -- Colors
-theme.fg_normal  = pallete.snow0
-theme.fg_focus   = pallete.frost0
-theme.fg_urgent  = pallete.aurora4
-theme.bg_normal  = pallete.night0
-theme.bg_focus   = pallete.night1
-theme.bg_urgent  = pallete.night2
-theme.wibar_opacity = 1.0
-theme.wibar_bg = pallete.night3
-theme.bg_systray = pallete.night3
+theme.fg_normal             = pallete.snow0
+theme.fg_focus              = pallete.frost0
+theme.fg_urgent             = pallete.aurora4
+theme.bg_normal             = pallete.night0
+theme.bg_focus              = pallete.night1
+theme.bg_urgent             = pallete.night2
+theme.wibar_opacity         = 1.0
+theme.wibar_bg              = pallete.night3
+theme.bg_systray            = pallete.night3
 
-theme.pallete = pallete
+theme.pallete               = pallete
 
 -- Borders
-theme.useless_gap   = dpi(5)
-theme.border_width  = dpi(2)
-theme.border_normal = "#4c566a"
-theme.border_focus  = pallete.frost0
-theme.border_marked = pallete.aurora0
+theme.useless_gap           = dpi(4)
+theme.border_width          = dpi(2)
+theme.border_normal         = "#4c566a"
+theme.border_focus          = pallete.frost0
+theme.border_marked         = pallete.aurora0
 
 -- Titlebars
-theme.titlebar_bg_focus  = "#3B4252"
-theme.titlebar_bg_normal = "#2E3440"
+theme.titlebar_bg_focus     = "#3B4252"
+theme.titlebar_bg_normal    = "#2E3440"
 
 -- Taglist colorize
-theme.taglist_bg_focus = "#00000000"
-theme.taglist_bg_urgent = "#00000000"
-theme.taglist_fg_focus = pallete.frost0
-theme.taglist_fg_occupied = pallete.fg_normal
-theme.taglist_fg_empty = pallete.fg_normal
+theme.taglist_bg_focus      = "#00000000"
+theme.taglist_bg_urgent     = "#00000000"
+theme.taglist_fg_focus      = pallete.frost0
+theme.taglist_fg_occupied   = pallete.fg_normal
+theme.taglist_fg_empty      = pallete.fg_normal
 
 -- There are other variable sets
 -- overriding the default one when
@@ -112,32 +112,32 @@ theme.taglist_fg_empty = pallete.fg_normal
 --     taglist_square_size, theme.fg_normal
 -- )
 
-theme.taglist_squares_sel   = custom_themes_path .. "nord/taglist/nord_sel.png"
-theme.taglist_squares_unsel = custom_themes_path .. "nord/taglist/nord_unsel.png"
+-- theme.taglist_squares_sel   = custom_themes_path .. "nord/taglist/nord_sel.png"
+-- theme.taglist_squares_unsel = custom_themes_path .. "nord/taglist/nord_unsel.png"
 
-theme.menu_submenu_icon = themes_path .. "default/submenu.png"
-theme.menu_height       = dpi(15)
-theme.menu_width        = dpi(100)
+theme.menu_submenu_icon     = themes_path .. "default/submenu.png"
+theme.menu_height           = dpi(15)
+theme.menu_width            = dpi(100)
 
 -- Wallpaper
-theme.wallpaper = "/home/kiennt63/dotfiles/wallpapers/ign_endeavour2.png"
+theme.wallpaper             = "/home/kiennt63/dotfiles/wallpapers/ign_endeavour2.png"
 
 -- Layout icons
-theme.layout_tile       = custom_themes_path .. "nord/tile.png"
-theme.layout_tileleft   = custom_themes_path .. "nord/layouts/tileleft.png"
-theme.layout_tilebottom = custom_themes_path .. "nord/layouts/tilebottom.png"
-theme.layout_tiletop    = custom_themes_path .. "nord/layouts/tiletop.png"
-theme.layout_fairv      = custom_themes_path .. "nord/layouts/fairv.png"
-theme.layout_fairh      = custom_themes_path .. "nord/layouts/fairh.png"
-theme.layout_spiral     = custom_themes_path .. "nord/layouts/spiral.png"
-theme.layout_dwindle    = custom_themes_path .. "nord/layouts/dwindle.png"
-theme.layout_max        = custom_themes_path .. "nord/float.png"
-theme.layout_fullscreen = custom_themes_path .. "nord/layouts/fullscreen.png"
-theme.layout_magnifier  = custom_themes_path .. "nord/layouts/magnifier.png"
-theme.layout_floating   = custom_themes_path .. "nord/layouts/float.png"
-theme.layout_cornernw   = custom_themes_path .. "nord/layouts/cornernw.png"
-theme.layout_cornerne   = custom_themes_path .. "nord/layouts/cornerne.png"
-theme.layout_cornersw   = custom_themes_path .. "nord/layouts/cornersw.png"
-theme.layout_cornerse   = custom_themes_path .. "nord/layouts/cornerse.png"
+theme.layout_tile           = custom_themes_path .. "nord/tile.png"
+theme.layout_tileleft       = custom_themes_path .. "nord/layouts/tileleft.png"
+theme.layout_tilebottom     = custom_themes_path .. "nord/layouts/tilebottom.png"
+theme.layout_tiletop        = custom_themes_path .. "nord/layouts/tiletop.png"
+theme.layout_fairv          = custom_themes_path .. "nord/layouts/fairv.png"
+theme.layout_fairh          = custom_themes_path .. "nord/layouts/fairh.png"
+theme.layout_spiral         = custom_themes_path .. "nord/layouts/spiral.png"
+theme.layout_dwindle        = custom_themes_path .. "nord/layouts/dwindle.png"
+theme.layout_max            = custom_themes_path .. "nord/float.png"
+theme.layout_fullscreen     = custom_themes_path .. "nord/layouts/fullscreen.png"
+theme.layout_magnifier      = custom_themes_path .. "nord/layouts/magnifier.png"
+theme.layout_floating       = custom_themes_path .. "nord/layouts/float.png"
+theme.layout_cornernw       = custom_themes_path .. "nord/layouts/cornernw.png"
+theme.layout_cornerne       = custom_themes_path .. "nord/layouts/cornerne.png"
+theme.layout_cornersw       = custom_themes_path .. "nord/layouts/cornersw.png"
+theme.layout_cornerse       = custom_themes_path .. "nord/layouts/cornerse.png"
 
 return theme

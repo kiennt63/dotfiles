@@ -83,6 +83,13 @@ require('lazy').setup({
                 post_cwd_changed_hook = function () -- example refreshing the lualine status line _after_ the cwd changes
                     require("lualine").refresh()    -- refresh lualine so the new session name is displayed in the status bar
                 end,
+                post_restore_cmds = {
+                    function ()
+                        local nvim_tree = require("nvim-tree")
+                        nvim_tree.change_dir(vim.fn.getcwd())
+                    end,
+                    "NvimTreeOpen"
+                }
             },
         }
     },
@@ -407,6 +414,10 @@ require('lazy').setup({
         },
         build = ':TSUpdate',
     },
+
+    {
+        'nvim-treesitter/nvim-treesitter-context'
+    }
 }, {})
 
 -- custom configurations
