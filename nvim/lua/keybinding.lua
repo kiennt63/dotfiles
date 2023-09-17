@@ -25,6 +25,9 @@ keymap("n", "<C-j>", "<C-w>w", opts)
 keymap("n", "<C-l>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-h>", ":vertical resize +2<CR>", opts)
 
+-- Remove hls
+keymap("n", "<esc><esc>", ":noh<cr>", opts)
+
 -- =======================================================
 -- Navigate buffers
 keymap("n", "<S-h>", ":bprevious<CR>", opts)

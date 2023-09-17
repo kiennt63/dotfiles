@@ -9,6 +9,15 @@ au('TextYankPost', {
     end,
 })
 
+au('CmdlineLeave', {
+    group = ag('cmd_line_clear', {}),
+    callback = function ()
+        vim.fn.timer_start(5000, function ()
+            vim.cmd [[ echon ' ' ]]
+        end)
+    end
+})
+
 -- au('BufWritePre', {
 --     group = ag('format_on_save', {}),
 --     pattern = '*.cpp',

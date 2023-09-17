@@ -137,11 +137,19 @@ cmp.setup {
         behavior = cmp.ConfirmBehavior.Replace,
         select = false,
     },
+    -- window = {
+    --     kk
+    --     documentation = {
+    --         border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+    --         max_height = 5
+    --     },
+    -- },
     window = {
-        documentation = {
-            border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-            max_height = 5
-        },
+        completion = cmp.config.window.bordered({
+            -- winhighlight = "Normal:Normal,FloatBorder:Tabline,Search:None",
+            -- max_height = 5
+        }),
+        documentation = cmp.config.window.bordered(),
     },
     experimental = {
         ghost_text = false,
