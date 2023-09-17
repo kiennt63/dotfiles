@@ -93,7 +93,7 @@ theme.taglist_squares_sel   = custom_themes_path .. "catppuccin/taglist/catppucc
 theme.taglist_squares_unsel = custom_themes_path .. "catppuccin/taglist/catppuccin_unsel.png"
 
 -- Wallpaper
-theme.wallpaper = "/home/kiennt54/dotfiles/wallpapers/flatppuccin_4k_macchiato.png"
+theme.wallpaper = "~/dotfiles/wallpapers/flatppuccin_4k_macchiato.png"
 
 -- Layout icons
 theme.layout_tile       = custom_themes_path .. "catppuccin/layouts/catppuccin_tile.png"

@@ -120,7 +120,7 @@ theme.menu_height       = dpi(15)
 theme.menu_width        = dpi(100)
 
 -- Wallpaper
-theme.wallpaper = "/home/kiennt54/dotfiles/wallpapers/ign_legendary.png"
+theme.wallpaper = "~/dotfiles/wallpapers/ign_legendary.png"
 
 -- Layout icons
 theme.layout_tile       = custom_themes_path .. "nord/layouts/tile_nord_350.png"

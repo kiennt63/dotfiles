@@ -130,10 +130,10 @@ globalkeys = gears.table.join(
     -- Screenshot
 
     awful.key({ modkey, "Shift" }, "s",
-        function() awful.spawn("sh /home/kiennt63/.config/awesome/scripts/screenshot_copy.sh") end,
+        function() awful.spawn("sh ~/.config/awesome/scripts/screenshot_copy.sh") end,
         { description = "copy screenshot selection", group = "launcher" }),
     awful.key({ modkey, "Control", "Shift" }, "s",
-        function() awful.spawn("sh /home/kiennt63/.config/awesome/scripts/screenshot_save.sh") end,
+        function() awful.spawn("sh ~/.config/awesome/scripts/screenshot_save.sh") end,
         { description = "save screenshot selection", group = "launcher" })
 
 )

@@ -18,6 +18,22 @@ au('CmdlineLeave', {
     end
 })
 
+au('FocusLost', {
+    group = ag('save_on_focus_lost', {}),
+    pattern = '*',
+    callback = function ()
+        vim.cmd [[ update ]]
+    end
+})
+
+au('BufLeave', {
+    group = ag('save_on_buffer_change', {}),
+    pattern = '*',
+    callback = function ()
+        vim.cmd [[ update ]]
+    end
+})
+
 -- au('BufWritePre', {
 --     group = ag('format_on_save', {}),
 --     pattern = '*.cpp',
