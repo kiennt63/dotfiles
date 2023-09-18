@@ -36,7 +36,7 @@ end
 --     return img
 -- end
 
-theme.font = "Liga SFMono Nerd Font, Medium 12"
+theme.font = "Liga SFMono Nerd Font, Medium 13"
 
 pallete.aurora0 = "#B48EAD"
 pallete.aurora1 = "#A3BE8C"

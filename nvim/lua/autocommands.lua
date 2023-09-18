@@ -29,8 +29,10 @@ au('FocusLost', {
 au('BufLeave', {
     group = ag('save_on_buffer_change', {}),
     pattern = '*',
-    callback = function ()
-        vim.cmd [[ update ]]
+    callback = function (opts)
+        if vim.bo[opts.buf].filetype ~= 'TelescopePrompt' then
+            vim.cmd [[ update ]]
+        end
     end
 })
 

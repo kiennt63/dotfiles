@@ -55,7 +55,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytaglist = require('core.bar.taglist')(s)
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(28) })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(30) })
     s.systray = wibox.widget.systray(true)
     s.systray:set_base_size(dpi(20))
 

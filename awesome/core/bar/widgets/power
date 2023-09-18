@@ -2,7 +2,7 @@
 
 temp="$(sed "s/\(..\).*/\1°C/" /sys/class/thermal/thermal_zone2/temp)"
 
-icon=""
+icon="󱠇"
 
 echo "$icon $temp "
 
