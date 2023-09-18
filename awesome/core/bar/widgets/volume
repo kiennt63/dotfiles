@@ -2,12 +2,13 @@
 
 vol=$(pamixer --get-volume)
 [ $(pamixer --get-mute) = true ] && echo " 󰫔 $((vol * 2 / 3))% " && exit
-if [ "$vol" -gt "50" ]; then
-    icon=" 󰎆 " 
-elif [ "$vol" -gt "0" ]; then
-    icon=" 󰎆 "
-else
-    icon=" 󰎆 "
-fi
 
-echo "$icon$((vol * 2 / 3))% "
+# if [ "$vol" -gt "50" ]; then
+#     icon=" 󰎆 " 
+# elif [ "$vol" -gt "0" ]; then
+#     icon=" 󰎆 "
+# else
+#     icon=" 󰎆 "
+# fi
+#
+echo "󰎆 $((vol * 2 / 3))% "
