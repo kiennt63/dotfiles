@@ -21,8 +21,10 @@ au('CmdlineLeave', {
 au('FocusLost', {
     group = ag('save_on_focus_lost', {}),
     pattern = '*',
-    callback = function ()
-        vim.cmd [[ update ]]
+    callback = function (opts)
+        if vim.bo[opts.buf].filetype ~= 'TelescopePrompt' and vim.bo[opts.buf].filetype ~= 'NvimTree' then
+            vim.cmd [[ update ]]
+        end
     end
 })
 
@@ -30,7 +32,7 @@ au('BufLeave', {
     group = ag('save_on_buffer_change', {}),
     pattern = '*',
     callback = function (opts)
-        if vim.bo[opts.buf].filetype ~= 'TelescopePrompt' then
+        if vim.bo[opts.buf].filetype ~= 'TelescopePrompt' and vim.bo[opts.buf].filetype ~= 'NvimTree' then
             vim.cmd [[ update ]]
         end
     end

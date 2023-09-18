@@ -1,6 +1,6 @@
-local gears = require("gears")
-local awful = require("awful")
-local apps  = require("core.apps")
+local gears         = require("gears")
+local awful         = require("awful")
+local apps          = require("core.apps")
 -- {{{ Mouse bindings
 
 -- local menubar = require("menubar")
@@ -69,7 +69,6 @@ globalkeys = gears.table.join(
         { description = "reload awesome", group = "awesome" }),
     awful.key({ modkey, "Control", "Shift" }, "x", awesome.quit,
         { description = "quit awesome", group = "awesome" }),
-
     awful.key({ modkey, }, "l", function() awful.tag.incmwfact(0.05) end,
         { description = "increase master width factor", group = "layout" }),
     awful.key({ modkey, }, "h", function() awful.tag.incmwfact(-0.05) end,
@@ -107,15 +106,15 @@ globalkeys = gears.table.join(
         { description = "run rofi window", group = "launcher" }),
     awful.key({ modkey, "Shift" }, "e", function() awful.spawn.with_shell(apps.rofi_calc, false) end,
         { description = "run rofi calc", group = "launcher" }),
-    awful.key({ modkey,         }, "e", function() awful.spawn.with_shell(apps.clickup, false) end,
+    awful.key({ modkey, }, "e", function() awful.spawn.with_shell(apps.clickup, false) end,
         { description = "run rofi calc", group = "launcher" }),
-    awful.key({ modkey,         }, "Return", function() awful.spawn(apps.terminal, false) end,
+    awful.key({ modkey, }, "Return", function() awful.spawn(apps.terminal, false) end,
         { description = "open terminal", group = "launcher" }),
-    awful.key({ modkey,         }, "w", function() awful.spawn(apps.browser, false) end,
+    awful.key({ modkey, }, "w", function() awful.spawn(apps.browser, false) end,
         { description = "open browser", group = "launcher" }),
     awful.key({ modkey, "Shift" }, "q", function() awful.spawn.with_shell(apps.files, false) end,
         { description = "open ranger", group = "launcher" }),
-    awful.key({ modkey,         }, "q", function() awful.spawn.with_shell(apps.ranger, false) end,
+    awful.key({ modkey, }, "q", function() awful.spawn.with_shell(apps.ranger, false) end,
         { description = "open files", group = "launcher" }),
 
     -- Media control
@@ -130,10 +129,10 @@ globalkeys = gears.table.join(
     -- Screenshot
 
     awful.key({ modkey, "Shift" }, "s",
-        function() awful.spawn("sh ~/.config/awesome/scripts/screenshot_copy.sh") end,
+        function() awful.spawn.with_shell("sh ~/.config/awesome/scripts/screenshot_copy.sh") end,
         { description = "copy screenshot selection", group = "launcher" }),
     awful.key({ modkey, "Control", "Shift" }, "s",
-        function() awful.spawn("sh ~/.config/awesome/scripts/screenshot_save.sh") end,
+        function() awful.spawn.with_shell("sh ~/.config/awesome/scripts/screenshot_save.sh") end,
         { description = "save screenshot selection", group = "launcher" })
 
 )
@@ -233,7 +232,9 @@ for i = 1, 9 do
 end
 
 clientbuttons = gears.table.join(
-    awful.button({}, 1, function(c) client.focus = c; c:raise() end),
+    awful.button({}, 1, function(c)
+        client.focus = c; c:raise()
+    end),
     awful.button({ modkey }, 1, awful.mouse.client.move),
     awful.button({ modkey }, 3, awful.mouse.client.resize))
 
