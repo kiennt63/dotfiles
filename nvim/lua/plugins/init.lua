@@ -36,6 +36,8 @@ require('lazy').setup({
             'L3MON4D3/LuaSnip',
             'saadparwaiz1/cmp_luasnip',
             'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-buffer',
             'rafamadriz/friendly-snippets',
         },
     },
@@ -67,7 +69,10 @@ require('lazy').setup({
     },
 
     {
-        "NvChad/nvim-colorizer.lua"
+        'NvChad/nvim-colorizer.lua',
+        config = function ()
+            require('colorizer').setup()
+        end,
     },
 
     {
@@ -134,11 +139,18 @@ require('lazy').setup({
     },
 
     -- Theme inspired by Atom
+    -- {
+    --     -- Theme inspired by Atom
+    --     'shaunsingh/nord.nvim',
+    --     config = function ()
+    --         vim.cmd.colorscheme 'nord'
+    --     end,
+    -- },
+
     {
-        -- Theme inspired by Atom
-        'shaunsingh/nord.nvim',
+        'sainnhe/gruvbox-material',
         config = function ()
-            vim.cmd.colorscheme 'nord'
+            vim.cmd.colorscheme 'gruvbox-material'
         end,
     },
 
@@ -209,6 +221,7 @@ require('lazy').setup({
         'nvim-treesitter/nvim-treesitter-context'
     }
 }, {})
+
 
 -- custom configurations
 require('plugins/config/telescope')

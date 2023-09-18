@@ -1,10 +1,7 @@
-vim.api.nvim_set_hl(0, "StatusLine", { link = "Normal" })
--- vim.api.nvim_set_hl(0, "StatusLineNC", { link = "Normal" })
-
 require('lualine').setup {
     options = {
         icons_enabled = true,
-        theme = 'nord',
+        theme = 'gruvbox-material',
         section_separators = { left = '', right = '' },
         component_separators = { left = '', right = '' },
         -- component_separators = { left = '', right = ''},

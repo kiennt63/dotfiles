@@ -26,3 +26,10 @@ vim.api.nvim_set_hl(0, "NavicIconsOperator",      {default = false, link = "TSOp
 vim.api.nvim_set_hl(0, "NavicIconsTypeParameter", {default = false, link = "TSParameter"})
 vim.api.nvim_set_hl(0, "NavicText",               {default = false, link = "TSText"})
 vim.api.nvim_set_hl(0, "NavicSeparator",          {default = false, link = "TSType"})
+
+vim.api.nvim_set_hl(0, "NvimTreeNormal", { link = "Normal" })
+vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { link = "None" })
+vim.api.nvim_set_hl(0, "EndOfBuffer", { link = "None" })
+vim.api.nvim_set_hl(0, "StatusLine", { link = "Normal" })
+-- vim.api.nvim_set_hl(0, "StatusLineNC", { link = "Normal" })
+
