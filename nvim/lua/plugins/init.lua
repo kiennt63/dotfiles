@@ -42,13 +42,6 @@ require('lazy').setup({
         },
     },
 
-    -- {
-    --     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    --     config = function ()
-    --         require("lsp_lines").setup()
-    --     end,
-    -- },
-
     -- whichkey
     { 'folke/which-key.nvim',  opts = {} },
 
@@ -71,7 +64,7 @@ require('lazy').setup({
     {
         'NvChad/nvim-colorizer.lua',
         config = function ()
-            require('colorizer').setup()
+            require('colorizer').setup({})
         end,
     },
 
@@ -90,8 +83,6 @@ require('lazy').setup({
         opts = {
             log_level = "error",
             cwd_change_handling = {
-                restore_upcoming_session = true,    -- already the default, no need to specify like this, only here as an example
-                pre_cwd_changed_hook = nil,         -- already the default, no need to specify like this, only here as an example
                 post_cwd_changed_hook = function () -- example refreshing the lualine status line _after_ the cwd changes
                     require("lualine").refresh()    -- refresh lualine so the new session name is displayed in the status bar
                 end,
@@ -148,7 +139,7 @@ require('lazy').setup({
     -- },
 
     {
-        'sainnhe/gruvbox-material',
+        'kiennt63/gruvbox-material',
         config = function ()
             vim.cmd.colorscheme 'gruvbox-material'
         end,
@@ -167,28 +158,28 @@ require('lazy').setup({
             show_trailing_blankline_indent = false,
         },
     },
-
+    
     -- Automatically add pair for brackets
     {
         'windwp/nvim-autopairs',
         event = "InsertEnter",
         opts = {}
     },
-
+    
     -- Diagnostics
     {
         'folke/trouble.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons' },
         opts = {},
     },
-
+    
     -- Add tabs
     {
         'akinsho/bufferline.nvim',
         version = "*",
         dependencies = { 'nvim-tree/nvim-web-devicons', 'moll/vim-bbye' },
     },
-
+    
     -- "gc" to comment visual regions/lines
     { 'numToStr/Comment.nvim', opts = {} },
 

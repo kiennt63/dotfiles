@@ -1,1 +1,1 @@
-/home/kiennt63/dotfiles/awesome/theme/nord.lua
+/home/kiennt63/dotfiles/awesome/theme/gruvbox-material.lua
