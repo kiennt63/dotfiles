@@ -77,25 +77,37 @@ require('lazy').setup({
         }
     },
 
-    -- session manager
+    -- Startpage
     {
-        'rmagatti/auto-session',
-        opts = {
-            log_level = "error",
-            cwd_change_handling = {
-                post_cwd_changed_hook = function () -- example refreshing the lualine status line _after_ the cwd changes
-                    require("lualine").refresh()    -- refresh lualine so the new session name is displayed in the status bar
-                end,
-                post_restore_cmds = {
-                    function ()
-                        local nvim_tree = require("nvim-tree")
-                        nvim_tree.change_dir(vim.fn.getcwd())
-                    end,
-                    "NvimTreeOpen"
-                }
-            },
-        }
+        'mhinz/vim-startify',
     },
+
+    -- session manager
+    -- {
+    --     'rmagatti/auto-session',
+    --     opts = {
+    --         log_level = "error",
+    --         cwd_change_handling = {
+    --             post_cwd_changed_hook = function () -- example refreshing the lualine status line _after_ the cwd changes
+    --                 require("lualine").refresh()    -- refresh lualine so the new session name is displayed in the status bar
+    --             end,
+    --             post_restore_cmds = {
+    --                 function ()
+    --                     local nvim_tree = require("nvim-tree")
+    --                     nvim_tree.change_dir(vim.fn.getcwd())
+    --                 end,
+    --                 "NvimTreeOpen"
+    --             }
+    --         },
+    --     }
+    -- },
+    -- {
+    --     "folke/persistence.nvim",
+    --     event = "BufReadPre",                          -- this will only start session saving when an actual file was opened
+    --     opts = {
+    --         dir = vim.fn.stdpath('data') .. '/session/' -- add any custom options here
+    --     }
+    -- },
 
     {
         -- Adds git related signs to the gutter, as well as utilities for managing changes
@@ -140,9 +152,9 @@ require('lazy').setup({
 
     {
         'kiennt63/gruvbox-material',
-        config = function ()
-            vim.cmd.colorscheme 'gruvbox-material'
-        end,
+        -- config = function ()
+        --     vim.cmd.colorscheme 'gruvbox-material'
+        -- end,
     },
 
     {
@@ -158,28 +170,28 @@ require('lazy').setup({
             show_trailing_blankline_indent = false,
         },
     },
-    
+
     -- Automatically add pair for brackets
     {
         'windwp/nvim-autopairs',
         event = "InsertEnter",
         opts = {}
     },
-    
+
     -- Diagnostics
     {
         'folke/trouble.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons' },
         opts = {},
     },
-    
+
     -- Add tabs
     {
         'akinsho/bufferline.nvim',
         version = "*",
         dependencies = { 'nvim-tree/nvim-web-devicons', 'moll/vim-bbye' },
     },
-    
+
     -- "gc" to comment visual regions/lines
     { 'numToStr/Comment.nvim', opts = {} },
 
@@ -223,3 +235,5 @@ require('plugins/config/lualine')
 require('plugins/config/nvim-tree')
 require('plugins/config/bufferline')
 require('plugins/config/snippet')
+require('plugins/config/theme')
+require('plugins/config/startify')

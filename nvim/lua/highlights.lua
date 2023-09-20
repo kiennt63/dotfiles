@@ -28,8 +28,8 @@ vim.api.nvim_set_hl(0, "NavicText",               {default = false, link = "TSTe
 vim.api.nvim_set_hl(0, "NavicSeparator",          {default = false, link = "TSType"})
 
 vim.api.nvim_set_hl(0, "NvimTreeNormal", { link = "Normal" })
-vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { link = "None" })
-vim.api.nvim_set_hl(0, "TelescopeSelection", { link = "Visual" })
+-- vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { link = "None" })
+-- vim.api.nvim_set_hl(0, "TelescopeSelection", { link = "Visual" })
 vim.api.nvim_set_hl(0, "EndOfBuffer", { link = "None" })
 vim.api.nvim_set_hl(0, "StatusLine", { link = "Normal" })
 -- vim.api.nvim_set_hl(0, "StatusLineNC", { link = "Normal" })

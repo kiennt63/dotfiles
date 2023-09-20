@@ -1,0 +1,1 @@
+/home/kiennt63/dotfiles/nvim/lua/plugins/config/gruvbox.lua
