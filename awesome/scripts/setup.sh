@@ -5,9 +5,9 @@ num_monitor=$(xrandr | grep " connected " | awk '{ print$1 }' | wc -l)
 
 if [[ $num_monitor -ge 2 ]]; then
     xrandr --output DP-0 --off --output DP-1 --off --output HDMI-0 --off \
-	   --output DP-2 --primary --mode 3840x2160 --pos 3840x0 --rotate normal \
+	   --output DP-2 --primary --mode 3840x2160 --rate 60 --pos 2880x0 --rotate normal \
 	   --output DP-3 --off --output HDMI-1 --off \
-	   --output DP-4 --mode 1920x1080 --pos 0x0 --scale 2x2 --rotate normal \
+	   --output DP-4 --mode 1920x1080 --rate 239.76 --pos 0x270 --scale 1.5x1.5 --rotate normal \
 	   --output DP-5 --off
 else
     xrandr --output DP-2 --mode 1920x1080 --rate 239.76
@@ -41,6 +41,6 @@ done
 
 
 # redshift
-redshift -P -O 3500
+redshift -P -O 4500
 
 xrdb -merge ~/.Xresources

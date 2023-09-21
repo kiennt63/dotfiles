@@ -9,5 +9,6 @@ local apps = {
     ranger = "kitty -e ranger",
     files = "nautilus",
     clickup = "~/.local/bin/ClickUp",
+    godot = "~/.local/bin/Godot_v4.1.1-stable_linux.x86_64"
 }
 return apps

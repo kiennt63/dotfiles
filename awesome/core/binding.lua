@@ -108,6 +108,8 @@ globalkeys = gears.table.join(
         { description = "run rofi calc", group = "launcher" }),
     awful.key({ modkey, }, "e", function() awful.spawn.with_shell(apps.clickup, false) end,
         { description = "run rofi calc", group = "launcher" }),
+    awful.key({ modkey, }, "g", function() awful.spawn.with_shell(apps.godot, false) end,
+        { description = "open godot", group = "launcher" }),
     awful.key({ modkey, }, "Return", function() awful.spawn(apps.terminal, false) end,
         { description = "open terminal", group = "launcher" }),
     awful.key({ modkey, }, "w", function() awful.spawn(apps.browser, false) end,
