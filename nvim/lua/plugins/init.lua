@@ -78,29 +78,29 @@ require('lazy').setup({
     },
 
     -- Startpage
-    {
-        'mhinz/vim-startify',
-    },
+    -- {
+    --     'mhinz/vim-startify',
+    -- },
 
     -- session manager
-    -- {
-    --     'rmagatti/auto-session',
-    --     opts = {
-    --         log_level = "error",
-    --         cwd_change_handling = {
-    --             post_cwd_changed_hook = function () -- example refreshing the lualine status line _after_ the cwd changes
-    --                 require("lualine").refresh()    -- refresh lualine so the new session name is displayed in the status bar
-    --             end,
-    --             post_restore_cmds = {
-    --                 function ()
-    --                     local nvim_tree = require("nvim-tree")
-    --                     nvim_tree.change_dir(vim.fn.getcwd())
-    --                 end,
-    --                 "NvimTreeOpen"
-    --             }
-    --         },
-    --     }
-    -- },
+    {
+        'rmagatti/auto-session',
+        opts = {
+            log_level = "error",
+            cwd_change_handling = {
+                post_cwd_changed_hook = function () -- example refreshing the lualine status line _after_ the cwd changes
+                    require("lualine").refresh()    -- refresh lualine so the new session name is displayed in the status bar
+                end,
+                post_restore_cmds = {
+                    function ()
+                        local nvim_tree = require("nvim-tree")
+                        nvim_tree.change_dir(vim.fn.getcwd())
+                    end,
+                    "NvimTreeOpen"
+                }
+            },
+        }
+    },
     -- {
     --     "folke/persistence.nvim",
     --     event = "BufReadPre",                          -- this will only start session saving when an actual file was opened
@@ -214,6 +214,7 @@ require('lazy').setup({
     {
         -- Highlight, edit, and navigate code
         'nvim-treesitter/nvim-treesitter',
+        lazy = true,
         dependencies = {
             'nvim-treesitter/nvim-treesitter-textobjects',
         },

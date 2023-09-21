@@ -18,7 +18,9 @@ local vim = vim
 g.gruvbox_material_transparent_background = 1
 g.gruvbox_material_better_performance = 1
 
-o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
+o.scrolloff = 4
+o.sessionoptions = 'buffers,curdir,tabpages,winsize'
+-- o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 o.cursorline = true
 o.ignorecase = true
 o.termguicolors = true

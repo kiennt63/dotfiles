@@ -42,8 +42,8 @@ keymap("n", "<A-6>", "<cmd>lua require('bufferline').go_to_buffer(6, true)<cr>",
 keymap("n", "<A-7>", "<cmd>lua require('bufferline').go_to_buffer(7, true)<cr>", opts)
 keymap("n", "<A-8>", "<cmd>lua require('bufferline').go_to_buffer(8, true)<cr>", opts)
 keymap("n", "<A-9>", "<cmd>lua require('bufferline').go_to_buffer(9, true)<cr>", opts)
-keymap("n", "<A-n>", "<cmd>BufferLineCycleNext<CR>", opts)
-keymap("n", "<A-p>", "<cmd>BufferLineCyclePrev<CR>", opts)
+-- keymap("n", "<A-n>", "<cmd>BufferLineCycleNext<CR>", opts)
+-- keymap("n", "<A-p>", "<cmd>BufferLineCyclePrev<CR>", opts)
 keymap("n", "<leader>bp", "<cmd>BufferLineTogglePin<CR>", opts)
 keymap("n", "<leader>bl", "<cmd>b#<CR>", opts)
 
