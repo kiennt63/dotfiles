@@ -29,14 +29,49 @@ require('lazy').setup({
         },
     },
 
-    'p00f/clangd_extensions.nvim',
-
     {
-        'ray-x/lsp_signature.nvim',
-        event = 'VeryLazy',
-        opts = {},
-        config = function (_, opts) require 'lsp_signature'.setup(opts) end
+        'p00f/clangd_extensions.nvim',
+        lazy = true,
+        config = function () end,
+        opts = {
+            inlay_hints = {
+                inline = false,
+            },
+            ast = {
+                --These require codicons (https://github.com/microsoft/vscode-codicons)
+                role_icons = {
+                    type = '',
+                    declaration = '',
+                    expression = '',
+                    specifier = '',
+                    statement = '',
+                    ['template argument'] = '',
+                },
+                kind_icons = {
+                    Compound = '',
+                    Recovery = '',
+                    TranslationUnit = '',
+                    PackExpansion = '',
+                    TemplateTypeParm = '',
+                    TemplateTemplateParm = '',
+                    TemplateParamObject = '',
+                },
+            },
+        },
     },
+
+    -- {
+    --     'ray-x/lsp_signature.nvim',
+    --     -- event = 'VeryLazy',
+    --     -- opts = {
+    --     --     log_path = vim.fn.expand('$HOME') .. '/tmp/sig.log',
+    --     --     debug = true,
+    --     --     hint_enable = false,
+    --     --     handler_opts = { border = 'rounded' },
+    --     --     max_width = 30,
+    --     -- },
+    --     -- config = function (_, opts) require 'lsp_signature'.setup(opts) end
+    -- },
 
     {
         -- Autocompletion
@@ -79,8 +114,8 @@ require('lazy').setup({
 
     {
         'nvim-tree/nvim-tree.lua',
-        version = '*',
         lazy = false,
+        pin = true,
         dependencies = {
             'nvim-tree/nvim-web-devicons',
         }
@@ -234,6 +269,7 @@ require('lazy').setup({
         -- Highlight, edit, and navigate code
         'nvim-treesitter/nvim-treesitter',
         lazy = true,
+        pin = true,
         dependencies = {
             'nvim-treesitter/nvim-treesitter-textobjects',
         },
