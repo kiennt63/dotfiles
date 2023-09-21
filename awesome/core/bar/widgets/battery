@@ -23,32 +23,32 @@ for battery in /sys/class/power_supply/BAT?*; do
 		"Unknown") status="unknown" ;;
 		*) exit 1 ;;
 	esac
-	icon=""
+	icon="󰠠"
 	capacity="$(cat "$battery/capacity" 2>&1)"
 	if   [ "${status}" = "charging" ]; then 
-		icon=" "
+		icon="󰠠 "
 	elif [ "$capacity" -ge 100 ]; then 
-		icon=" "
+		icon="󱤅 "
 	elif [ "$capacity" -gt 90 ]; then 
-		icon=""
+		icon="󱤅 "
 	elif [ "$capacity" -gt 80 ]; then 
-		icon=""
+		icon="󱤅 "
 	elif [ "$capacity" -gt 70 ]; then 
-		icon=""
+		icon="󱤅 "
 	elif [ "$capacity" -gt 60 ]; then 
-		icon=""
+		icon="󱤅 "
 	elif [ "$capacity" -gt 50 ]; then 
-		icon=""
+		icon="󱤅 "
 	elif [ "$capacity" -gt 40 ]; then 
-		icon=""
+		icon="󱤆 "
 	elif [ "$capacity" -gt 30 ]; then 
-		icon=""
+		icon="󱤆 "
 	elif [ "$capacity" -gt 20 ]; then 
-		icon=""
+		icon="󱤆 "
 	elif [ "$capacity" -gt 10 ]; then 
-		icon=""
+		icon="󱤆 "
 	else									 
-		icon=""
+		icon="󱤆 "
 	fi
 # 
 # 

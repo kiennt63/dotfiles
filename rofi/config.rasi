@@ -2,17 +2,17 @@ configuration {
     /* modes: [ combi ]; */
     /* combi-modes: [ window, drun, run ]; */
     modi: "window,drun,run,ssh,calc";
-	display-drun: " ";
-	display-run: "  ";
-	display-window: "缾 ";
-	display-calc: " ";
+	display-drun: " ";
+	display-run: "  ";
+	display-window: " ";
+	display-calc: "󰪚 ";
 
     matching: "normal";
 
 	icon-theme: "Papirus-Light";
     drun-display-format: "{name}";
 	/* fixed-num-lines: true; */
-	font: "Ligamononoki Nerd Font Regular 30";
+	font: "Liga SFMono Nerd Font 30";
 
     /* keybinding */
     kb-remove-to-eol: "";

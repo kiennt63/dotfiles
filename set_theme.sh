@@ -18,9 +18,9 @@ elif [[ $THEME = "nord" ]]; then
     sudo ln -sf "$HOME/dotfiles/startpages/raichu_startpage/css/nord.css" "$HOME/dotfiles/startpages/raichu_startpage/css/vars.css"
 elif [[ $THEME = "gruvbox" ]]; then
     sudo ln -sf "$HOME/dotfiles/nvim/lua/plugins/themes/gruvbox.lua" "$HOME/dotfiles/nvim/lua/plugins/themes/init.lua"
-    sudo ln -sf "$HOME/dotfiles/awesome/theme/gruvbox.lua" "$HOME/dotfiles/awesome/theme/theme.lua"
+    sudo ln -sf "$HOME/dotfiles/awesome/theme/gruvbox-material.lua" "$HOME/dotfiles/awesome/theme/theme.lua"
     sudo ln -sf "$HOME/dotfiles/kitty/themes/gruvbox-material-dark-medium.conf" "$HOME/dotfiles/kitty/themes/theme.conf"
-    sudo ln -sf "$HOME/dotfiles/startpages/raichu_startpage/css/nord.css" "$HOME/dotfiles/startpages/raichu_startpage/css/vars.css"
+    # sudo ln -sf "$HOME/dotfiles/startpages/raichu_startpage/css/nord.css" "$HOME/dotfiles/startpages/raichu_startpage/css/vars.css"
 else
     echo "Choosen theme not supported. Currently support"
     echo "1. nord"
