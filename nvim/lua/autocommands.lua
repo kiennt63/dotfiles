@@ -23,7 +23,8 @@ au('FocusLost', {
     pattern = '*',
     callback = function (opts)
         if vim.bo[opts.buf].filetype ~= 'TelescopePrompt'
-            and vim.bo[opts.buf].filetype ~= 'NvimTree'
+            and vim.bo[opts.buf].filetype ~= 'neo-tree'
+            and vim.bo[opts.buf].filetype ~= 'neo-tree-popup'
             and vim.bo[opts.buf].filetype ~= 'Lazy' then
             vim.cmd [[ update ]]
         end
@@ -34,7 +35,10 @@ au('BufLeave', {
     group = ag('save_on_buffer_change', {}),
     pattern = '*',
     callback = function (opts)
-        if vim.bo[opts.buf].filetype ~= 'TelescopePrompt' and vim.bo[opts.buf].filetype ~= 'NvimTree' then
+        if vim.bo[opts.buf].filetype ~= 'TelescopePrompt'
+            and vim.bo[opts.buf].filetype ~= 'neo-tree'
+            and vim.bo[opts.buf].filetype ~= 'neo-tree-popup'
+            and vim.bo[opts.buf].filetype ~= 'lazy' then
             vim.cmd [[ update ]]
         end
     end

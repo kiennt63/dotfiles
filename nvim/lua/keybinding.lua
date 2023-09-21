@@ -10,9 +10,11 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Normal --
--- Open sidebar
-keymap("n", "<leader>e", ":NvimTreeFocus<cr>", opts)
-keymap("n", "<leader>b", ":NvimTreeToggle<cr>", opts)
+
+-- -- Open sidebar
+-- vim.keymap.set('n', '<leader>e', ':NvimTreeOpen<cr>', { noremap = true, silent = true })
+-- vim.keymap.set('n', '<leader>b', ':NvimTreeToggle<cr>', { noremap = true, silent = true })
+
 -- Better window navigation
 -- keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>w", opts)

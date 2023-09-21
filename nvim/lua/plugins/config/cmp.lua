@@ -23,12 +23,12 @@ end
 
 --   פּ ﯟ   some other good icons
 local kind_icons = {
-    Text = "",
+    Text = "󰭷",
     Method = "",
     Function = "",
     Constructor = "",
-    Field = "",
-    Variable = "",
+    Field = "",
+    Variable = "",
     Class = "",
     Interface = "",
     Module = "",

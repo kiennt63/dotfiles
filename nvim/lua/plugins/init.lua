@@ -29,6 +29,15 @@ require('lazy').setup({
         },
     },
 
+    'p00f/clangd_extensions.nvim',
+
+    {
+        'ray-x/lsp_signature.nvim',
+        event = 'VeryLazy',
+        opts = {},
+        config = function (_, opts) require 'lsp_signature'.setup(opts) end
+    },
+
     {
         -- Autocompletion
         'hrsh7th/nvim-cmp',
@@ -46,16 +55,16 @@ require('lazy').setup({
     { 'folke/which-key.nvim',  opts = {} },
 
     {
-        "nvim-tree/nvim-web-devicons",
+        'nvim-tree/nvim-web-devicons',
         opts = {
             override_by_filename = {
-                [".dockerignore"] = {
-                    icon = "",
-                    name = "DOCKERFILE"
+                ['.dockerignore'] = {
+                    icon = '',
+                    name = 'DOCKERFILE'
                 },
-                ["dockerfile"] = {
-                    icon = "",
-                    name = "DOCKERFILE"
+                ['dockerfile'] = {
+                    icon = '',
+                    name = 'DOCKERFILE'
                 }
             },
         },
@@ -69,13 +78,23 @@ require('lazy').setup({
     },
 
     {
-        "nvim-tree/nvim-tree.lua",
-        version = "*",
+        'nvim-tree/nvim-tree.lua',
+        version = '*',
         lazy = false,
         dependencies = {
-            "nvim-tree/nvim-web-devicons",
+            'nvim-tree/nvim-web-devicons',
         }
     },
+
+    -- {
+    --     'nvim-neo-tree/neo-tree.nvim',
+    --     branch = 'v3.x',
+    --     dependencies = {
+    --         'nvim-lua/plenary.nvim',
+    --         'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+    --         'MunifTanjim/nui.nvim',
+    --     }
+    -- },
 
     -- Startpage
     -- {
@@ -86,17 +105,17 @@ require('lazy').setup({
     {
         'rmagatti/auto-session',
         opts = {
-            log_level = "error",
+            log_level = 'error',
             cwd_change_handling = {
                 post_cwd_changed_hook = function () -- example refreshing the lualine status line _after_ the cwd changes
-                    require("lualine").refresh()    -- refresh lualine so the new session name is displayed in the status bar
+                    require('lualine').refresh()    -- refresh lualine so the new session name is displayed in the status bar
                 end,
                 post_restore_cmds = {
-                    function ()
-                        local nvim_tree = require("nvim-tree")
-                        nvim_tree.change_dir(vim.fn.getcwd())
-                    end,
-                    "NvimTreeOpen"
+                    -- function ()
+                    --     local nvim_tree = require('nvim-tree')
+                    --     nvim_tree.change_dir(vim.fn.getcwd())
+                    -- end,
+                    -- 'NvimTreeOpen'
                 }
             },
         }
@@ -131,12 +150,12 @@ require('lazy').setup({
                     if vim.wo.diff then return ']c' end
                     vim.schedule(function () gs.next_hunk() end)
                     return '<Ignore>'
-                end, { expr = true, buffer = bufnr, desc = "Jump to next hunk" })
+                end, { expr = true, buffer = bufnr, desc = 'Jump to next hunk' })
                 vim.keymap.set({ 'n', 'v' }, '[c', function ()
                     if vim.wo.diff then return '[c' end
                     vim.schedule(function () gs.prev_hunk() end)
                     return '<Ignore>'
-                end, { expr = true, buffer = bufnr, desc = "Jump to previous hunk" })
+                end, { expr = true, buffer = bufnr, desc = 'Jump to previous hunk' })
             end,
         },
     },
@@ -174,7 +193,7 @@ require('lazy').setup({
     -- Automatically add pair for brackets
     {
         'windwp/nvim-autopairs',
-        event = "InsertEnter",
+        event = 'InsertEnter',
         opts = {}
     },
 
@@ -188,7 +207,7 @@ require('lazy').setup({
     -- Add tabs
     {
         'akinsho/bufferline.nvim',
-        version = "*",
+        version = '*',
         dependencies = { 'nvim-tree/nvim-web-devicons', 'moll/vim-bbye' },
     },
 
@@ -234,6 +253,7 @@ require('plugins/config/lsp')
 require('plugins/config/cmp')
 require('plugins/config/lualine')
 require('plugins/config/nvim-tree')
+-- require('plugins/config/neotree')
 require('plugins/config/bufferline')
 require('plugins/config/snippet')
 require('plugins/config/theme')

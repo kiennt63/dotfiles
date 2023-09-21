@@ -83,7 +83,7 @@ nvim_tree.setup {
         update_cwd = false,
     },
     renderer = {
-        root_folder_modifier = ":t",
+        root_folder_label = false,
         indent_markers = {
             enable = false,
             inline_arrows = false,
@@ -137,3 +137,9 @@ nvim_tree.setup {
         timeout = 500,
     }
 }
+
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+vim.keymap.set('n', '<leader>e', ':NvimTreeOpen<cr>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>b', ':NvimTreeToggle<cr>', { noremap = true, silent = true })
