@@ -245,10 +245,20 @@ require('lazy').setup({
     },
 
     -- Add tabs
+    -- {
+    --     'akinsho/bufferline.nvim',
+    --     version = '*',
+    --     dependencies = { 'nvim-tree/nvim-web-devicons', 'moll/vim-bbye' },
+    -- },
+
     {
-        'akinsho/bufferline.nvim',
-        version = '*',
-        dependencies = { 'nvim-tree/nvim-web-devicons', 'moll/vim-bbye' },
+        'ThePrimeagen/harpoon',
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        opts = {
+            menu = {
+                width = math.floor(vim.api.nvim_win_get_width(0) / 2),
+            }
+        }
     },
 
     -- "gc" to comment visual regions/lines
@@ -295,7 +305,7 @@ require('plugins/config/cmp')
 require('plugins/config/lualine')
 require('plugins/config/nvim-tree')
 -- require('plugins/config/neotree')
-require('plugins/config/bufferline')
+-- require('plugins/config/bufferline')
 require('plugins/config/snippet')
 require('plugins/config/theme')
 require('plugins/config/startify')
