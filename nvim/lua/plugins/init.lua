@@ -86,6 +86,11 @@ require('lazy').setup({
         },
     },
 
+    {
+        'iamcco/markdown-preview.nvim',
+        config = function () vim.fn['mkdp#util#install']() end,
+    },
+
     -- whichkey
     { 'folke/which-key.nvim',  opts = {} },
 

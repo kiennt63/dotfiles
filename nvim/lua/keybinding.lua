@@ -118,3 +118,6 @@ keymap('n', '<leader>fr', require('telescope.builtin').resume, { desc = '[S]earc
 
 -- File manager
 keymap('n', '<leader>fq', ':RnvimrToggle<cr>', opts)
+
+-- Searching
+keymap('v', '//', [[y/\V<c-r>=escape(@",'/\')<cr><cr>]], opts)
