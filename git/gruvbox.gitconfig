@@ -1,48 +1,39 @@
 [delta "flexible"]
-    # author: https://github.com/maxfangx
-    # General appearance
+    #author: https://github.com/AirOnSkin
     dark = true
-    syntax-theme = gruvbox-dark
-    # File
-    file-style = "#FFFFFF" bold
+    line-numbers = true
+    side-by-side = true
+    keep-plus-minus-markers = false
+    syntax-theme = Nord
+    file-style = "#7daea3" bold
+    file-decoration-style = "#7daea3" ul
     file-added-label = [+]
     file-copied-label = [==]
     file-modified-label = [*]
     file-removed-label = [-]
     file-renamed-label = [->]
-    file-decoration-style = "#434C5E" ul
-    file-decoration-style = "#84786A" ul
-    # No hunk headers
-    hunk-header-style = omit
-    # Line numbers
-    line-numbers = true
-    line-numbers-left-style = "#84786A"
-    line-numbers-right-style = "#84786A"
-    line-numbers-minus-style = "#A02A11"
-    line-numbers-plus-style = "#479B36"
-    line-numbers-zero-style = "#84786A"
+    hunk-header-style = line-number syntax
+    hunk-header-decoration-style = "#7daea3" box
     line-numbers-left-format = " {nm:>3} │"
+    line-numbers-left-style = "#ea6962"
     line-numbers-right-format = " {np:>3} │"
-    # Diff contents
-    inline-hint-style = syntax
-    minus-style = syntax "#330011"
-    minus-emph-style = syntax "#80002a"
-    minus-non-emph-style = syntax auto
-    plus-style = syntax "#001a00"
-    plus-emph-style = syntax "#003300"
-    plus-non-emph-style = syntax auto
-    whitespace-error-style = "#FB4934" reverse
-    # Commit hash
-    commit-decoration-style = normal box
-    commit-style = "#ffffff" bold
-    # Blame
+    line-numbers-right-style = "#a9b665"
+    line-numbers-minus-style = "#ea6962" italic
+    line-numbers-plus-style = "#a9b665" italic
+    line-numbers-zero-style = "#32302f" italic
+    minus-style = bold "#ea6962"
+    minus-emph-style = bold "#1b1b1b" "#ea6962"
+    minus-non-emph-style = bold
+    plus-style = bold "#a9b665"
+    plus-emph-style = bold "#1b1b1b" "#a9b665"
+    plus-non-emph-style = bold
+    zero-style = syntax
     blame-code-style = syntax
-    blame-format = "{author:>18} ({commit:>8}) {timestamp:<13} "
-    blame-palette = "#000000" "#1d2021" "#282828" "#3c3836"
-    # Merge conflicts
-    merge-conflict-begin-symbol = ⌃
-    merge-conflict-end-symbol = ⌄
-    merge-conflict-ours-diff-header-style = "#FABD2F" bold
-    merge-conflict-theirs-diff-header-style = "#FABD2F" bold overline
-    merge-conflict-ours-diff-header-decoration-style = ''
-    merge-conflict-theirs-diff-header-decoration-style = ''
+    blame-format = "{author:<18} ({commit:>9}) {timestamp:^16}"
+    blame-palette = "#45403d" "#282828" "#32302f" "#5a524c"
+    merge-conflict-begin-symbol = ~
+    merge-conflict-end-symbol = ~
+    merge-conflict-ours-diff-header-style = "#F1FA8C" bold
+    merge-conflict-ours-diff-header-decoration-style = "#32302f" box
+    merge-conflict-theirs-diff-header-style = "#F1FA8C" bold
+    merge-conflict-theirs-diff-header-decoration-style = "#32302f" box
