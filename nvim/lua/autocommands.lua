@@ -44,6 +44,23 @@ au('BufLeave', {
     end
 })
 
+au('FileType', {
+    group = ag('HarpoonMenu', {}),
+    pattern = 'harpoon',
+    callback = function ()
+        vim.keymap.set('n', '1', '<cmd>lua require("harpoon.ui").nav_file(1)<cr>', { silent = true, buffer = true })
+        vim.keymap.set('n', '2', '<cmd>lua require("harpoon.ui").nav_file(2)<cr>', { silent = true, buffer = true })
+        vim.keymap.set('n', '3', '<cmd>lua require("harpoon.ui").nav_file(3)<cr>', { silent = true, buffer = true })
+        vim.keymap.set('n', '4', '<cmd>lua require("harpoon.ui").nav_file(4)<cr>', { silent = true, buffer = true })
+        vim.keymap.set('n', '5', '<cmd>lua require("harpoon.ui").nav_file(5)<cr>', { silent = true, buffer = true })
+        vim.keymap.set('n', '6', '<cmd>lua require("harpoon.ui").nav_file(6)<cr>', { silent = true, buffer = true })
+        vim.keymap.set('n', '7', '<cmd>lua require("harpoon.ui").nav_file(7)<cr>', { silent = true, buffer = true })
+        vim.keymap.set('n', '8', '<cmd>lua require("harpoon.ui").nav_file(8)<cr>', { silent = true, buffer = true })
+        vim.keymap.set('n', '9', '<cmd>lua require("harpoon.ui").nav_file(9)<cr>', { silent = true, buffer = true })
+        vim.keymap.set('n', '10', '<cmd>lua require("harpoon.ui").nav_file(10)<cr>', { silent = true, buffer = true })
+    end
+})
+
 -- local modifiedBufs = function (bufs)
 --     local t = 0
 --     for k, v in pairs(bufs) do
