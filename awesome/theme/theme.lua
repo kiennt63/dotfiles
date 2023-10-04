@@ -1,1 +1,1 @@
-/home/kiennt63/dotfiles/awesome/theme/gruvbox-material.lua
+/home/kiennt54/dotfiles/awesome/theme/gruvbox-material.lua

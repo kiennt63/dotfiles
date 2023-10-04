@@ -1,5 +1,4 @@
 export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/dotfiles/cmake/cmake-3.26.4-linux-x86_64/bin:$PATH
 export PATH=/opt/ipg/bin/:$PATH
 export PATH=/usr/src/tensorrt/bin/:$PATH
 export PATH=/usr/local/cuda/bin/:$PATH

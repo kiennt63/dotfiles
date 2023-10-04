@@ -114,6 +114,7 @@ local servers = {
             },
         },
     },
+    bashls = {}
 }
 
 -- Setup neovim lua configuration

@@ -6,6 +6,7 @@ add_newline = false
 command_timeout = 150
 
 format = """
+$hostname\
 $directory\
 $git_branch\
 $git_commit\
@@ -61,3 +62,7 @@ format = '([[\[](#A3BE8C)$ahead$behind$staged$modified$deleted$untracked$ahead_b
 
 [conda]
 symbol = " "
+
+[hostname]
+ssh_symbol = "󰢹 "
+format = "[$ssh_symbol](#B48EAD)"
