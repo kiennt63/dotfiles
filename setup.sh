@@ -38,6 +38,7 @@ ln -sf $HOME/dotfiles/starship.toml ~/.config
 ln -sf $HOME/dotfiles/kitty ~/.config
 ln -sf $HOME/dotfiles/nvim ~/.config
 ln -sf $HOME/dotfiles/tmux ~/.config
+ln -sf $HOME/dotfiles/git/.gitconfig ~
 
 if [[ "$OS" = "linux" ]]; then
     echo "Setting up for linux"

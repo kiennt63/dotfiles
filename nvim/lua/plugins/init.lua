@@ -255,7 +255,7 @@ require('lazy').setup({
 
     {
         'ThePrimeagen/harpoon',
-        dependencies = { 'nvim-lua/plenary.nvim' },
+        dependencies = { 'nvim-lua/plenary.nvim', 'moll/vim-bbye' },
         opts = {
             menu = {
                 width = math.floor(vim.api.nvim_win_get_width(0) / 2),
