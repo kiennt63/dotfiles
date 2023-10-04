@@ -1,1 +1,0 @@
-/home/kiennt54/dotfiles/awesome/theme/gruvbox-material.lua
