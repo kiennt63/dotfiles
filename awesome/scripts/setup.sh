@@ -4,11 +4,13 @@
 num_monitor=$(xrandr | grep " connected " | awk '{ print$1 }' | wc -l)
 
 if [[ $num_monitor -ge 2 ]]; then
-    xrandr --output HDMI-0 --primary --mode 3840x2160 --rate 60 --pos 2880x0 --rotate normal \
-	   --output DP-0 --mode 1920x1080 --rate 165.1 --pos 0x270 --scale 1.5x1.5 --rotate normal
+    xrandr --output DP-0 --off --output DP-1 --off \
+	   --output DP-3 --off --output DP-5 --off --output HDMI-0 --off \
+	   --output DP-2 --primary --mode 3840x2160 --rate 60 --pos 2880x0 --rotate normal \
+	   --output DP-4 --mode 1920x1080 --rate 239.76 --pos 0x270 --scale 1.5x1.5 --rotate normal
     xrdb -merge ~/dotfiles/.Xresources
 else
-    xrandr --output DP-2 --mode 1920x1080 --rate 165.1
+    xrandr --output DP-4 --mode 1920x1080 --rate 239.76  
 fi
 
 

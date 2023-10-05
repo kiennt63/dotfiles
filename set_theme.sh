@@ -16,12 +16,20 @@ elif [[ $THEME = "nord" ]]; then
     sudo ln -sf "$HOME/dotfiles/awesome/theme/nord.lua" "$HOME/dotfiles/awesome/theme/theme.lua"
     sudo ln -sf "$HOME/dotfiles/kitty/themes/nord.conf" "$HOME/dotfiles/kitty/themes/theme.conf"
     sudo ln -sf "$HOME/dotfiles/startpages/raichu_startpage/css/nord.css" "$HOME/dotfiles/startpages/raichu_startpage/css/vars.css"
+<<<<<<< Updated upstream
     sudo ln -sf "$HOME/dotfiles/git/nord.gitconfig" "$HOME/dotfiles/git/theme.gitconfig"
+=======
+    sudo ln -sf "$HOME/dotfiles/git/nord.gitconfig "$HOME/dotfiles/git/theme.gitconfig "
+>>>>>>> Stashed changes
 elif [[ $THEME = "gruvbox" ]]; then
     sudo ln -sf "$HOME/dotfiles/nvim/lua/plugins/config/gruvbox.lua" "$HOME/dotfiles/nvim/lua/plugins/config/theme.lua"
     sudo ln -sf "$HOME/dotfiles/awesome/theme/gruvbox-material.lua" "$HOME/dotfiles/awesome/theme/theme.lua"
     sudo ln -sf "$HOME/dotfiles/kitty/themes/gruvbox-material-dark-medium.conf" "$HOME/dotfiles/kitty/themes/theme.conf"
+<<<<<<< Updated upstream
     sudo ln -sf "$HOME/dotfiles/git/gruvbox.gitconfig" "$HOME/dotfiles/git/theme.gitconfig"
+=======
+    sudo ln -sf "$HOME/dotfiles/git/gruvbox.gitconfig "$HOME/dotfiles/git/theme.gitconfig "
+>>>>>>> Stashed changes
     sudo ln -sf "$HOME/dotfiles/startpages/raichu_startpage/css/nord.css" "$HOME/dotfiles/startpages/raichu_startpage/css/vars.css"
 else
     echo "Choosen theme not supported. Currently support"

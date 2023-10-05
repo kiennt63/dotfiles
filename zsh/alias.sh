@@ -6,7 +6,9 @@ alias .....="cd ../../../.."
 # git 
 alias gc="git checkout"
 alias gst="git status"
+alias gw="git worktree"
 alias gf="git fetch"
+alias g="git"
 
 # dds
 alias ddsbag="/opt/dds_utilities/ddsbag/x64-linux/ddsbag"

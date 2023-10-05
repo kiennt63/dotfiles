@@ -1,4 +1,8 @@
 export PATH=$HOME/.local/bin:$PATH
+<<<<<<< Updated upstream
+=======
+export PATH=/opt/cmake-3.27.6-linux-x86_64/bin:$PATH
+>>>>>>> Stashed changes
 export PATH=/opt/ipg/bin/:$PATH
 export PATH=/usr/src/tensorrt/bin/:$PATH
 export PATH=/usr/local/cuda/bin/:$PATH
