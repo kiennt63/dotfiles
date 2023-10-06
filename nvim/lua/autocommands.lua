@@ -57,7 +57,6 @@ au('FileType', {
         vim.keymap.set('n', '7', '<cmd>lua require("harpoon.ui").nav_file(7)<cr>', { silent = true, buffer = true })
         vim.keymap.set('n', '8', '<cmd>lua require("harpoon.ui").nav_file(8)<cr>', { silent = true, buffer = true })
         vim.keymap.set('n', '9', '<cmd>lua require("harpoon.ui").nav_file(9)<cr>', { silent = true, buffer = true })
-        vim.keymap.set('n', '10', '<cmd>lua require("harpoon.ui").nav_file(10)<cr>', { silent = true, buffer = true })
     end
 })
 

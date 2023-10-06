@@ -86,10 +86,10 @@ require('lazy').setup({
         },
     },
 
-    {
-        'iamcco/markdown-preview.nvim',
-        config = function () vim.fn['mkdp#util#install']() end,
-    },
+    -- {
+    --     'iamcco/markdown-preview.nvim',
+    --     config = function () vim.fn['mkdp#util#install']() end,
+    -- },
 
     -- whichkey
     { 'folke/which-key.nvim',  opts = {} },
@@ -201,13 +201,13 @@ require('lazy').setup({
     },
 
     -- Theme inspired by Atom
-    -- {
-    --     -- Theme inspired by Atom
-    --     'shaunsingh/nord.nvim',
+    {
+        -- Theme inspired by Atom
+        'shaunsingh/nord.nvim',
     --     config = function ()
     --         vim.cmd.colorscheme 'nord'
     --     end,
-    -- },
+    },
 
     {
         'kiennt63/gruvbox-material',
