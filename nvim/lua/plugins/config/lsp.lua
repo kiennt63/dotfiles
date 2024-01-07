@@ -51,6 +51,9 @@ local servers = {
             "c", "cpp", "objc", "objcpp", "cuda"
         }
     },
+    omnisharp_mono = {
+
+    },
     -- gopls = {},
     -- pyright = {},
     -- rust_analyzer = {},
