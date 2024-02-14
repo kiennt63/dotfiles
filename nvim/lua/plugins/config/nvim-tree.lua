@@ -1,4 +1,4 @@
-local status_ok, nvim_tree = pcall(require, "nvim-tree")
+local status_ok, nvim_tree = pcall(require, 'nvim-tree')
 if not status_ok then
     return
 end
@@ -83,29 +83,29 @@ nvim_tree.setup {
         update_cwd = false,
     },
     renderer = {
-        root_folder_modifier = ":t",
+        root_folder_label = false,
         indent_markers = {
             enable = false,
             inline_arrows = false,
         },
         icons = {
             glyphs = {
-                default = "",
-                symlink = "",
+                default = '',
+                symlink = '',
                 folder = {
-                    default = "",
-                    open = "",
-                    symlink = "",
-                    symlink_open = "",
+                    default = '',
+                    open = '',
+                    symlink = '',
+                    symlink_open = '',
                 },
                 git = {
-                    unstaged = "",
-                    staged = "✓",
-                    unmerged = "",
-                    renamed = "➜",
-                    untracked = "",
-                    deleted = "",
-                    ignored = "◌",
+                    unstaged = '',
+                    staged = '✓',
+                    unmerged = '',
+                    renamed = '➜',
+                    untracked = '',
+                    deleted = '',
+                    ignored = '◌',
                 },
             },
             show = {
@@ -121,15 +121,15 @@ nvim_tree.setup {
             -- info = "",
             -- warning = "",
             -- error = "",
-            hint = "",
-            info = "",
-            warning = "",
-            error = "",
+            hint = '',
+            info = '',
+            warning = '',
+            error = '',
         },
     },
     view = {
         width = 30,
-        side = "left",
+        side = 'left',
     },
     git = {
         enable = true,
@@ -137,3 +137,9 @@ nvim_tree.setup {
         timeout = 500,
     }
 }
+
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
+vim.keymap.set('n', '<leader>e', ':NvimTreeOpen<cr>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>b', ':NvimTreeToggle<cr>', { noremap = true, silent = true })

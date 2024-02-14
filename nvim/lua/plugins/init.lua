@@ -30,62 +30,143 @@ require('lazy').setup({
     },
 
     {
+        'p00f/clangd_extensions.nvim',
+        lazy = true,
+        config = function () end,
+        opts = {
+            inlay_hints = {
+                inline = false,
+            },
+            ast = {
+                --These require codicons (https://github.com/microsoft/vscode-codicons)
+                role_icons = {
+                    type = '',
+                    declaration = '',
+                    expression = '',
+                    specifier = '',
+                    statement = '',
+                    ['template argument'] = '',
+                },
+                kind_icons = {
+                    Compound = '',
+                    Recovery = '',
+                    TranslationUnit = '',
+                    PackExpansion = '',
+                    TemplateTypeParm = '',
+                    TemplateTemplateParm = '',
+                    TemplateParamObject = '',
+                },
+            },
+        },
+    },
+
+    -- {
+    --     'ray-x/lsp_signature.nvim',
+    --     -- event = 'VeryLazy',
+    --     -- opts = {
+    --     --     log_path = vim.fn.expand('$HOME') .. '/tmp/sig.log',
+    --     --     debug = true,
+    --     --     hint_enable = false,
+    --     --     handler_opts = { border = 'rounded' },
+    --     --     max_width = 30,
+    --     -- },
+    --     -- config = function (_, opts) require 'lsp_signature'.setup(opts) end
+    -- },
+
+    {
         -- Autocompletion
         'hrsh7th/nvim-cmp',
         dependencies = {
             'L3MON4D3/LuaSnip',
             'saadparwaiz1/cmp_luasnip',
             'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-buffer',
             'rafamadriz/friendly-snippets',
         },
     },
+
+    -- {
+    --     'iamcco/markdown-preview.nvim',
+    --     config = function () vim.fn['mkdp#util#install']() end,
+    -- },
 
     -- whichkey
     { 'folke/which-key.nvim',  opts = {} },
 
     {
-        "nvim-tree/nvim-web-devicons",
+        'nvim-tree/nvim-web-devicons',
         opts = {
             override_by_filename = {
-                [".dockerignore"] = {
-                    icon = "",
-                    name = "DOCKERFILE"
+                ['.dockerignore'] = {
+                    icon = '',
+                    name = 'DOCKERFILE'
                 },
-                ["dockerfile"] = {
-                    icon = "",
-                    name = "DOCKERFILE"
+                ['dockerfile'] = {
+                    icon = '',
+                    name = 'DOCKERFILE'
                 }
             },
         },
     },
 
     {
-        "NvChad/nvim-colorizer.lua"
+        'NvChad/nvim-colorizer.lua',
+        config = function ()
+            require('colorizer').setup({})
+        end,
     },
 
     {
-        "nvim-tree/nvim-tree.lua",
-        version = "*",
+        'nvim-tree/nvim-tree.lua',
         lazy = false,
+        pin = true,
         dependencies = {
-            "nvim-tree/nvim-web-devicons",
+            'nvim-tree/nvim-web-devicons',
         }
     },
+
+    -- {
+    --     'nvim-neo-tree/neo-tree.nvim',
+    --     branch = 'v3.x',
+    --     dependencies = {
+    --         'nvim-lua/plenary.nvim',
+    --         'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+    --         'MunifTanjim/nui.nvim',
+    --     }
+    -- },
+
+    -- Startpage
+    -- {
+    --     'mhinz/vim-startify',
+    -- },
 
     -- session manager
     {
         'rmagatti/auto-session',
         opts = {
-            log_level = "error",
+            log_level = 'error',
             cwd_change_handling = {
-                restore_upcoming_session = true,    -- already the default, no need to specify like this, only here as an example
-                pre_cwd_changed_hook = nil,         -- already the default, no need to specify like this, only here as an example
                 post_cwd_changed_hook = function () -- example refreshing the lualine status line _after_ the cwd changes
-                    require("lualine").refresh()    -- refresh lualine so the new session name is displayed in the status bar
+                    require('lualine').refresh()    -- refresh lualine so the new session name is displayed in the status bar
                 end,
+                post_restore_cmds = {
+                    -- function ()
+                    --     local nvim_tree = require('nvim-tree')
+                    --     nvim_tree.change_dir(vim.fn.getcwd())
+                    -- end,
+                    -- 'NvimTreeOpen'
+                }
             },
         }
     },
+    -- {
+    --     "folke/persistence.nvim",
+    --     event = "BufReadPre",                          -- this will only start session saving when an actual file was opened
+    --     opts = {
+    --         dir = vim.fn.stdpath('data') .. '/session/' -- add any custom options here
+    --     }
+    -- },
 
     {
         -- Adds git related signs to the gutter, as well as utilities for managing changes
@@ -109,12 +190,12 @@ require('lazy').setup({
                     if vim.wo.diff then return ']c' end
                     vim.schedule(function () gs.next_hunk() end)
                     return '<Ignore>'
-                end, { expr = true, buffer = bufnr, desc = "Jump to next hunk" })
+                end, { expr = true, buffer = bufnr, desc = 'Jump to next hunk' })
                 vim.keymap.set({ 'n', 'v' }, '[c', function ()
                     if vim.wo.diff then return '[c' end
                     vim.schedule(function () gs.prev_hunk() end)
                     return '<Ignore>'
-                end, { expr = true, buffer = bufnr, desc = "Jump to previous hunk" })
+                end, { expr = true, buffer = bufnr, desc = 'Jump to previous hunk' })
             end,
         },
     },
@@ -123,144 +204,21 @@ require('lazy').setup({
     {
         -- Theme inspired by Atom
         'shaunsingh/nord.nvim',
-        config = function ()
-            vim.cmd.colorscheme 'nord'
-        end,
+    --     config = function ()
+    --         vim.cmd.colorscheme 'nord'
+    --     end,
+    },
+
+    {
+        'kiennt63/gruvbox-material',
+        -- config = function ()
+        --     vim.cmd.colorscheme 'gruvbox-material'
+        -- end,
     },
 
     {
         -- Set lualine as statusline
         'nvim-lualine/lualine.nvim',
-        -- opts = {
-        --     options = {
-        --         icons_enabled = true,
-        --         theme = 'nord',
-        --         section_separators = { left = '', right = '' },
-        --         component_separators = { left = '', right = '' },
-        --         -- component_separators = { left = '', right = ''},
-        --         -- section_separators = { left = '', right = ''},
-        --         -- component_separators = { left = '', right = '' },
-        --         -- section_separators = { left = '', right = '' },
-        --         disabled_filetypes = {
-        --             statusline = {},
-        --             winbar = {},
-        --         },
-        --         ignore_focus = { 'NvimTree' },
-        --         always_divide_middle = true,
-        --         globalstatus = true,
-        --         refresh = {
-        --             statusline = 1000,
-        --             tabline = 1000,
-        --             winbar = 1000,
-        --         }
-        --     },
-        --     sections = {
-        --         lualine_a = {
-        --             {
-        --                 'mode',
-        --                 icons_enabled = true,
-        --                 separator = { left = '', right = '' },
-        --                 right_padding = 2
-        --             },
-        --         },
-        --         lualine_b = { 'branch', {
-        --             "diff",
-        --             source = function ()
-        --                 local gitsigns = vim.b.gitsigns_status_dict
-        --                 if gitsigns then
-        --                     return {
-        --                         added = gitsigns.added,
-        --                         modified = gitsigns.changed,
-        --                         removed = gitsigns.removed,
-        --                     }
-        --                 end
-        --             end
-        --             ,
-        --             symbols = { added = "  ", modified = " ", removed = " " },
-        --             -- diff_color = {
-        --             --   added = { fg = colors.green },
-        --             --   modified = { fg = colors.yellow },
-        --             --   removed = { fg = colors.red },
-        --             -- },
-        --             cond = nil,
-        --         } },
-        --         lualine_c = {
-        --             'filename',
-        --         },
-        --         -- lualine_d = {require('auto-session-library').current_session_name},
-        --         lualine_x = {
-        --             {
-        --                 "diagnostics",
-        --                 sources = { "nvim_diagnostic" },
-        --                 symbols = { error = " ", warn = " ", info = " ", hint = " " },
-        --                 cond = function ()
-        --                     return vim.fn.winwidth(0) > 70
-        --                 end,
-        --             },
-        --             -- components.treesitter,
-        --             {
-        --                 function (msg)
-        --                     msg = msg or "LS Inactive"
-        --                     local buf_clients = vim.lsp.get_active_clients()
-        --                     if next(buf_clients) == nil then
-        --                         -- TODO: clean up this if statement
-        --                         if type(msg) == "boolean" or #msg == 0 then
-        --                             return "nolang"
-        --                         end
-        --                         return msg
-        --                     end
-        --                     local buf_ft = vim.bo.filetype
-        --                     local buf_client_names = {}
-        --
-        --                     -- add client
-        --                     for _, client in pairs(buf_clients) do
-        --                         if client.name ~= "null-ls" then
-        --                             table.insert(buf_client_names, client.name)
-        --                         end
-        --                     end
-        --
-        --                     -- add formatter
-        --                     local formatters = require "lvim.lsp.null-ls.formatters"
-        --                     local supported_formatters = formatters.list_registered(buf_ft)
-        --                     vim.list_extend(buf_client_names, supported_formatters)
-        --
-        --                     -- add linter
-        --                     local linters = require "lvim.lsp.null-ls.linters"
-        --                     local supported_linters = linters.list_registered(buf_ft)
-        --                     vim.list_extend(buf_client_names, supported_linters)
-        --
-        --                     local unique_client_names = vim.fn.uniq(buf_client_names)
-        --                     return "[" .. table.concat(unique_client_names, ", ") .. "]"
-        --                 end,
-        --                 color = { gui = "bold" },
-        --                 cond = function ()
-        --                     return vim.fn.winwidth(0) > 70
-        --                 end,
-        --             },
-        --             {
-        --                 "filetype",
-        --                 cond = function ()
-        --                     return vim.fn.winwidth(0) > 70
-        --                 end,
-        --             },
-        --         },
-        --         -- lualine_x = {'searchcount'},
-        --         lualine_y = { 'progress' },
-        --         lualine_z = { { 'location', separator = { left = '', right = '' }, left_padding = 2 } }
-        --     },
-        --     inactive_sections = {
-        --         lualine_a = {},
-        --         lualine_b = {},
-        --         lualine_c = { 'filename' },
-        --         lualine_x = { 'location' },
-        --         lualine_y = {},
-        --         lualine_z = {}
-        --     },
-        --     tabline = {},
-        --     winbar = {},
-        --     inactive_winbar = {},
-        --     extensions = {}
-        -- },
     },
 
     -- Indentation
@@ -275,7 +233,7 @@ require('lazy').setup({
     -- Automatically add pair for brackets
     {
         'windwp/nvim-autopairs',
-        event = "InsertEnter",
+        event = 'InsertEnter',
         opts = {}
     },
 
@@ -283,101 +241,26 @@ require('lazy').setup({
     {
         'folke/trouble.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons' },
-        opts = {},
+        opts = {
+            position = 'right'
+        },
     },
 
     -- Add tabs
+    -- {
+    --     'akinsho/bufferline.nvim',
+    --     version = '*',
+    --     dependencies = { 'nvim-tree/nvim-web-devicons', 'moll/vim-bbye' },
+    -- },
+
     {
-        'akinsho/bufferline.nvim',
-        version = "*",
-        dependencies = { 'nvim-tree/nvim-web-devicons', 'moll/vim-bbye' },
-        -- opts = {
-        --     options = {
-        --         numbers = "none",                             -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
-        --         close_command = "Bdelete! %d",                -- can be a string | function, see "Mouse actions"
-        --         middle_mouse_command = "Bdelete! %d",         -- can be a string | function, see "Mouse actions"
-        --         left_mouse_command = "buffer %d",             -- can be a string | function, see "Mouse actions"
-        --         right_mouse_command = ":BufferLineTogglePin", -- can be a string | function, see "Mouse actions"
-        --         -- NOTE: this plugin is designed with this icon in mind,
-        --         -- and so changing this is NOT recommended, this is intended
-        --         -- as an escape hatch for people who cannot bear it for whatever reason
-        --         indicator = {
-        --             icon = '▎', -- this should be omitted if indicator style is not 'icon'
-        --             style = 'icon',
-        --         },
-        --         buffer_close_icon = "",
-        --         -- buffer_close_icon = '',
-        --         modified_icon = "●",
-        --         close_icon = "",
-        --         -- close_icon = '',
-        --         left_trunc_marker = "",
-        --         right_trunc_marker = "",
-        --         --- name_formatter can be used to change the buffer's label in the bufferline.
-        --         --- Please note some names can/will break the
-        --         --- bufferline so use this at your discretion knowing that it has
-        --         --- some limitations that will *NOT* be fixed.
-        --         -- name_formatter = function(buf)  -- buf contains a "name", "path" and "bufnr"
-        --         --   -- remove extension from markdown files for example
-        --         --   if buf.name:match('%.md') then
-        --         --     return vim.fn.fnamemodify(buf.name, ':t:r')
-        --         --   end
-        --         -- end,
-        --         max_name_length = 30,
-        --         max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
-        --         tab_size = 18,
-        --         diagnostics = false,    -- | "nvim_lsp" | "coc",
-        --         diagnostics_update_in_insert = false,
-        --         -- diagnostics_indicator = function(count, level, diagnostics_dict, context)
-        --         --   return "("..count..")"
-        --         -- end,
-        --         -- NOTE: this will be called a lot so don't do any heavy processing here
-        --         -- custom_filter = function(buf_number)
-        --         --   -- filter out filetypes you don't want to see
-        --         --   if vim.bo[buf_number].filetype ~= "<i-dont-want-to-see-this>" then
-        --         --     return true
-        --         --   end
-        --         --   -- filter out by buffer name --   if vim.fn.bufname(buf_number) ~= "<buffer-name-I-dont-want>" then
-        --         --     return true
-        --         --   end
-        --         --   -- filter out based on arbitrary rules
-        --         --   -- e.g. filter out vim wiki buffer from tabline in your work repo
-        --         --   if vim.fn.getcwd() == "<work-repo>" and vim.bo[buf_number].filetype ~= "wiki" then
-        --         --     return true
-        --         --   end
-        --         -- end,
-        --         offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
-        --         show_buffer_icons = true,
-        --         show_buffer_close_icons = true,
-        --         show_close_icon = false,
-        --         show_tab_indicators = false,
-        --         persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
-        --         -- can also be a table containing 2 custom separators
-        --         -- [focused and unfocused]. eg: { '|', '|' }
-        --         separator_style = "thin", -- | "thick" | "thin" | { 'any', 'any' },
-        --         enforce_regular_tabs = true,
-        --         always_show_bufferline = true,
-        --         sort_by = 'id', -- | 'extension' | 'relative_directory' | 'directory' | 'tabs' | function(buffer_a, buffer_b)
-        --     },
-        --     highlights = {
-        --         fill = {
-        --             fg = '#2E3440',
-        --             bg = '#2E3440'
-        --         },
-        --         buffer_selected = {
-        --             bold = false,
-        --             italic = false,
-        --         },
-        --         separator_selected = {
-        --             fg = '#2E3440',
-        --         },
-        --         separator_visible = {
-        --             fg = '#2E3440',
-        --         },
-        --         separator = {
-        --             fg = '#2E3440',
-        --         },
-        --     };
-        -- }
+        'ThePrimeagen/harpoon',
+        dependencies = { 'nvim-lua/plenary.nvim', 'moll/vim-bbye' },
+        opts = {
+            menu = {
+                width = math.floor(vim.api.nvim_win_get_width(0) / 2),
+            }
+        }
     },
 
     -- "gc" to comment visual regions/lines
@@ -402,12 +285,19 @@ require('lazy').setup({
     {
         -- Highlight, edit, and navigate code
         'nvim-treesitter/nvim-treesitter',
+        lazy = true,
+        pin = true,
         dependencies = {
             'nvim-treesitter/nvim-treesitter-textobjects',
         },
         build = ':TSUpdate',
     },
+
+    {
+        'nvim-treesitter/nvim-treesitter-context'
+    }
 }, {})
+
 
 -- custom configurations
 require('plugins/config/telescope')
@@ -416,4 +306,8 @@ require('plugins/config/lsp')
 require('plugins/config/cmp')
 require('plugins/config/lualine')
 require('plugins/config/nvim-tree')
-require('plugins/config/bufferline')
+-- require('plugins/config/neotree')
+-- require('plugins/config/bufferline')
+require('plugins/config/snippet')
+require('plugins/config/theme')
+require('plugins/config/startify')

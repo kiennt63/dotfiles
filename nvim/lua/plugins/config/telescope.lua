@@ -1,5 +1,7 @@
 require('telescope').setup {
     defaults = {
+        prompt_prefix = " ",
+        selection_caret = " ",
         mappings = {
             i = {
                 ['<c-u>'] = false,
@@ -11,3 +13,4 @@ require('telescope').setup {
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
+pcall(require('telescope').load_extension, 'harpoon')
