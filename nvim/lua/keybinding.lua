@@ -28,8 +28,8 @@ keymap('n', '<C-j>', '<C-w>w', opts)
 -- Resize with arrows
 -- keymap("n", "<C-Up>", ":resize -2<CR>", opts)
 -- keymap("n", "<C-Down>", ":resize +2<CR>", opts)
-keymap('n', '<C-l>', ':vertical resize -2<CR>', opts)
-keymap('n', '<C-h>', ':vertical resize +2<CR>', opts)
+keymap('n', '<C-A-l>', ':vertical resize -2<CR>', opts)
+keymap('n', '<C-A-h>', ':vertical resize +2<CR>', opts)
 
 -- Remove hls
 keymap('n', '<esc><esc>', ':noh<cr>', opts)
@@ -114,9 +114,16 @@ keymap('x', '<A-k>', ":move '<-2<CR>gv-gv", opts)
 -- Copy to clipboard
 keymap('x', '<leader>y', '"+y', opts)
 
+-- Share yank and paste between vim processes
+keymap('v', '<leader>gy', ':w! /tmp/vitmp<CR>', opts)
+keymap('n', '<leader>gp', ':r! cat /tmp/vitmp<CR>', opts)
+
 -- =======================================================
 -- Trouble
-keymap("n", "<leader>t", ":TroubleToggle<cr>")
+keymap('n', '<leader>t', ':TroubleToggle<cr>', opts)
+
+-- Diagnostic
+keymap('n', '<leader>ld', '<cmd>lua vim.diagnostic.open_float(nil, {focus=false})<cr>', { desc = '[L]SP [D]iagnostic'})
 
 -- =======================================================
 -- Terminal --
@@ -128,11 +135,15 @@ keymap("n", "<leader>t", ":TroubleToggle<cr>")
 
 -- Telescope
 -- keymap("n", "<leader>F", "<cmd>Telescope find_files<cr>", opts)
+local live_grep_args_shortcuts = require('telescope-live-grep-args.shortcuts')
 keymap('n', '<leader>ff',
-    "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>"
-    , opts)
-keymap('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', opts)
-keymap('n', '<leader>fr', require('telescope.builtin').resume, { desc = '[S]earch [R]resume' })
+    "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>",
+    opts)
+keymap('n', '<leader>fg', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", opts)
+keymap('n', '<leader>fw', live_grep_args_shortcuts.grep_word_under_cursor, opts)
+keymap('v', '<leader>fs', live_grep_args_shortcuts.grep_visual_selection, opts)
+
+keymap('n', '<leader>fr', require('telescope.builtin').resume, { desc = '[F]ind [R]resume' })
 
 -- File manager
 keymap('n', '<leader>fq', ':RnvimrToggle<cr>', opts)
