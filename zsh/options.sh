@@ -1,4 +1,4 @@
-# autoload -U compinit && compinit
+autoload -U compinit && compinit
 
 setopt autocd
 setopt EXTENDED_HISTORY
