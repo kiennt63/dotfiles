@@ -244,10 +244,20 @@ for type, icon in pairs(signs) do
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
+-- vim.diagnostic.config({
+--     virtual_text = {
+--         prefix = '●', -- Could be '●', '▎', 'x'
+--     }
+-- })
+
 vim.diagnostic.config({
-    virtual_text = {
-        prefix = '●', -- Could be '●', '▎', 'x'
-    }
+  virtual_text = {
+    prefix = "", -- ■ 
+    suffix = "",
+    format = function(diagnostic)
+      return "● " .. diagnostic.message .. " "
+    end,
+    },
 })
 
 -- vim.o.updatetime = 250
