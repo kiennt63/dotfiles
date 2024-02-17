@@ -1,6 +1,6 @@
 # Open alacritty
 # alt - return : /Applications/Alacritty.app/Contents/MacOS/alacritty --working-directory ~
-alt - return : $HOME/dotfiles/skhd/open_kitty.sh
+alt - return : /Applications/WezTerm.app/Contents/MacOS/wezterm
 alt - w : /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser
 
 # Close focused window
@@ -29,8 +29,20 @@ alt - 7 : yabai -m space --focus 7
 alt - 8 : yabai -m space --focus 8
 alt - 9 : yabai -m space --focus 9
 alt - 0 : yabai -m space --focus 10
+
+# alt - 0 : yabai -m window --focus "$(yabai -m query --spaces --space 0 | jq -r '."last-window"')" || yabai -m space --focus 0
+# alt - 1 : yabai -m window --focus "$(yabai -m query --spaces --space 1 | jq -r '."last-window"')" || yabai -m space --focus 1
+# alt - 2 : yabai -m window --focus "$(yabai -m query --spaces --space 2 | jq -r '."last-window"')" || yabai -m space --focus 2
+# alt - 3 : yabai -m window --focus "$(yabai -m query --spaces --space 3 | jq -r '."last-window"')" || yabai -m space --focus 3
+# alt - 4 : yabai -m window --focus "$(yabai -m query --spaces --space 4 | jq -r '."last-window"')" || yabai -m space --focus 4
+# alt - 5 : yabai -m window --focus "$(yabai -m query --spaces --space 5 | jq -r '."last-window"')" || yabai -m space --focus 5
+# alt - 6 : yabai -m window --focus "$(yabai -m query --spaces --space 6 | jq -r '."last-window"')" || yabai -m space --focus 6
+# alt - 7 : yabai -m window --focus "$(yabai -m query --spaces --space 7 | jq -r '."last-window"')" || yabai -m space --focus 7
+# alt - 8 : yabai -m window --focus "$(yabai -m query --spaces --space 8 | jq -r '."last-window"')" || yabai -m space --focus 8
+# alt - 9 : yabai -m window --focus "$(yabai -m query --spaces --space 9 | jq -r '."last-window"')" || yabai -m space --focus 9
+
 # alt - p : yabai -m space --focus recent
-#
+
 shift + alt - 1 : yabai -m window --space 1; 
 shift + alt - 2 : yabai -m window --space 2; 
 shift + alt - 3 : yabai -m window --space 3; 
@@ -59,6 +71,8 @@ lctrl + alt - j : yabai -m window --resize bottom:0:50; \
 lctrl + alt - k : yabai -m window --resize top:0:-50; \
                   yabai -m window --resize bottom:0:-50
 shift + alt - e : yabai -m space --balance
+
+alt - m : yabai -m window --toggle zoom-fullscreen
 
 # Toggle gaps in current workspace
 # lctrl + alt - g : yabai -m space --toggle padding; yabai -m space --toggle gap

@@ -13,11 +13,11 @@ set -x
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
 
-yabai -m signal --add event=display_added action="sleep 1 && $HOME/.config/yabai/create_spaces.sh"
-yabai -m signal --add event=display_removed action="sleep 1 && $HOME/.config/yabai/create_spaces.sh"
+# yabai -m signal --add event=display_added action="sleep 1 && $HOME/.config/yabai/create_spaces.sh"
+# yabai -m signal --add event=display_removed action="sleep 1 && $HOME/.config/yabai/create_spaces.sh"
 
 #/Users/termanteus/.config/yabai/create_spaces.sh
-$HOME/dotfiles/yabai/create_spaces.sh
+# $HOME/dotfiles/yabai/create_spaces.sh
 
 # yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
 #################### Status bar ####################
@@ -25,17 +25,8 @@ $HOME/dotfiles/yabai/create_spaces.sh
 # yabai -m config external_bar all:$SPACEBAR_HEIGHT:0
 
 yabai -m config                                                     \
-    window_border                   off                              \
-    window_border_width             2                               \
-    window_border_hidpi             on                              \
-    window_border_blur              on                              \
-    window_border_radius            11                               \
-    active_window_border_color      0xff81A1C1                      \
-    normal_window_border_color      0xff4C566A                      \
-    mouse_follows_focus             off                             \
+    mouse_follows_focus             on                              \
     window_placement                second_child                    \
-    focus_follows_mouse             off                             \
-    window_topmost                  off                             \
     window_shadow                   off                             \
     window_opacity                  on                              \
     insert_feedback_color           0xE02d74da                      \
@@ -45,11 +36,11 @@ yabai -m config                                                     \
     mouse_action1                   move                            \
     mouse_action2                   resize                          \
     mouse_drop_action               swap                            \
-    top_padding                     8                               \
-    bottom_padding                  8                               \
-    left_padding                    8                               \
-    right_padding                   8                               \
-    window_gap                      8
+    top_padding                     15                              \
+    bottom_padding                  15                              \
+    left_padding                    15                              \
+    right_padding                   15                              \
+    window_gap                      15
 
 yabai -m config layout bsp
 
@@ -82,5 +73,19 @@ yabai -m rule --add label="Select file to save to" app="^Inkscape$" title="Selec
 # yabai -m signal --add event=window_focused action="${ubersicht_spaces_refresh_command}"
 # yabai -m signal --add event=window_title_changed action="${ubersicht_spaces_refresh_command}"
 
+focus_window () {
+    SPACE_NAME=$(yabai -m query --spaces --space | jq ".label")
+    WINDOW_ID=$(yabai -m query --windows --space | jq ".[] | select (.app=${SPACE_NAME}).id")
+    yabai -m window --focus "${WINDOW_ID}"
+}
+
+# focus window after active space changes
+yabai -m signal --add event=space_changed action="focus_window"
+
+# focus window after active display changes
+yabai -m signal --add event=display_changed action="focus_window"
+
 set +x
 printf "yabai: configuration loaded...\\n"
+
+borders active_color=0xff81A1C1 inactive_color=0xff4C566A width=4.0 hidpi=on &
