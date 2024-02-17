@@ -59,7 +59,23 @@ require('lazy').setup({
             },
         },
     },
-
+    {
+        'christoomey/vim-tmux-navigator',
+        cmd = {
+            'TmuxNavigateLeft',
+            'TmuxNavigateDown',
+            'TmuxNavigateUp',
+            'TmuxNavigateRight',
+            'TmuxNavigatePrevious',
+        },
+        keys = {
+            { '<c-h>',  '<cmd><C-U>TmuxNavigateLeft<cr>' },
+            { '<c-j>',  '<cmd><C-U>TmuxNavigateDown<cr>' },
+            { '<c-k>',  '<cmd><C-U>TmuxNavigateUp<cr>' },
+            { '<c-l>',  '<cmd><C-U>TmuxNavigateRight<cr>' },
+            { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
+        },
+    },
     -- {
     --     'ray-x/lsp_signature.nvim',
     --     -- event = 'VeryLazy',
@@ -113,7 +129,8 @@ require('lazy').setup({
     {
         'NvChad/nvim-colorizer.lua',
         config = function ()
-            require('colorizer').setup({})
+            require 'colorizer'.setup {
+            }
         end,
     },
 
@@ -165,8 +182,6 @@ require('lazy').setup({
     --     event = "BufReadPre",                          -- this will only start session saving when an actual file was opened
     --     opts = {
     --         dir = vim.fn.stdpath('data') .. '/session/' -- add any custom options here
-    --     }
-    -- },
 
     {
         -- Adds git related signs to the gutter, as well as utilities for managing changes
@@ -174,11 +189,12 @@ require('lazy').setup({
         opts = {
             -- See `:help gitsigns.txt`
             signs = {
-                add = { text = '+' },
-                change = { text = '~' },
-                delete = { text = '_' },
-                topdelete = { text = '‾' },
+                add          = { text = '┃' },
+                change       = { text = '┃' },
+                delete       = { text = '┃' },
+                topdelete    = { text = '‾' },
                 changedelete = { text = '~' },
+                untracked    = { text = '┇' },
             },
             on_attach = function (bufnr)
                 vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk,
@@ -278,6 +294,12 @@ require('lazy').setup({
                 cond = function ()
                     return vim.fn.executable 'make' == 1
                 end,
+            },
+            {
+                'nvim-telescope/telescope-live-grep-args.nvim',
+                -- This will not install any breaking changes.
+                -- For major updates, this must be adjusted manually.
+                version = '^1.0.0',
             },
         },
     },

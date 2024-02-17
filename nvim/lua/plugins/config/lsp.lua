@@ -72,6 +72,18 @@ local servers = {
         -- capabilities = {
         --     offsetEncoding = { 'utf-16' },
         -- },
+        root_dir = {
+            '.clangd',
+            '.clang-tidy',
+            '.clang-format',
+            'compile_commands.json',
+            'compile_flags.txt',
+            'configure.ac',
+            '.git',
+            'build',
+            'build_x64_linux',
+            'build_aarch64_linux'
+        },
         cmd = {
             'clangd',
             '--background-index',
@@ -225,3 +237,41 @@ require('clangd_extensions').setup({
         border = 'none',
     },
 })
+
+local signs = { Error = '', Warn = '', Hint = '', Info = '' }
+for type, icon in pairs(signs) do
+    local hl = 'DiagnosticSign' .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+-- vim.diagnostic.config({
+--     virtual_text = {
+--         prefix = '●', -- Could be '●', '▎', 'x'
+--     }
+-- })
+
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = "", -- ■ 
+    suffix = "",
+    format = function(diagnostic)
+      return "● " .. diagnostic.message .. " "
+    end,
+    },
+})
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] =
+  vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics,
+  {
+    underline = false
+  }
+)
+
+-- vim.o.updatetime = 250
+-- vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+--     group = vim.api.nvim_create_augroup('float_diagnostic', { clear = true }),
+--     callback = function ()
+--         vim.diagnostic.open_float(nil, { focus = false })
+--     end
+-- })
