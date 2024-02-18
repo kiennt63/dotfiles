@@ -1,9 +1,14 @@
-status=$(yabai -m query --spaces --space "$SID" | jq '.windows | length')
+#!/bin/sh
 
-if [[ $status == 0 ]]; then
-    ICON=""
+source $HOME/dotfiles/sketchybar/plugins/palette.sh
+
+if [ $SELECTED = true ]; then
+  sketchybar --set $NAME background.drawing=on \
+                         background.color=${PALETTE1} \
+                         label.color=${PALETTE0} \
+                         icon.color=${PALETTE0}
 else
-    ICON=""
+  sketchybar --set $NAME background.drawing=off \
+                         label.color=${PALETTE1} \
+                         icon.color=${PALETTE1}
 fi
-
-sketchybar --set $NAME icon=$ICON icon.highlight=$SELECTED
