@@ -12,20 +12,6 @@ sketchybar --bar height=42        \
                  padding_right=10 \
                  color=0x00ffffff
 
-# default=(
-#   padding_left=5
-#   padding_right=5
-#   icon.font="SF Pro:Semibold:14.0"
-#   label.font="SF Pro:Semibold:14.0"
-#   icon.color=${PALETTE1}
-#   label.color=${PALETTE1}
-#   icon.padding_left=4
-#   icon.padding_right=4
-#   label.padding_left=4
-#   label.padding_right=4
-# )
-# sketchybar --default "${default[@]}"
-
 sketchybar --default icon.font="SF Pro:Semibold:15.0"   \
                      icon.color=${PALETTE0}             \
                      label.font="SF Pro:Semibold:15.0"  \
