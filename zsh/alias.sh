@@ -9,6 +9,7 @@ alias gst="git status"
 alias gw="git worktree"
 alias gf="git fetch"
 alias g="git"
+alias lg="lazygit"
 
 # dds
 alias ddsbag="/opt/mpc/3rdparty/vinai_middleware/1.5.1/utilities/ddsbag/x64-linux/ddsbag"
