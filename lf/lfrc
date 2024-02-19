@@ -24,6 +24,10 @@ cmd mkfile ${{
   touch $ans
 }}
 
+cmd edit_with_editor ${{
+  $EDITOR "$f"
+}}
+
 cmd setwallpaper ${{
     setwallpaper "$f"
 }}
@@ -76,7 +80,7 @@ map x cut
 map y copy
 map <enter> open
 map o open
-map e $EDITOR $f
+map e edit_with_editor
 map R reload
 map a mkfile
 map A mkdir
