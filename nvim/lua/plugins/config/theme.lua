@@ -1,1 +1,0 @@
-/Users/neik/dotfiles/nvim/lua/plugins/config/nord.lua
