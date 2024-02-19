@@ -6,7 +6,6 @@ add_newline = false
 command_timeout = 150
 
 format = """
-$hostname\
 $directory\
 $git_branch\
 $git_commit\
@@ -27,7 +26,7 @@ $character"""
 # [╰─>](bold #81A1C1) """
 
 [character]
-success_symbol = "[└─](bold #B48EAD)[](bold #88C0D0)[](bold #EBCB8B)"
+success_symbol = "[┕━](bold #B48EAD)[](bold #88C0D0)[](bold #EBCB8B)"
 error_symbol = "[✗](bold #D08770)"
 vimcmd_symbol = "[➜](bold #A3BE8C)"
 vimcmd_replace_one_symbol = "[➜](bold #A3BE8C)"
@@ -46,7 +45,7 @@ format = '[\[](#B48EAD bold)[$path]($style)[$read_only]($read_only_style)[\]](#E
 
 [git_branch]
 style = "#A3BE8C"
-symbol = ""
+symbol = " "
 format = "[on $symbol$branch(:$remote_branch)]($style) "
 
 [git_status]
@@ -60,9 +59,3 @@ deleted = "[!✘${count}](#D08770)"
 untracked = "[?${count}](#81A1C1)"
 format = '([[\[](#A3BE8C)$ahead$behind$staged$modified$deleted$untracked$ahead_behind[\]](#A3BE8C)]($style) )'
 
-[conda]
-symbol = " "
-
-[hostname]
-ssh_symbol = "󰢹 "
-format = "[$ssh_symbol](#B48EAD)"

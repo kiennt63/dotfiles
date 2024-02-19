@@ -26,7 +26,6 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 # for binary and font stuff
 mkdir -p ~/.local/bin
-mkdir -p ~/.config/fontconfig
 
 # Make backup config
 cp -r ~/.config ~/.config_old
@@ -58,12 +57,8 @@ if [[ "$OS" = "linux" ]]; then
     ln -sf $HOME/dotfiles/.Xresources ~
 
     ln -sf $HOME/dotfiles/binaries/pamixer ~/.local/bin
-    # config font
-    cp -r $HOME/dotfiles/fonts/* ~/.fonts
-    fc-cache -f ~/.fonts
-    ln -sf $HOME/dotfiles/fonts.conf ~/.config/fontconfig
-    gsettings set org.gnome.desktop.interface monospace-font-name "Ligamononoki Nerd Font 11"
-    fc-cache -fr
+    sh $HOME/dotfiles/prerequisites/keyd_setup.sh
+    sh $HOME/dotfiles/prerequisites/font_setup.sh
 fi
 
 echo "Running theme setup for nord by default, you can change via ~/dotfiles/set_theme.sh --help"

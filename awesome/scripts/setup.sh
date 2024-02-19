@@ -41,4 +41,4 @@ done
 
 
 # redshift
-redshift -P -O 4500
+redshift -P -O 3500

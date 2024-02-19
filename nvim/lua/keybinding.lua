@@ -150,3 +150,7 @@ keymap('n', '<leader>fq', ':RnvimrToggle<cr>', opts)
 
 -- Searching
 keymap('v', '//', [[y/\V<c-r>=escape(@",'/\')<cr><cr>]], opts)
+
+-- Git sign
+keymap('n', '<leader>gs', ':Gitsigns preview_hunk<cr>', opts)
+keymap('n', '<leader>gb', ':Gitsigns toggle_current_line_blame<cr>', opts)

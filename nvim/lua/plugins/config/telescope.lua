@@ -1,7 +1,12 @@
 require('telescope').setup {
+    pickers = {
+        find_files = {
+            hidden = true
+        }
+    },
     defaults = {
-        prompt_prefix = " ",
-        selection_caret = " ",
+        prompt_prefix = ' ',
+        selection_caret = ' ',
         mappings = {
             i = {
                 ['<c-u>'] = false,

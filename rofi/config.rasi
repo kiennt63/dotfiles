@@ -9,7 +9,7 @@ configuration {
 
     matching: "normal";
 
-	icon-theme: "Papirus-Light";
+	/* icon-theme: "Papirus-Light"; */
     drun-display-format: "{name}";
 	/* fixed-num-lines: true; */
 	font: "Liga SFMono Nerd Font 30";
@@ -52,6 +52,7 @@ window {
     padding: 0;
     margin: 0;
     border: 0;
+    border-radius: 30px;
 }
 
 mainbox {
@@ -65,7 +66,7 @@ mainbox {
 inputbar {
 	background-color: @bg;
 	text-color: @fg;
-    padding: 10px 20px;
+    padding: 20px 20px;
 	children: [ prompt, entry ];
 }
 
@@ -88,7 +89,7 @@ listview {
     color: @bg;
 	padding: 0;
     spacing: 0;
-    margin: 0 10px 10px;
+    margin: 0 30px 10px;
 	border: 0;
 	children: [element];
 }
@@ -106,7 +107,7 @@ button selected {
 element {
     orientation: horizontal;
     border: 0;
-    padding: 5px 20px;
+    padding: 0px 0px;
     background-color: @bg;
     color: @bg;
     children: [ element-text ];
@@ -116,6 +117,7 @@ element selected {
     background-color: @bg-selected;
     text-color: @fg;
     border: 0;
+    border-radius: 10px;
 }
 
 element selected.normal {
@@ -149,6 +151,7 @@ element-text {
     background-color: @bg;
     text-color: @fg;
     highlight: @fg-matched;
+    padding: 5px 40px;
 }
 
 element-text active {

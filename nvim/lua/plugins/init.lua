@@ -182,8 +182,6 @@ require('lazy').setup({
     --     event = "BufReadPre",                          -- this will only start session saving when an actual file was opened
     --     opts = {
     --         dir = vim.fn.stdpath('data') .. '/session/' -- add any custom options here
-    --     }
-    -- },
 
     {
         -- Adds git related signs to the gutter, as well as utilities for managing changes
@@ -191,11 +189,12 @@ require('lazy').setup({
         opts = {
             -- See `:help gitsigns.txt`
             signs = {
-                add = { text = '+' },
-                change = { text = '~' },
-                delete = { text = '_' },
-                topdelete = { text = '‾' },
+                add          = { text = '┃' },
+                change       = { text = '┃' },
+                delete       = { text = '┃' },
+                topdelete    = { text = '‾' },
                 changedelete = { text = '~' },
+                untracked    = { text = '┇' },
             },
             on_attach = function (bufnr)
                 vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk,
