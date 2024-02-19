@@ -1,0 +1,94 @@
+set previewer ~/.config/lf/lf_kitty_preview
+set cleaner ~/.config/lf/lf_kitty_clean
+
+# Basic Settings
+set shell sh
+set shellopts '-eu'
+set ifs "\n"
+set scrolloff 10
+set cursorpreviewfmt "\033[7;2m"
+set icons true
+set hidden true
+set ignorecase true
+
+# Custom Functions
+cmd mkdir ${{
+  printf "Directory Name: "
+  read ans
+  mkdir $ans
+}}
+
+cmd mkfile ${{
+  printf "File Name: "
+  read ans
+  touch $ans
+}}
+
+cmd setwallpaper ${{
+    setwallpaper "$f"
+}}
+
+# Archive bindings
+cmd unarchive ${{
+  case "$f" in
+      *.zip) unzip "$f" ;;
+      *.tar.gz) tar -xzvf "$f" ;;
+      *.tar.bz2) tar -xjvf "$f" ;;
+      *.tar) tar -xvf "$f" ;;
+      *) echo "Unsupported format" ;;
+  esac
+}}
+
+# Trash bindings
+cmd trash ${{
+  files=$(printf "$fx" | tr '\n' ';')
+  while [ "$files" ]; do
+    file=${files%%;*}
+
+    trash-put "$(basename "$file")"
+    if [ "$files" = "$file" ]; then
+      files=''
+    else
+      files="${files#*;}"
+    fi
+  done
+}}
+
+cmd restore_trash ${{
+  trash-restore
+}}
+
+# Bindings
+map d
+map m
+
+map c $vscodium "$f"
+
+map au unarchive
+map ae $wine "$f"
+
+# Basic Functions
+map . set hidden!
+map dd trash
+map dr restore_trash
+map p paste
+map x cut
+map y copy
+map <enter> open
+map o open
+map e $EDITOR $f
+map R reload
+map a mkfile
+map A mkdir
+map bg setwallpaper
+map C clear
+
+# Movement
+map gh cd ~
+map gd cd ~/dev
+map gD cd ~/docs
+map gp cd ~/pics
+map gc cd ~/.config
+map gv cd ~/vids
+map gb cd ~/.local/bin
+map gt cd ~/.local/share/Trash/files
