@@ -12,7 +12,7 @@ elif [[ $THEME = "cat_mocha" ]]; then
     sudo ln -sf "$HOME/dotfiles/kitty/themes/mocha.conf" "$HOME/dotfiles/kitty/themes/theme.conf"
     sudo ln -sf "$HOME/dotfiles/startpages/raichu_startpage/css/mocha.css" "$HOME/dotfiles/startpages/raichu_startpage/css/vars.css"
 elif [[ $THEME = "nord" ]]; then
-    sudo ln -sf "$HOME/dotfiles/nvim/lua/plugins/config/nord.lua" "$HOME/dotfiles/nvim/lua/plugins/config/theme.lua"
+    sudo ln -sf "$HOME/dotfiles/nvim/lua/plugins/config/scheme/nord.lua" "$HOME/dotfiles/nvim/lua/plugins/config/scheme/init.lua"
     sudo ln -sf "$HOME/dotfiles/awesome/theme/nord.lua" "$HOME/dotfiles/awesome/theme/theme.lua"
     sudo ln -sf "$HOME/dotfiles/kitty/themes/nord.conf" "$HOME/dotfiles/kitty/themes/theme.conf"
     sudo ln -sf "$HOME/dotfiles/startpages/raichu_startpage/css/nord.css" "$HOME/dotfiles/startpages/raichu_startpage/css/vars.css"

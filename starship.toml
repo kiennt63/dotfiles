@@ -27,11 +27,11 @@ $character"""
 
 [character]
 success_symbol = "[┕━](bold #B48EAD)[](bold #88C0D0)[](bold #EBCB8B)"
-error_symbol = "[✗](bold #D08770)"
-vimcmd_symbol = "[➜](bold #A3BE8C)"
-vimcmd_replace_one_symbol = "[➜](bold #A3BE8C)"
-vimcmd_replace_symbol = "[➜](bold #A3BE8C)"
-vimcmd_visual_symbol = "[➜](bold #A3BE8C)"
+error_symbol = "[✘](bold #D08770)"
+vimcmd_symbol = "[✘](bold #A3BE8C)"
+vimcmd_replace_one_symbol = "[✘](bold #A3BE8C)"
+vimcmd_replace_symbol = "[✘](bold #A3BE8C)"
+vimcmd_visual_symbol = "[✘](bold #A3BE8C)"
 
 [username]
 format = '[\[](#EBCB8B bold)[$user](#88C0D0 bold)[\]](#A3BE8C bold) '

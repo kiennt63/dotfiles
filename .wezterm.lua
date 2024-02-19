@@ -17,8 +17,8 @@ config.window_background_opacity = 0.9
 -- Font
 config.color_scheme = 'nord'
 config.font = wezterm.font('LigaSauceCodePro NF')
-config.font_size = 18
-config.line_height = 1.1
+config.font_size = 15
+config.line_height = 1.0
 config.adjust_window_size_when_changing_font_size = false
 
 -- Keybinding
