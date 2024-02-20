@@ -24,7 +24,6 @@ require('lazy').setup({
         dependencies = {
             { 'williamboman/mason.nvim', config = true },
             'williamboman/mason-lspconfig.nvim',
-            { 'j-hui/fidget.nvim',       tag = 'legacy', opts = {} },
             'folke/neodev.nvim',
         },
     },
@@ -59,6 +58,14 @@ require('lazy').setup({
             },
         },
     },
+
+    -- rust
+    {
+        'mrcjkb/rustaceanvim',
+        version = '^4', -- Recommended
+        ft = { 'rust' },
+    },
+
     {
         'christoomey/vim-tmux-navigator',
         cmd = {
@@ -76,6 +83,14 @@ require('lazy').setup({
             { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
         },
     },
+
+    {
+        'goolord/alpha-nvim',
+        config = function ()
+            require 'alpha'.setup(require 'alpha.themes.dashboard'.config)
+        end
+    },
+
     -- {
     --     'ray-x/lsp_signature.nvim',
     --     -- event = 'VeryLazy',
@@ -106,6 +121,72 @@ require('lazy').setup({
     --     'iamcco/markdown-preview.nvim',
     --     config = function () vim.fn['mkdp#util#install']() end,
     -- },
+
+    {
+        'kylechui/nvim-surround',
+        version = '*', -- Use for stability; omit to use `main` branch for the latest features
+        event = 'VeryLazy',
+        config = function ()
+            require('nvim-surround').setup {
+                -- Configuration here, or leave empty to use defaults
+            }
+        end
+    },
+
+    -- {
+    --     'j-hui/fidget.nvim',
+    --     opts = {
+    --         -- options
+    --     },
+    -- },
+
+    -- notification
+    {
+        'folke/noice.nvim',
+        event = 'VeryLazy',
+        opts = {
+            lsp = {
+                progress = {
+                    enabled = false,
+                },
+                override = {
+                    ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+                    ['vim.lsp.util.stylize_markdown'] = true,
+                    ['cmp.entry.get_documentation'] = true, -- requires hrsh7th/nvim-cmp
+                },
+            },
+            -- you can enable a preset for easier configuration
+            presets = {
+                bottom_search = true,         -- use a classic bottom cmdline for search
+                command_palette = true,       -- position the cmdline and popupmenu together
+                long_message_to_split = true, -- long messages will be sent to a split
+                inc_rename = false,           -- enables an input dialog for inc-rename.nvim
+                lsp_doc_border = false,       -- add a border to hover docs and signature help
+            },
+        },
+        dependencies = {
+            -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+            'MunifTanjim/nui.nvim',
+            -- OPTIONAL:
+            --   `nvim-notify` is only needed, if you want to use the notification view.
+            --   If not available, we use `mini` as the fallback
+            'rcarriga/nvim-notify',
+        },
+        config = function ()
+            ---@diagnostic disable-next-line: missing-fields
+            require('notify').setup({
+                background_colour = '#000000'
+            })
+        end,
+    },
+
+    -- lsp progress bar
+    {
+        'linrongbin16/lsp-progress.nvim',
+        config = function ()
+            require('lsp-progress').setup({})
+        end
+    },
 
     -- whichkey
     { 'folke/which-key.nvim',  opts = {} },
@@ -159,24 +240,24 @@ require('lazy').setup({
     -- },
 
     -- session manager
-    {
-        'rmagatti/auto-session',
-        opts = {
-            log_level = 'error',
-            cwd_change_handling = {
-                post_cwd_changed_hook = function () -- example refreshing the lualine status line _after_ the cwd changes
-                    require('lualine').refresh()    -- refresh lualine so the new session name is displayed in the status bar
-                end,
-                post_restore_cmds = {
-                    -- function ()
-                    --     local nvim_tree = require('nvim-tree')
-                    --     nvim_tree.change_dir(vim.fn.getcwd())
-                    -- end,
-                    -- 'NvimTreeOpen'
-                }
-            },
-        }
-    },
+    -- {
+    --     'rmagatti/auto-session',
+    --     opts = {
+    --         log_level = 'error',
+    --         cwd_change_handling = {
+    --             post_cwd_changed_hook = function () -- example refreshing the lualine status line _after_ the cwd changes
+    --                 require('lualine').refresh()    -- refresh lualine so the new session name is displayed in the status bar
+    --             end,
+    --             post_restore_cmds = {
+    --                 -- function ()
+    --                 --     local nvim_tree = require('nvim-tree')
+    --                 --     nvim_tree.change_dir(vim.fn.getcwd())
+    --                 -- end,
+    --                 -- 'NvimTreeOpen'
+    --             }
+    --         },
+    --     }
+    -- },
     -- {
     --     "folke/persistence.nvim",
     --     event = "BufReadPre",                          -- this will only start session saving when an actual file was opened
@@ -333,3 +414,5 @@ require('plugins/config/nvim-tree')
 require('plugins/config/snippet')
 require('plugins/config/scheme')
 require('plugins/config/startify')
+require('plugins/config/noice')
+-- require('plugins/config/fidget')

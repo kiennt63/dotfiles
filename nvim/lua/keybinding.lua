@@ -139,6 +139,9 @@ local live_grep_args_shortcuts = require('telescope-live-grep-args.shortcuts')
 keymap('n', '<leader>ff',
     "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>",
     opts)
+keymap('n', '<leader>o',
+    "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>",
+    opts)
 keymap('n', '<leader>fg', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", opts)
 keymap('n', '<leader>fw', live_grep_args_shortcuts.grep_word_under_cursor, opts)
 keymap('v', '<leader>fs', live_grep_args_shortcuts.grep_visual_selection, opts)
@@ -154,3 +157,7 @@ keymap('v', '//', [[y/\V<c-r>=escape(@",'/\')<cr><cr>]], opts)
 -- Git sign
 keymap('n', '<leader>gs', ':Gitsigns preview_hunk<cr>', opts)
 keymap('n', '<leader>gb', ':Gitsigns toggle_current_line_blame<cr>', opts)
+keymap('n', '<leader>gb', ':Gitsigns toggle_current_line_blame<cr>', opts)
+
+-- Noice (messages and notification)
+keymap('n', '<leader>nd', ':NoiceDismiss<cr>', opts)
