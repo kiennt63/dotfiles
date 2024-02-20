@@ -7,6 +7,8 @@
 --     close_timeout = 1000,
 -- }
 
+local util = require('lspconfig/util')
+
 local on_attach = function (_, bufnr)
     -- require 'lsp_signature'.on_attach(signature_setup, bufnr)
 
@@ -100,8 +102,18 @@ local servers = {
         },
     },
     -- gopls = {},
-    -- pyright = {},
-    -- rust_analyzer = {},
+    pyright = {},
+    -- rust_analyzer = {
+    --     ['rust-analyzer'] = {
+    --         cargo = {
+    --             allFeatures = true,
+    --         },
+    --         diagnostics = {
+    --             enable = true;
+    --         }
+    --     },
+    --     filetypes = 'rust'
+    -- },
     -- tsserver = {},
     -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
@@ -189,42 +201,42 @@ require('clangd_extensions').setup({
     },
     ast = {
         -- These are unicode, should be available in any font
+        -- role_icons = {
+        --     type = '🄣',
+        --     declaration = '🄓',
+        --     expression = '🄔',
+        --     statement = ';',
+        --     specifier = '🄢',
+        --     ['template argument'] = '🆃',
+        -- },
+        -- kind_icons = {
+        --     Compound = '🄲',
+        --     Recovery = '🅁',
+        --     TranslationUnit = '🅄',
+        --     PackExpansion = '🄿',
+        --     TemplateTypeParm = '🅃',
+        --     TemplateTemplateParm = '🅃',
+        --     TemplateParamObject = '🅃',
+        -- },
+        -- These require codicons (https://github.com/microsoft/vscode-codicons)
         role_icons = {
-            type = '🄣',
-            declaration = '🄓',
-            expression = '🄔',
-            statement = ';',
-            specifier = '🄢',
-            ['template argument'] = '🆃',
+            type = '',
+            declaration = '',
+            expression = '',
+            specifier = '',
+            statement = '',
+            ['template argument'] = '',
         },
-        kind_icons = {
-            Compound = '🄲',
-            Recovery = '🅁',
-            TranslationUnit = '🅄',
-            PackExpansion = '🄿',
-            TemplateTypeParm = '🅃',
-            TemplateTemplateParm = '🅃',
-            TemplateParamObject = '🅃',
-        },
-        --[[ These require codicons (https://github.com/microsoft/vscode-codicons)
-            role_icons = {
-                type = "",
-                declaration = "",
-                expression = "",
-                specifier = "",
-                statement = "",
-                ["template argument"] = "",
-            },
 
-            kind_icons = {
-                Compound = "",
-                Recovery = "",
-                TranslationUnit = "",
-                PackExpansion = "",
-                TemplateTypeParm = "",
-                TemplateTemplateParm = "",
-                TemplateParamObject = "",
-            }, ]]
+        kind_icons = {
+            Compound = '',
+            Recovery = '',
+            TranslationUnit = '',
+            PackExpansion = '',
+            TemplateTypeParm = '',
+            TemplateTemplateParm = '',
+            TemplateParamObject = '',
+        },
 
         highlights = {
             detail = 'Comment',
@@ -251,22 +263,22 @@ end
 -- })
 
 vim.diagnostic.config({
-  virtual_text = {
-    prefix = "", -- ■ 
-    suffix = "",
-    format = function(diagnostic)
-      return "● " .. diagnostic.message .. " "
-    end,
+    virtual_text = {
+        prefix = '', -- ■ 
+        suffix = '',
+        format = function (diagnostic)
+            return '● ' .. diagnostic.message .. ' '
+        end,
     },
 })
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] =
-  vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics,
-  {
-    underline = false
-  }
-)
+vim.lsp.handlers['textDocument/publishDiagnostics'] =
+    vim.lsp.with(
+        vim.lsp.diagnostic.on_publish_diagnostics,
+        {
+            underline = false
+        }
+    )
 
 -- vim.o.updatetime = 250
 -- vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {

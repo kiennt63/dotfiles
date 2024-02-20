@@ -24,7 +24,6 @@ require('lazy').setup({
         dependencies = {
             { 'williamboman/mason.nvim', config = true },
             'williamboman/mason-lspconfig.nvim',
-            { 'j-hui/fidget.nvim',       tag = 'legacy', opts = {} },
             'folke/neodev.nvim',
         },
     },
@@ -59,6 +58,14 @@ require('lazy').setup({
             },
         },
     },
+
+    -- rust
+    {
+        'mrcjkb/rustaceanvim',
+        version = '^4', -- Recommended
+        ft = { 'rust' },
+    },
+
     {
         'christoomey/vim-tmux-navigator',
         cmd = {
@@ -105,6 +112,41 @@ require('lazy').setup({
     -- {
     --     'iamcco/markdown-preview.nvim',
     --     config = function () vim.fn['mkdp#util#install']() end,
+    -- },
+
+    {
+        'kylechui/nvim-surround',
+        version = '*', -- Use for stability; omit to use `main` branch for the latest features
+        event = 'VeryLazy',
+        config = function ()
+            require('nvim-surround').setup {
+                -- Configuration here, or leave empty to use defaults
+            }
+        end
+    },
+
+    {
+        'j-hui/fidget.nvim',
+        opts = {
+            -- options
+        },
+    },
+
+    -- notification
+    -- {
+    --     'folke/noice.nvim',
+    --     event = 'VeryLazy',
+    --     opts = {
+    --         -- add any options here
+    --     },
+    --     dependencies = {
+    --         -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+    --         'MunifTanjim/nui.nvim',
+    --         -- OPTIONAL:
+    --         --   `nvim-notify` is only needed, if you want to use the notification view.
+    --         --   If not available, we use `mini` as the fallback
+    --         'rcarriga/nvim-notify',
+    --     }
     -- },
 
     -- whichkey
@@ -333,3 +375,5 @@ require('plugins/config/nvim-tree')
 require('plugins/config/snippet')
 require('plugins/config/theme')
 require('plugins/config/startify')
+-- require('plugins/config/noice')
+require('plugins/config/fidget')
