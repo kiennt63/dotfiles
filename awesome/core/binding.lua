@@ -116,7 +116,7 @@ globalkeys = gears.table.join(
         { description = "open browser", group = "launcher" }),
     awful.key({ modkey, "Shift" }, "q", function() awful.spawn.with_shell(apps.files, false) end,
         { description = "open ranger", group = "launcher" }),
-    awful.key({ modkey, }, "q", function() awful.spawn.with_shell(apps.ranger, false) end,
+    awful.key({ modkey, }, "q", function() awful.spawn.with_shell(apps.fman, false) end,
         { description = "open files", group = "launcher" }),
 
     -- Media control

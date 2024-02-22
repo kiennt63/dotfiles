@@ -34,7 +34,7 @@ awful.rules.rules = {
                 "Wpa_gui",
                 "pinentry",
                 "veromix",
-                "xtightvncviewer"
+                "xtightvncviewer",
             },
 
             name = {
@@ -51,10 +51,5 @@ awful.rules.rules = {
     -- Add titlebars to normal clients and dialogs
     -- { rule_any = { type = { "normal", "dialog" }
     -- }, properties = { titlebars_enabled = false }
-    -- },
-
-    -- {
-    --     rule = { instance = "brave-browser" },
-    --     properties = { screen = 2, tag = "1" }
     -- },
 }

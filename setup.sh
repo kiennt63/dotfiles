@@ -4,7 +4,7 @@ OS=$1
 
 sudo add-apt-repository ppa:papirus/papirus
 sudo apt-get update
-sudo apt install -y papirus-icon-theme zsh kitty build-essential awesome xclip redshift lxappearance libevent-dev gnome-tweak-tool pavucontrol maim sysstat ripgrep
+sudo apt install -y papirus-icon-theme zsh kitty build-essential awesome xclip redshift lxappearance libevent-dev gnome-tweak-tool pavucontrol maim sysstat ripgrep bat
 
 # install nodejs 20
 sudo apt-get update
@@ -33,11 +33,12 @@ cp -r ~/.config ~/.config_old
 ln -sf $HOME/dotfiles/fetches/bunnyfetch ~/.local/bin
 ln -sf $HOME/dotfiles/binaries/exa ~/.local/bin
 ln -sf $HOME/dotfiles/zsh/.zshrc ~
-ln -sf $HOME/dotfiles/starship.toml ~/.config
+ln -sf $HOME/dotfiles/starship/starship.toml ~/.config
 ln -sf $HOME/dotfiles/kitty ~/.config
 ln -sf $HOME/dotfiles/nvim ~/.config
 ln -sf $HOME/dotfiles/tmux ~/.config
 ln -sf $HOME/dotfiles/git/.gitconfig ~
+ln -sf $HOME/dotfiles/lf ~/.config
 
 if [[ "$OS" = "linux" ]]; then
     echo "Setting up for linux"
@@ -57,6 +58,7 @@ if [[ "$OS" = "linux" ]]; then
     ln -sf $HOME/dotfiles/.Xresources ~
 
     ln -sf $HOME/dotfiles/binaries/pamixer ~/.local/bin
+    ln -sf /usr/bin/batcat ~/.local/bin/cat
     sh $HOME/dotfiles/prerequisites/keyd_setup.sh
     sh $HOME/dotfiles/prerequisites/font_setup.sh
 fi

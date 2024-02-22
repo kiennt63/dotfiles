@@ -25,6 +25,9 @@ alias grep="grep --color=always"
 alias ts="tmux new -s"
 alias ta="tmux attach -t"
 
+# vim
+alias v="vim"
+
 # exa
 alias ls="exa --icons --group-directories-first"
 alias ll="exa -l --icons --group-directories-first"

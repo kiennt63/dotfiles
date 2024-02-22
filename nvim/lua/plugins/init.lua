@@ -141,44 +141,45 @@ require('lazy').setup({
     -- },
 
     -- notification
-    {
-        'folke/noice.nvim',
-        event = 'VeryLazy',
-        opts = {
-            lsp = {
-                progress = {
-                    enabled = false,
-                },
-                override = {
-                    ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
-                    ['vim.lsp.util.stylize_markdown'] = true,
-                    ['cmp.entry.get_documentation'] = true, -- requires hrsh7th/nvim-cmp
-                },
-            },
-            -- you can enable a preset for easier configuration
-            presets = {
-                bottom_search = true,         -- use a classic bottom cmdline for search
-                command_palette = true,       -- position the cmdline and popupmenu together
-                long_message_to_split = true, -- long messages will be sent to a split
-                inc_rename = false,           -- enables an input dialog for inc-rename.nvim
-                lsp_doc_border = false,       -- add a border to hover docs and signature help
-            },
-        },
-        dependencies = {
-            -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-            'MunifTanjim/nui.nvim',
-            -- OPTIONAL:
-            --   `nvim-notify` is only needed, if you want to use the notification view.
-            --   If not available, we use `mini` as the fallback
-            'rcarriga/nvim-notify',
-        },
-        config = function ()
-            ---@diagnostic disable-next-line: missing-fields
-            require('notify').setup({
-                background_colour = '#000000'
-            })
-        end,
-    },
+    -- {
+    --     'folke/noice.nvim',
+    --     event = 'VeryLazy',
+    --     opts = {
+    --         lsp = {
+    --             progress = {
+    --                 enabled = false,
+    --             },
+    --             override = {
+    --                 ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+    --                 ['vim.lsp.util.stylize_markdown'] = true,
+    --                 ['cmp.entry.get_documentation'] = true, -- requires hrsh7th/nvim-cmp
+    --             },
+    --         },
+    --         -- you can enable a preset for easier configuration
+    --         presets = {
+    --             bottom_search = true,         -- use a classic bottom cmdline for search
+    --             command_palette = true,       -- position the cmdline and popupmenu together
+    --             long_message_to_split = true, -- long messages will be sent to a split
+    --             inc_rename = false,           -- enables an input dialog for inc-rename.nvim
+    --             lsp_doc_border = false,       -- add a border to hover docs and signature help
+    --         },
+    --     },
+    --     dependencies = {
+    --         -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+    --         'MunifTanjim/nui.nvim',
+    --         -- OPTIONAL:
+    --         --   `nvim-notify` is only needed, if you want to use the notification view.
+    --         --   If not available, we use `mini` as the fallback
+    --         'rcarriga/nvim-notify',
+    --     },
+    --     config = function ()
+    --         ---@diagnostic disable-next-line: missing-fields
+    --         require('notify').setup({
+    --             background_colour = '#000000',
+    --             stages = 'static'
+    --         })
+    --     end,
+    -- },
 
     -- lsp progress bar
     {
@@ -210,7 +211,7 @@ require('lazy').setup({
     {
         'NvChad/nvim-colorizer.lua',
         config = function ()
-            require 'colorizer'.setup {
+            require('colorizer').setup {
             }
         end,
     },
@@ -413,6 +414,6 @@ require('plugins/config/nvim-tree')
 -- require('plugins/config/bufferline')
 require('plugins/config/snippet')
 require('plugins/config/scheme')
-require('plugins/config/startify')
-require('plugins/config/noice')
+-- require('plugins/config/startify')
+-- require('plugins/config/noice')
 -- require('plugins/config/fidget')

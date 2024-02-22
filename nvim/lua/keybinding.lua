@@ -123,7 +123,7 @@ keymap('n', '<leader>gp', ':r! cat /tmp/vitmp<CR>', opts)
 keymap('n', '<leader>t', ':TroubleToggle<cr>', opts)
 
 -- Diagnostic
-keymap('n', '<leader>ld', '<cmd>lua vim.diagnostic.open_float(nil, {focus=false})<cr>', { desc = '[L]SP [D]iagnostic'})
+keymap('n', '<leader>ld', '<cmd>lua vim.diagnostic.open_float(nil, {focus=false})<cr>', { desc = '[L]SP [D]iagnostic' })
 
 -- =======================================================
 -- Terminal --
@@ -143,6 +143,9 @@ keymap('n', '<leader>o',
     "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>",
     opts)
 keymap('n', '<leader>fg', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", opts)
+keymap('n', '<leader>fg',
+    ":lua require('telescope').extensions.live_grep_args.live_grep_args({ vimgrep_arguments = {'rg', '--hidden', '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case',} })<CR>",
+    opts)
 keymap('n', '<leader>fw', live_grep_args_shortcuts.grep_word_under_cursor, opts)
 keymap('v', '<leader>fs', live_grep_args_shortcuts.grep_visual_selection, opts)
 

@@ -15,7 +15,7 @@ config.window_decorations = "RESIZE"
 config.window_background_opacity = 0.9
 
 -- Font
-config.color_scheme = 'nord'
+config.color_scheme = 'Gruvbox Material (Gogh)'
 config.font = wezterm.font('LigaSauceCodePro NF')
 config.font_size = 15
 config.line_height = 1.0

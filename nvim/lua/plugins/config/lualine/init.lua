@@ -1,69 +1,72 @@
-require("lsp-progress").setup({
-  client_format = function(client_name, spinner, series_messages)
-    if #series_messages == 0 then
-      return nil
-    end
-    return {
-      name = client_name,
-      body = spinner .. " " .. table.concat(series_messages, ", "),
-    }
-  end,
-  format = function(client_messages)
-    --- @param name string
-    --- @param msg string?
-    --- @return string
-    local function stringify(name, msg)
-      return msg and string.format("%s %s", name, msg) or name
-    end
+local separator_glyphs = require('plugins/config/lualine/separator')
 
-    local sign = "" -- nf-fa-gear \uf013
-    local lsp_clients = vim.lsp.get_active_clients()
-    local messages_map = {}
-    for _, climsg in ipairs(client_messages) do
-      messages_map[climsg.name] = climsg.body
-    end
-
-    if #lsp_clients > 0 then
-      table.sort(lsp_clients, function(a, b)
-        return a.name < b.name
-      end)
-      local builder = {}
-      for _, cli in ipairs(lsp_clients) do
-        if
-          type(cli) == "table"
-          and type(cli.name) == "string"
-          and string.len(cli.name) > 0
-        then
-          if messages_map[cli.name] then
-            table.insert(builder, stringify(cli.name, messages_map[cli.name]))
-          else
-            table.insert(builder, stringify(cli.name))
-          end
+require('lsp-progress').setup({
+    client_format = function (client_name, spinner, series_messages)
+        if #series_messages == 0 then
+            return nil
         end
-      end
-      if #builder > 0 then
-        return sign .. " " .. table.concat(builder, ", ")
-      end
-    end
-    return ""
-  end,
+        return {
+            name = client_name,
+            body = spinner .. ' ' .. table.concat(series_messages, ', '),
+        }
+    end,
+    format = function (client_messages)
+        --- @param name string
+        --- @param msg string?
+        --- @return string
+        local function stringify(name, msg)
+            return msg and string.format('%s %s', name, msg) or name
+        end
+
+        local sign = '' -- nf-fa-gear \uf013
+        local lsp_clients = vim.lsp.get_active_clients()
+        local messages_map = {}
+        for _, climsg in ipairs(client_messages) do
+            messages_map[climsg.name] = climsg.body
+        end
+
+        if #lsp_clients > 0 then
+            table.sort(lsp_clients, function (a, b)
+                return a.name < b.name
+            end)
+            local builder = {}
+            for _, cli in ipairs(lsp_clients) do
+                if
+                    type(cli) == 'table'
+                    and type(cli.name) == 'string'
+                    and string.len(cli.name) > 0
+                then
+                    if messages_map[cli.name] then
+                        table.insert(builder, stringify(cli.name, messages_map[cli.name]))
+                    else
+                        table.insert(builder, stringify(cli.name))
+                    end
+                end
+            end
+            if #builder > 0 then
+                return sign .. ' ' .. table.concat(builder, ', ')
+            end
+        end
+        return ''
+    end,
 })
 
 require('lualine').setup {
     options = {
         icons_enabled = true,
         theme = 'auto',
-        section_separators = { left = '', right = '' },
+        section_separators = { left = separator_glyphs.close, right = separator_glyphs.open },
         component_separators = { left = '', right = '' },
         -- component_separators = { left = '', right = ''},
         -- section_separators = { left = '', right = ''},
         -- component_separators = { left = '', right = '' },
         -- section_separators = { left = '', right = '' },
         disabled_filetypes = {
+            'alpha',
             statusline = {},
             winbar = {},
         },
-        ignore_focus = { 'NvimTree' },
+        ignore_focus = { 'NvimTree', 'alpha' },
         always_divide_middle = true,
         globalstatus = true,
         refresh = {
@@ -77,7 +80,7 @@ require('lualine').setup {
             {
                 'filename',
                 icons_enabled = true,
-                separator = { left = '', right = '' },
+                separator = { left = separator_glyphs.open, right = separator_glyphs.close },
                 right_padding = 0
             },
         },
@@ -86,6 +89,7 @@ require('lualine').setup {
             {
                 'diff',
                 source = function ()
+                    ---@diagnostic disable-next-line: undefined-field
                     local gitsigns = vim.b.gitsigns_status_dict
                     if gitsigns then
                         return {
@@ -95,7 +99,7 @@ require('lualine').setup {
                         }
                     end
                 end,
-                symbols = { added = ' ', modified = ' ', removed = ' ' },
+                symbols = { added = ' ', modified = ' ', removed = ' ' },
                 cond = nil,
             }
         },
@@ -103,7 +107,7 @@ require('lualine').setup {
             {
                 'diagnostics',
                 sources = { 'nvim_diagnostic' },
-                symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
+                symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
                 cond = function ()
                     return vim.fn.winwidth(0) > 70
                 end,
@@ -161,7 +165,8 @@ require('lualine').setup {
         },
         -- lualine_x = {'searchcount'},
         lualine_y = { 'progress' },
-        lualine_z = { { 'location', separator = { left = '', right = '' }, left_padding = 0 } }
+        lualine_z = {
+            { 'location', separator = { left = separator_glyphs.open, right = separator_glyphs.close }, left_padding = 0 } }
     },
     inactive_sections = {
         lualine_a = {},

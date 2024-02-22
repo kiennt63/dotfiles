@@ -27,7 +27,7 @@ local on_attach = function (_, bufnr)
     end
 
     nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-    nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+    nmap('<leader>la', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
     nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
     nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
@@ -250,7 +250,7 @@ require('clangd_extensions').setup({
     },
 })
 
-local signs = { Error = '', Warn = '', Hint = '', Info = '' }
+local signs = { Error = '', Warn = '', Hint = '', Info = '' }
 for type, icon in pairs(signs) do
     local hl = 'DiagnosticSign' .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
