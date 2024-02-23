@@ -33,6 +33,8 @@ cp -r ~/.config ~/.config_old
 ln -sf $HOME/dotfiles/fetches/bunnyfetch ~/.local/bin
 ln -sf $HOME/dotfiles/binaries/exa ~/.local/bin
 ln -sf $HOME/dotfiles/zsh/.zshrc ~
+ln -sf $HOME/dotfiles/zsh/.zshenv ~
+ln -sf $HOME/dotfiles/zsh/.zsh_profile ~
 ln -sf $HOME/dotfiles/starship/starship.toml ~/.config
 ln -sf $HOME/dotfiles/kitty ~/.config
 ln -sf $HOME/dotfiles/nvim ~/.config

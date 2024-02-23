@@ -18,6 +18,7 @@ elif [[ $THEME = "nord" ]]; then
     sudo ln -sf "$HOME/dotfiles/startpages/raichu_startpage/css/nord.css" "$HOME/dotfiles/startpages/raichu_startpage/css/vars.css"
     sudo ln -sf "$HOME/dotfiles/git/nord.gitconfig" "$HOME/dotfiles/git/theme.gitconfig"
     sudo ln -sf "$HOME/dotfiles/tmux/themes/src/nord.conf" "$HOME/dotfiles/tmux/themes/src/palette.conf"
+    sudo ln -sf "$HOME/dotfiles/dunst/nord" "$HOME/dotfiles/dunst/dunstrc"
 elif [[ $THEME = "gruvbox" ]]; then
     sudo ln -sf "$HOME/dotfiles/nvim/lua/plugins/config/scheme/gruvbox.lua" "$HOME/dotfiles/nvim/lua/plugins/config/scheme/init.lua"
     sudo ln -sf "$HOME/dotfiles/awesome/theme/gruvbox.lua" "$HOME/dotfiles/awesome/theme/palette.lua"
@@ -25,6 +26,7 @@ elif [[ $THEME = "gruvbox" ]]; then
     sudo ln -sf "$HOME/dotfiles/startpages/raichu_startpage/css/gruvbox.css" "$HOME/dotfiles/startpages/raichu_startpage/css/vars.css"
     sudo ln -sf "$HOME/dotfiles/git/gruvbox.gitconfig" "$HOME/dotfiles/git/theme.gitconfig"
     sudo ln -sf "$HOME/dotfiles/tmux/themes/src/gruvbox.conf" "$HOME/dotfiles/tmux/themes/src/palette.conf"
+    sudo ln -sf "$HOME/dotfiles/dunst/gruvbox" "$HOME/dotfiles/dunst/dunstrc"
     # sudo ln -sf "$HOME/dotfiles/nvim/lua/plugins/config/gruvbox.lua" "$HOME/dotfiles/nvim/lua/plugins/config/theme.lua"
     # sudo ln -sf "$HOME/dotfiles/awesome/theme/gruvbox-material.lua" "$HOME/dotfiles/awesome/theme/theme.lua"
     # sudo ln -sf "$HOME/dotfiles/kitty/themes/gruvbox-material-dark-medium.conf" "$HOME/dotfiles/kitty/themes/theme.conf"

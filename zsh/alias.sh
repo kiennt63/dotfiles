@@ -24,6 +24,9 @@ alias grep="grep --color=always"
 # tmux 
 alias ts="tmux new -s"
 alias ta="tmux attach -t"
+alias tl="tmux ls"
+alias tn='tmux new -s $(pwd | sed "s/.*\/\.\?//g")'
+alias t="sesh connect"
 
 # vim
 alias v="vim"
