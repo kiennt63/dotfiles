@@ -210,10 +210,6 @@ require('lazy').setup({
 
     {
         'NvChad/nvim-colorizer.lua',
-        config = function ()
-            require('colorizer').setup {
-            }
-        end,
     },
 
     {
@@ -344,12 +340,15 @@ require('lazy').setup({
         },
     },
 
-    -- Add tabs
-    -- {
-    --     'akinsho/bufferline.nvim',
-    --     version = '*',
-    --     dependencies = { 'nvim-tree/nvim-web-devicons', 'moll/vim-bbye' },
-    -- },
+    {
+        'folke/todo-comments.nvim',
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        }
+    },
 
     {
         'ThePrimeagen/harpoon',
@@ -414,6 +413,7 @@ require('plugins/config/nvim-tree')
 -- require('plugins/config/bufferline')
 require('plugins/config/snippet')
 require('plugins/config/scheme')
+require('plugins/config/colorizer')
 -- require('plugins/config/startify')
 -- require('plugins/config/noice')
 -- require('plugins/config/fidget')

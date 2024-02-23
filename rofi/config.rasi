@@ -22,7 +22,7 @@ configuration {
 }
 
 
-@import "themes/nord"
+@import "themes/palette.rasi"
 
 * {
     background-color:      @bg;

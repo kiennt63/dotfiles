@@ -85,7 +85,7 @@ require('lualine').setup {
             },
         },
         lualine_b = {
-            'branch',
+            { 'branch', icon = { ''}},
             {
                 'diff',
                 source = function ()

@@ -1,0 +1,9 @@
+
+* {
+    fg: #d4be98;
+    fg-matched: #7daea3;
+    fg-active: #7daea3;
+    bg: #272727;
+    bg-selected: #45403d;
+}
+

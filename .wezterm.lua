@@ -13,6 +13,7 @@ config.cursor_thickness = 2
 config.enable_tab_bar = false
 config.window_decorations = "RESIZE"
 config.window_background_opacity = 0.9
+config.window_close_confirmation = 'NeverPrompt'
 
 -- Font
 config.color_scheme = 'Gruvbox Material (Gogh)'
