@@ -4,7 +4,7 @@ OS=$1
 
 sudo add-apt-repository ppa:papirus/papirus
 sudo apt-get update
-sudo apt install -y papirus-icon-theme zsh kitty build-essential awesome xclip redshift lxappearance libevent-dev gnome-tweak-tool pavucontrol maim sysstat ripgrep bat
+sudo apt install -y papirus-icon-theme zsh kitty build-essential awesome xclip redshift lxappearance libevent-dev gnome-tweak-tool pavucontrol maim sysstat ripgrep bat fd-find
 
 # install nodejs 20
 sudo apt-get update
