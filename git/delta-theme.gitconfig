@@ -119,7 +119,7 @@
     minus-style = normal "#990017"
     plus-emph-style = syntax "#03a4ff"
     plus-style = syntax "#450eff"
-    side-by-side = true
+    side-by-side = false
     syntax-theme = Vibrant Sunburst
 
 [delta "villsau"]

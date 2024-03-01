@@ -101,7 +101,9 @@ local servers = {
             clangdFileStatus = true,
         },
     },
-    -- gopls = {},
+
+    glsl_analyzer = {},
+
     pyright = {},
     -- rust_analyzer = {
     --     ['rust-analyzer'] = {

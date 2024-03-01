@@ -25,7 +25,26 @@ $character"""
 # [│](bold palette1) $git_branch$git_status$cmd_duration
 # [╰─>](bold palette5) """
 
-palette = 'gruvbox'
+palette = 'catppuccin'
+
+[palettes.catppuccin]
+palette0  = '#f2cdcd'
+palette1  = '#b4befe'
+palette2  = '#f9e2af'
+palette3  = '#eba0ac'
+palette4  = '#eba0ac'
+palette5  = '#b4befe'
+palette6  = '#89b4fa'
+palette7  = '#f2cdcd'
+palette8  = '#b4befe'
+palette9  = '#cdd6f4'
+palette10 = '#bac2de'
+palette11 = '#a6adc8'
+palette12 = '#313244'
+palette13 = '#45475a'
+palette14 = '#585b70'
+palette15 = '#1e1e2e'
+
 [palettes.nord]
 palette0  = '#B48EAD'
 palette1  = '#A3BE8C'
@@ -80,7 +99,7 @@ show_always = false
 [directory]
 read_only = " "
 read_only_style = "palette3" 
-format = '[\[](palette0 bold)[$path]($style)[$read_only]($read_only_style)[\]](palette1 bold) '
+format = '[\[](palette0 bold)[$path](palette6)[$read_only]($read_only_style)[\]](palette1 bold) '
 truncation_length = 1
 
 [git_branch]
@@ -100,3 +119,8 @@ deleted = "[!✘${count}](palette3)"
 untracked = "[?${count}](palette5)"
 format = '([[\[](palette1)$ahead$behind$staged$modified$deleted$untracked$ahead_behind[\]](palette1)]($style) )'
 
+[cmd_duration]
+disabled = true
+
+[conda]
+symbol = " "

@@ -17,6 +17,8 @@ custom.night1            = "#3B4252"
 custom.night2            = "#434C5E"
 custom.night3            = "#242933"
 
+custom.wallpaper = "~/dotfiles/wallpapers/tetris_nord.png"
+
 custom.taglist_bg        = "#00000000"
 
 return custom

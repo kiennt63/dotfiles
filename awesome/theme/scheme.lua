@@ -87,7 +87,7 @@ theme.menu_height         = dpi(15)
 theme.menu_width          = dpi(100)
 
 -- Wallpaper
-theme.wallpaper           = "~/dotfiles/wallpapers/gruvbox_finalizer.png"
+theme.wallpaper           = theme.pallete.wallpaper
 
 -- Layout icons
 theme.layout_tile         = custom_themes_path .. "nord/tile.png"

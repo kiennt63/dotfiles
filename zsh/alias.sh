@@ -19,7 +19,7 @@ alias ddstopic='f(){ (cd /opt/dds_utilities/ddstopic/x64-linux && ./ddstopic "$@
 alias rm="rm -i"
 
 # grep
-alias grep="grep --color=always"
+# alias grep="grep --color=always"
 
 # tmux 
 alias ts="tmux new -s"
@@ -27,6 +27,16 @@ alias ta="tmux attach -t"
 alias tl="tmux ls"
 alias tn='tmux new -s $(pwd | sed "s/.*\/\.\?//g")'
 alias t="sesh connect"
+
+# file management
+function ya() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
 
 # vim
 alias v="vim"

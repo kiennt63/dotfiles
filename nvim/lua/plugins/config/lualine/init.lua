@@ -81,7 +81,10 @@ require('lualine').setup {
                 'filename',
                 icons_enabled = true,
                 separator = { left = separator_glyphs.open, right = separator_glyphs.close },
-                right_padding = 0
+                right_padding = 0,
+                symbols = {
+                    modified = '●'
+                }
             },
         },
         lualine_b = {

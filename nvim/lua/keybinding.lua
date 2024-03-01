@@ -142,9 +142,9 @@ keymap('n', '<leader>ff',
 keymap('n', '<leader>o',
     "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>",
     opts)
-keymap('n', '<leader>fg', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", opts)
+-- keymap('n', '<leader>fg', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", opts)
 keymap('n', '<leader>fg',
-    ":lua require('telescope').extensions.live_grep_args.live_grep_args({ vimgrep_arguments = {'rg', '--hidden', '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case',} })<CR>",
+    ":lua require('telescope').extensions.live_grep_args.live_grep_args({ layout_stategy = 'vertical' })<CR>",
     opts)
 keymap('n', '<leader>fw', live_grep_args_shortcuts.grep_word_under_cursor, opts)
 keymap('v', '<leader>fs', live_grep_args_shortcuts.grep_visual_selection, opts)

@@ -5,3 +5,4 @@ awesome/theme/theme.lua
 nvim/lua/plugins/config/theme.lua
 kitty/themes/theme.conf
 tmux/themes/src/palette.conf
+dunst/dunstrc

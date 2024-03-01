@@ -84,6 +84,8 @@ require('lazy').setup({
         },
     },
 
+    -- { 'ggandor/leap.nvim' },
+
     {
         'goolord/alpha-nvim',
         config = function ()
@@ -195,6 +197,17 @@ require('lazy').setup({
     {
         'nvim-tree/nvim-web-devicons',
         opts = {
+            override_by_extension = {
+                ['cu'] = {
+                    icon = '',
+                    color = '#76b900',
+                    name = 'Cuda'
+                },
+                ['log'] = {
+                    icon = '󱂅',
+                    name = 'Log'
+                }
+            },
             override_by_filename = {
                 ['.dockerignore'] = {
                     icon = '',
@@ -206,10 +219,6 @@ require('lazy').setup({
                 }
             },
         },
-    },
-
-    {
-        'NvChad/nvim-colorizer.lua',
     },
 
     {
@@ -260,7 +269,6 @@ require('lazy').setup({
     --     event = "BufReadPre",                          -- this will only start session saving when an actual file was opened
     --     opts = {
     --         dir = vim.fn.stdpath('data') .. '/session/' -- add any custom options here
-
     {
         -- Adds git related signs to the gutter, as well as utilities for managing changes
         'lewis6991/gitsigns.nvim',
@@ -272,7 +280,7 @@ require('lazy').setup({
                 delete       = { text = '┃' },
                 topdelete    = { text = '‾' },
                 changedelete = { text = '~' },
-                untracked    = { text = '┇' },
+                untracked    = { text = '╏' },
             },
             on_attach = function (bufnr)
                 vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk,
@@ -296,6 +304,29 @@ require('lazy').setup({
 
     -- Theme inspired by Atom
     {
+        'catppuccin/nvim',
+        name = 'catppuccin',
+        opts = {
+            no_italic = true,
+            flavour = 'mocha', -- latte, frappe, macchiato, mocha
+            background = {     -- :h background
+                light = 'latte',
+                dark = 'mocha',
+            },
+            transparent_background = true, -- disables setting the background color.
+            -- show_end_of_buffer = false,     -- shows the '~' characters after the end of buffers
+            -- term_colors = false,            -- sets terminal colors (e.g. `g:terminal_color_0`)
+            -- dim_inactive = {
+            --     enabled = false,            -- dims the background color of inactive window
+            --     shade = 'dark',
+            --     percentage = 0.15,          -- percentage of the shade to apply to the inactive window
+            -- },
+            -- no_bold = false,                -- Force no bold
+            -- no_underline = false,           -- Force no underline
+        }
+    },
+
+    {
         -- Theme inspired by Atom
         'shaunsingh/nord.nvim',
         --     config = function ()
@@ -318,10 +349,26 @@ require('lazy').setup({
     -- Indentation
     {
         'lukas-reineke/indent-blankline.nvim',
+        main = 'ibl',
         opts = {
-            char = '│',
-            show_trailing_blankline_indent = false,
-        },
+            indent = {
+                char = '│',
+            },
+            scope = {
+                enabled = false,
+                show_start = false,
+                show_end = false,
+            }
+            -- show_trailing_blankline_indent = false,
+        }
+    },
+
+    -- show color
+    {
+        'norcalli/nvim-colorizer.lua',
+        config = function ()
+            require 'colorizer'.setup()
+        end,
     },
 
     -- Automatically add pair for brackets
@@ -330,6 +377,15 @@ require('lazy').setup({
         event = 'InsertEnter',
         opts = {}
     },
+
+    -- Breadcrumb
+    -- {
+    --     'Bekaboo/dropbar.nvim',
+    --     -- optional, but required for fuzzy finder support
+    --     dependencies = {
+    --         'nvim-telescope/telescope-fzf-native.nvim'
+    --     }
+    -- },
 
     -- Diagnostics
     {
@@ -386,6 +442,19 @@ require('lazy').setup({
     },
 
     {
+        'utilyre/barbecue.nvim',
+        name = 'barbecue',
+        version = '*',
+        dependencies = {
+            'SmiteshP/nvim-navic',
+            'nvim-tree/nvim-web-devicons', -- optional dependency
+        },
+        opts = {
+            -- configurations go here
+        },
+    },
+
+    {
         -- Highlight, edit, and navigate code
         'nvim-treesitter/nvim-treesitter',
         lazy = true,
@@ -396,9 +465,9 @@ require('lazy').setup({
         build = ':TSUpdate',
     },
 
-    {
-        'nvim-treesitter/nvim-treesitter-context'
-    }
+    -- {
+    --     'nvim-treesitter/nvim-treesitter-context'
+    -- }
 }, {})
 
 
@@ -409,11 +478,13 @@ require('plugins/config/lsp')
 require('plugins/config/cmp')
 require('plugins/config/lualine')
 require('plugins/config/nvim-tree')
--- require('plugins/config/neotree')
--- require('plugins/config/bufferline')
 require('plugins/config/snippet')
 require('plugins/config/scheme')
-require('plugins/config/colorizer')
+require('plugins/config/bbq')
+-- require('plugins/config/colorizer')
+-- require('plugins/config/neotree')
+-- require('plugins/config/bufferline')
+-- require('plugins/config/leap')
 -- require('plugins/config/startify')
 -- require('plugins/config/noice')
 -- require('plugins/config/fidget')

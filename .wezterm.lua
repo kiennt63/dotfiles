@@ -16,7 +16,7 @@ config.window_background_opacity = 0.9
 config.window_close_confirmation = 'NeverPrompt'
 
 -- Font
-config.color_scheme = 'Gruvbox Material (Gogh)'
+config.color_scheme = 'Catppuccin Mocha'
 config.font = wezterm.font('LigaSauceCodePro NF')
 config.font_size = 15
 config.line_height = 1.0
@@ -27,7 +27,7 @@ config.adjust_window_size_when_changing_font_size = false
 -- config.send_composed_key_when_left_alt_is_pressed = true
 
 config.keys = {
-    -- Rebind OPT-Left, OPT-Right as ALT-b, ALT-f respectively to match Terminal.app behavior
+    -- binding to use cmd key in mac
     {
         key = '1',
         mods = 'CMD',
