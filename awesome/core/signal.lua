@@ -42,7 +42,7 @@ client.connect_signal("request::titlebars", function(c)
             buttons = buttons,
             layout  = wibox.layout.fixed.horizontal
         },
-        { -- Middle
+        {     -- Middle
             { -- Title
                 align  = "center",
                 widget = awful.titlebar.widget.titlewidget(c)
@@ -76,4 +76,20 @@ client.connect_signal("property::urgent", function(c) c:jump_to() end)
 -- Add border and color based on focus status
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+
+-- client.connect_signal("property::fullscreen", function(c)
+--     c.border_width = c.fullscreen and 0 or beautiful.border_width
+-- end)
+
+awesome.connect_signal("exit", function(_)
+    -- Persist last tags through exit/restart
+    for s in screen do
+        local f = io.open("/tmp/awesome-screen-" .. tostring(s.index), "w+")
+        local t = s.selected_tag
+        if t then
+            f:write(t.name, "\n")
+        end
+        f:close()
+    end
+end)
 -- }}}

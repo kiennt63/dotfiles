@@ -29,6 +29,17 @@ awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
 
+    -- If there's a saved tag in tmp, load it for this screen
+    local f = io.open("/tmp/awesome-screen-" .. tostring(s.index), "r")
+    if f ~= nil then
+        local tag_name = f:read("*line")
+        f:close()
+        local t = awful.tag.find_by_name(s, tag_name)
+        if t then
+            t:view_only()
+        end
+    end
+
     awful.tag({
         "1 ",
         "1 ",
