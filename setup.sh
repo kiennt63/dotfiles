@@ -2,9 +2,21 @@
 
 OS=$1
 
-sudo add-apt-repository ppa:papirus/papirus
-sudo apt-get update
-sudo apt install -y papirus-icon-theme zsh kitty build-essential awesome xclip redshift lxappearance libevent-dev gnome-tweak-tool pavucontrol maim sysstat ripgrep bat fd-find
+# normal universial stuff
+sudo apt install -y  zsh kitty build-essential awesome xclip redshift libevent-dev pavucontrol maim sysstat ripgrep bat fd-find
+
+# install rustup
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | zsh
+
+# wezterm
+curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
+echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
+sudo apt update && sudo apt install -y wezterm
+
+# zoxide
+curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | zsh
+
+# install go and sesh
 
 # install nodejs 20
 sudo apt-get update
