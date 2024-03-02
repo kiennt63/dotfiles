@@ -151,6 +151,10 @@ keymap('v', '<leader>fs', live_grep_args_shortcuts.grep_visual_selection, opts)
 
 keymap('n', '<leader>fr', require('telescope.builtin').resume, { desc = '[F]ind [R]resume' })
 
+-- Git workstree
+keymap('n', '<leader>wt', "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>", { desc = '[W]ork[T]ree' })
+keymap('n', '<leader>wc', "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>", { desc = '[W]orktree [C]reate' })
+
 -- File manager
 keymap('n', '<leader>fq', ':RnvimrToggle<cr>', opts)
 

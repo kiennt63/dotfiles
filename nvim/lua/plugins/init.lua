@@ -270,6 +270,10 @@ require('lazy').setup({
     --     opts = {
     --         dir = vim.fn.stdpath('data') .. '/session/' -- add any custom options here
     {
+        'ThePrimeagen/git-worktree.nvim'
+    },
+
+    {
         -- Adds git related signs to the gutter, as well as utilities for managing changes
         'lewis6991/gitsigns.nvim',
         opts = {

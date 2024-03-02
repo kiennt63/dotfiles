@@ -20,7 +20,6 @@ require('telescope').setup {
     pickers = {
         find_files = {
             hidden = true,
-            path_display = filename_first,
         },
         live_grep = {
             hidden = true,
@@ -76,3 +75,4 @@ pcall(require('telescope').load_extension, 'fzf')
 pcall(require('telescope').load_extension, 'harpoon')
 pcall(require('telescope').load_extension, 'live_grep_args')
 pcall(require('telescope').load_extension, 'noice')
+pcall(require('telescope').load_extension, 'git-worktree')
