@@ -77,19 +77,35 @@ client.connect_signal("property::urgent", function(c) c:jump_to() end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
--- client.connect_signal("property::fullscreen", function(c)
---     c.border_width = c.fullscreen and 0 or beautiful.border_width
--- end)
+client.connect_signal("property::fullscreen", function(c)
+    c.border_width = c.fullscreen and 0 or beautiful.border_width
+end)
 
 awesome.connect_signal("exit", function(_)
     -- Persist last tags through exit/restart
     for s in screen do
         local f = io.open("/tmp/awesome-screen-" .. tostring(s.index), "w+")
-        local t = s.selected_tag
-        if t then
-            f:write(t.name, "\n")
+        if f then
+            local t = s.selected_tag
+            if t then
+                f:write(t.name, "\n")
+            end
+            f:close()
         end
-        f:close()
     end
 end)
+
+screen.connect_signal("arrange", function (s)
+    local max = s.selected_tag.layout.name == "max"
+    local only_one = #s.tiled_clients == 1 -- use tiled_clients so that other floating windows don't affect the count
+    -- but iterate over clients instead of tiled_clients as tiled_clients doesn't include maximized windows
+    for _, c in pairs(s.clients) do
+        if (max or only_one) and not c.floating or c.maximized then
+            c.border_width = 0
+        else
+            c.border_width = beautiful.border_width
+        end
+    end
+end)
+
 -- }}}

@@ -24,6 +24,7 @@ awful.rules.rules = {
             instance = {
                 "DTA",   -- Firefox addon DownThemAll.
                 "copyq", -- Includes session name in class.
+                -- "brave"
             },
             class = {
                 "Arandr",
@@ -35,6 +36,8 @@ awful.rules.rules = {
                 "pinentry",
                 "veromix",
                 "xtightvncviewer",
+                -- "brave-browser",
+                -- "brave"
             },
 
             name = {
@@ -49,7 +52,7 @@ awful.rules.rules = {
     },
 
     -- {
-    --     rule = {
+    --     rule_any = {
     --         instance = "brave",
     --     },
     --     properties = {
