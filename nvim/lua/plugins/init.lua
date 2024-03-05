@@ -191,6 +191,13 @@ require('lazy').setup({
         end
     },
 
+    {
+        'shortcuts/no-neck-pain.nvim',
+        opts = {
+            width = 120
+        }
+    },
+
     -- whichkey
     { 'folke/which-key.nvim',  opts = {} },
 
@@ -229,21 +236,6 @@ require('lazy').setup({
             'nvim-tree/nvim-web-devicons',
         }
     },
-
-    -- {
-    --     'nvim-neo-tree/neo-tree.nvim',
-    --     branch = 'v3.x',
-    --     dependencies = {
-    --         'nvim-lua/plenary.nvim',
-    --         'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
-    --         'MunifTanjim/nui.nvim',
-    --     }
-    -- },
-
-    -- Startpage
-    -- {
-    --     'mhinz/vim-startify',
-    -- },
 
     -- session manager
     -- {

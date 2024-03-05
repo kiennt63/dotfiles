@@ -88,7 +88,7 @@ require('lualine').setup {
             },
         },
         lualine_b = {
-            { 'branch', icon = { ''}},
+            { 'branch', icon = { '󰊢' } },
             {
                 'diff',
                 source = function ()
@@ -102,10 +102,12 @@ require('lualine').setup {
                         }
                     end
                 end,
-                symbols = { added = ' ', modified = ' ', removed = ' ' },
+                -- symbols = { added = ' ', modified = ' ', removed = ' ' },
+                symbols = { added = ' ', modified = '󰻂 ', removed = ' ' },
                 cond = nil,
             }
         },
+
         lualine_c = {
             {
                 'diagnostics',
@@ -115,7 +117,6 @@ require('lualine').setup {
                     return vim.fn.winwidth(0) > 70
                 end,
             },
-            require('lsp-progress').progress,
         },
         -- lualine_d = {require('auto-session-library').current_session_name},
         lualine_x = {

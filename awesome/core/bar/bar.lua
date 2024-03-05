@@ -66,7 +66,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytaglist = require('core.bar.taglist')(s)
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(30) })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(30), bg = beautiful.bg_normal .. "00" })
     s.systray = wibox.widget.systray(true)
     s.systray:set_base_size(dpi(20))
 
@@ -164,6 +164,7 @@ awful.screen.connect_for_each_screen(function(s)
                     {
                         mytextclock,
                         fg = beautiful.pallete.frost0,
+                        right = 0,
                         -- fg = beautiful.titlebar_bg_normal,
                         widget = wibox.container.background
                     },
@@ -172,7 +173,8 @@ awful.screen.connect_for_each_screen(function(s)
                         top = dpi(3),
                         left = dpi(2),
                         right = dpi(3),
-                        widget = wibox.container.margin
+                        widget = wibox.container.margin,
+                        bg = "#ffffff"
                     },
                     -- {
                     --     s.mylayoutbox,
@@ -181,7 +183,6 @@ awful.screen.connect_for_each_screen(function(s)
                     --     widget = wibox.container.background
                     -- },
                 },
-                right = dpi(3),
                 widget = wibox.container.margin
             }
         },
@@ -190,6 +191,6 @@ awful.screen.connect_for_each_screen(function(s)
         -- left = dpi(13), -- don't forget to increase wibar height
         -- right = dpi(13), -- don't forget to increase wibar height
         widget = wibox.container.margin,
-        color = "#00000000"
+        -- color = "#00000000"
     }
 end)

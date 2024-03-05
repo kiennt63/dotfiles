@@ -54,6 +54,7 @@ ln -sf $HOME/dotfiles/tmux ~/.config
 ln -sf $HOME/dotfiles/git/.gitconfig ~
 ln -sf $HOME/dotfiles/lf ~/.config
 ln -sf $HOME/dotfiles/yazi ~/.config
+ln -sf $HOME/dotfiles/sesh ~/.config
 
 if [[ "$OS" = "linux" ]]; then
     echo "Setting up for linux"

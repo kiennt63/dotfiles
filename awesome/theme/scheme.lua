@@ -38,7 +38,7 @@ theme.bg_focus      = theme.pallete.night1
 theme.bg_urgent     = theme.pallete.night2
 theme.wibar_opacity = 1.0
 theme.wibar_bg      = theme.pallete.night3
-theme.bg_systray    = theme.pallete.night3
+theme.bg_systray    = "#11111b"
 
 
 -- Borders

@@ -104,8 +104,8 @@ truncation_length = 1
 
 [git_branch]
 style = "palette1"
-symbol = " "
-format = "[on $symbol$branch(:$remote_branch)]($style) "
+symbol = "󰊢 "
+format = "[$symbol$branch(:$remote_branch)]($style) "
 truncation_length = 15
 
 [git_status]

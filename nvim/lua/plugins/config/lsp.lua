@@ -168,6 +168,10 @@ mason_lspconfig.setup_handlers {
     end
 }
 
+require('lspconfig').cmake.setup({
+    root_dir = util.root_pattern('build', 'build_x64_linux', 'build_aarch64_linux')
+})
+
 
 require('clangd_extensions').setup({
     inlay_hints = {
