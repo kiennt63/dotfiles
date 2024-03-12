@@ -4,6 +4,7 @@ export PATH=/opt/ipg/bin/:$PATH
 export PATH=/usr/src/tensorrt/bin/:$PATH
 export PATH=/usr/local/cuda/bin/:$PATH
 export PATH=/opt/valgrind/bin:$PATH
+export PATH=/opt/homebrew/bin:$PATH
 export CUDA_HOME=/usr/local/cuda
 export ANDROID_NDK_HOME=$HOME/Android/Sdk/ndk/21.3.6528147
 export ANDROID_NDK=$HOME/Android/Sdk/ndk/21.3.6528147

@@ -7,6 +7,9 @@ source $HOME/dotfiles/zsh/plugins.sh
 # Key Binding
 source $HOME/dotfiles/zsh/keybinding.sh
 
+# Environment var
+source $HOME/dotfiles/zsh/exporting.sh
+
 # ALIAS
 source $HOME/dotfiles/zsh/alias.sh
 
