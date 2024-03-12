@@ -10,17 +10,17 @@ source $HOME/dotfiles/zsh/keybinding.sh
 # ALIAS
 source $HOME/dotfiles/zsh/alias.sh
 
-# EXPORT
-source $HOME/dotfiles/zsh/exporting.sh
-
 # 3rdparty CLI setup
 source $HOME/dotfiles/zsh/3rdparty.sh
 
 # FZF SETUP
-source $HOME/dotfiles/zsh/fzf.sh
+source $HOME/dotfiles/zsh/fzf/init.sh
 
-# Theming
+# Prompt
 source $HOME/dotfiles/zsh/theme.sh
+
+eval "$(zoxide init zsh)"
 
 # Cute fetch on start-up
 # bunnyfetch
+pokemon-colorscripts --random --no-title
