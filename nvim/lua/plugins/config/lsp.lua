@@ -293,3 +293,7 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] =
 --         vim.diagnostic.open_float(nil, { focus = false })
 --     end
 -- })
+
+-- require('mason-null-ls').setup({
+--     ensure_installed = { 'black' }
+-- })

@@ -12,7 +12,6 @@ vim.g.maplocalleader = ' '
 -- Normal --
 
 -- LSP
-
 keymap('n', '<leader>lt', ':ClangdSwitchSourceHeader<cr>', opts)
 
 -- -- Open sidebar
@@ -124,6 +123,14 @@ keymap('n', '<leader>t', ':TroubleToggle<cr>', opts)
 
 -- Diagnostic
 keymap('n', '<leader>ld', '<cmd>lua vim.diagnostic.open_float(nil, {focus=false})<cr>', { desc = '[L]SP [D]iagnostic' })
+keymap('n', '[d', require('delimited').goto_prev, opts)
+keymap('n', ']d', require('delimited').goto_next, opts)
+keymap('n', '[D', function ()
+    require('delimited').goto_prev({ severity = vim.diagnostic.severity.ERROR })
+end, opts)
+keymap('n', ']D', function ()
+    require('delimited').goto_next({ severity = vim.diagnostic.severity.ERROR })
+end, opts)
 
 -- =======================================================
 -- Terminal --
@@ -152,8 +159,10 @@ keymap('v', '<leader>fs', live_grep_args_shortcuts.grep_visual_selection, opts)
 keymap('n', '<leader>fr', require('telescope.builtin').resume, { desc = '[F]ind [R]resume' })
 
 -- Git workstree
-keymap('n', '<leader>wt', "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>", { desc = '[W]ork[T]ree' })
-keymap('n', '<leader>wc', "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>", { desc = '[W]orktree [C]reate' })
+keymap('n', '<leader>wt', "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>",
+    { desc = '[W]ork[T]ree' })
+keymap('n', '<leader>wc', "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>",
+    { desc = '[W]orktree [C]reate' })
 
 -- File manager
 keymap('n', '<leader>fq', ':RnvimrToggle<cr>', opts)

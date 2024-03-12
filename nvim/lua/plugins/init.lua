@@ -28,6 +28,22 @@ require('lazy').setup({
         },
     },
 
+    -- {
+    --     'jay-babu/mason-null-ls.nvim',
+    --     event = { 'BufReadPre', 'BufNewFile' },
+    --     dependencies = {
+    --         'williamboman/mason.nvim',
+    --         'nvimtools/none-ls.nvim',
+    --     },
+    --     config = function ()
+    --         require('your.null-ls.config') -- require your null-ls config here (example below)
+    --     end,
+    -- },
+
+    {
+        'nvimtools/none-ls.nvim',
+    },
+
     {
         'p00f/clangd_extensions.nvim',
         lazy = true,
@@ -393,6 +409,10 @@ require('lazy').setup({
     },
 
     {
+        'mizlan/delimited.nvim'
+    },
+
+    {
         'folke/todo-comments.nvim',
         dependencies = { 'nvim-lua/plenary.nvim' },
         opts = {
@@ -477,6 +497,7 @@ require('plugins/config/nvim-tree')
 require('plugins/config/snippet')
 require('plugins/config/scheme')
 require('plugins/config/bbq')
+require('plugins/config/nonels')
 -- require('plugins/config/colorizer')
 -- require('plugins/config/neotree')
 -- require('plugins/config/bufferline')

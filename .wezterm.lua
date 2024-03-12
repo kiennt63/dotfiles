@@ -11,15 +11,30 @@ config.cursor_thickness = 2
 
 -- Window
 config.enable_tab_bar = false
-config.window_decorations = "RESIZE"
+config.window_decorations = "None"
 config.window_background_opacity = 0.9
 config.window_close_confirmation = 'NeverPrompt'
+config.use_fancy_tab_bar = false
+config.enable_scroll_bar = false
+config.window_padding = {
+    top = 10,
+    bottom = 2,
+}
 
 -- Font
+
+-- local scheme = wezterm.get_builtin_color_schemes()['Catppuccin Mocha']
+-- scheme.background = '#1e1e2e'
+--
+-- config.color_schemes = {
+--     ['custom'] = scheme,
+-- }
+-- config.color_scheme = 'custom'
+
 config.color_scheme = 'Catppuccin Mocha'
-config.font = wezterm.font('LigaSauceCodePro NF')
+
+config.font = wezterm.font('Maple Mono')
 config.font_size = 15
-config.line_height = 1.0
 config.adjust_window_size_when_changing_font_size = false
 
 -- Keybinding
