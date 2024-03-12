@@ -12,7 +12,6 @@ vim.g.maplocalleader = ' '
 -- Normal --
 
 -- LSP
-
 keymap('n', '<leader>lt', ':ClangdSwitchSourceHeader<cr>', opts)
 
 -- -- Open sidebar
@@ -123,7 +122,15 @@ keymap('n', '<leader>gp', ':r! cat /tmp/vitmp<CR>', opts)
 keymap('n', '<leader>t', ':TroubleToggle<cr>', opts)
 
 -- Diagnostic
-keymap('n', '<leader>ld', '<cmd>lua vim.diagnostic.open_float(nil, {focus=false})<cr>', { desc = '[L]SP [D]iagnostic'})
+keymap('n', '<leader>ld', '<cmd>lua vim.diagnostic.open_float(nil, {focus=false})<cr>', { desc = '[L]SP [D]iagnostic' })
+keymap('n', '[d', require('delimited').goto_prev, opts)
+keymap('n', ']d', require('delimited').goto_next, opts)
+keymap('n', '[D', function ()
+    require('delimited').goto_prev({ severity = vim.diagnostic.severity.ERROR })
+end, opts)
+keymap('n', ']D', function ()
+    require('delimited').goto_next({ severity = vim.diagnostic.severity.ERROR })
+end, opts)
 
 -- =======================================================
 -- Terminal --
@@ -139,11 +146,23 @@ local live_grep_args_shortcuts = require('telescope-live-grep-args.shortcuts')
 keymap('n', '<leader>ff',
     "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>",
     opts)
-keymap('n', '<leader>fg', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", opts)
+keymap('n', '<leader>o',
+    "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>",
+    opts)
+-- keymap('n', '<leader>fg', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", opts)
+keymap('n', '<leader>fg',
+    ":lua require('telescope').extensions.live_grep_args.live_grep_args({ layout_stategy = 'vertical' })<CR>",
+    opts)
 keymap('n', '<leader>fw', live_grep_args_shortcuts.grep_word_under_cursor, opts)
 keymap('v', '<leader>fs', live_grep_args_shortcuts.grep_visual_selection, opts)
 
 keymap('n', '<leader>fr', require('telescope.builtin').resume, { desc = '[F]ind [R]resume' })
+
+-- Git workstree
+keymap('n', '<leader>wt', "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>",
+    { desc = '[W]ork[T]ree' })
+keymap('n', '<leader>wc', "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>",
+    { desc = '[W]orktree [C]reate' })
 
 -- File manager
 keymap('n', '<leader>fq', ':RnvimrToggle<cr>', opts)
@@ -151,6 +170,15 @@ keymap('n', '<leader>fq', ':RnvimrToggle<cr>', opts)
 -- Searching
 keymap('v', '//', [[y/\V<c-r>=escape(@",'/\')<cr><cr>]], opts)
 
+-- Focus mode (centering window)
+keymap('n', '<leader>np', ':NoNeckPain<cr>', opts)
+
 -- Git sign
 keymap('n', '<leader>gs', ':Gitsigns preview_hunk<cr>', opts)
 keymap('n', '<leader>gb', ':Gitsigns toggle_current_line_blame<cr>', opts)
+keymap('n', '<leader>gb', ':Gitsigns toggle_current_line_blame<cr>', opts)
+keymap('n', '<leader>gn', ':Gitsigns next_hunk<cr>', opts)
+keymap('n', '<leader>gp', ':Gitsigns prev_hunk<cr>', opts)
+
+-- Noice (messages and notification)
+keymap('n', '<leader>nd', ':NoiceDismiss<cr>', opts)

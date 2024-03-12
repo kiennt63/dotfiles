@@ -28,6 +28,22 @@ require('lazy').setup({
         },
     },
 
+    -- {
+    --     'jay-babu/mason-null-ls.nvim',
+    --     event = { 'BufReadPre', 'BufNewFile' },
+    --     dependencies = {
+    --         'williamboman/mason.nvim',
+    --         'nvimtools/none-ls.nvim',
+    --     },
+    --     config = function ()
+    --         require('your.null-ls.config') -- require your null-ls config here (example below)
+    --     end,
+    -- },
+
+    {
+        'nvimtools/none-ls.nvim',
+    },
+
     {
         'p00f/clangd_extensions.nvim',
         lazy = true,
@@ -83,6 +99,16 @@ require('lazy').setup({
             { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
         },
     },
+
+    -- { 'ggandor/leap.nvim' },
+
+    {
+        'goolord/alpha-nvim',
+        config = function ()
+            require 'alpha'.setup(require 'alpha.themes.dashboard'.config)
+        end
+    },
+
     -- {
     --     'ray-x/lsp_signature.nvim',
     --     -- event = 'VeryLazy',
@@ -125,19 +151,36 @@ require('lazy').setup({
         end
     },
 
-    {
-        'j-hui/fidget.nvim',
-        opts = {
-            -- options
-        },
-    },
+    -- {
+    --     'j-hui/fidget.nvim',
+    --     opts = {
+    --         -- options
+    --     },
+    -- },
 
     -- notification
     -- {
     --     'folke/noice.nvim',
     --     event = 'VeryLazy',
     --     opts = {
-    --         -- add any options here
+    --         lsp = {
+    --             progress = {
+    --                 enabled = false,
+    --             },
+    --             override = {
+    --                 ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+    --                 ['vim.lsp.util.stylize_markdown'] = true,
+    --                 ['cmp.entry.get_documentation'] = true, -- requires hrsh7th/nvim-cmp
+    --             },
+    --         },
+    --         -- you can enable a preset for easier configuration
+    --         presets = {
+    --             bottom_search = true,         -- use a classic bottom cmdline for search
+    --             command_palette = true,       -- position the cmdline and popupmenu together
+    --             long_message_to_split = true, -- long messages will be sent to a split
+    --             inc_rename = false,           -- enables an input dialog for inc-rename.nvim
+    --             lsp_doc_border = false,       -- add a border to hover docs and signature help
+    --         },
     --     },
     --     dependencies = {
     --         -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
@@ -146,8 +189,30 @@ require('lazy').setup({
     --         --   `nvim-notify` is only needed, if you want to use the notification view.
     --         --   If not available, we use `mini` as the fallback
     --         'rcarriga/nvim-notify',
-    --     }
+    --     },
+    --     config = function ()
+    --         ---@diagnostic disable-next-line: missing-fields
+    --         require('notify').setup({
+    --             background_colour = '#000000',
+    --             stages = 'static'
+    --         })
+    --     end,
     -- },
+
+    -- lsp progress bar
+    {
+        'linrongbin16/lsp-progress.nvim',
+        config = function ()
+            require('lsp-progress').setup({})
+        end
+    },
+
+    {
+        'shortcuts/no-neck-pain.nvim',
+        opts = {
+            width = 120
+        }
+    },
 
     -- whichkey
     { 'folke/which-key.nvim',  opts = {} },
@@ -155,6 +220,17 @@ require('lazy').setup({
     {
         'nvim-tree/nvim-web-devicons',
         opts = {
+            override_by_extension = {
+                ['cu'] = {
+                    icon = '',
+                    color = '#76b900',
+                    name = 'Cuda'
+                },
+                ['log'] = {
+                    icon = '󱂅',
+                    name = 'Log'
+                }
+            },
             override_by_filename = {
                 ['.dockerignore'] = {
                     icon = '',
@@ -169,14 +245,6 @@ require('lazy').setup({
     },
 
     {
-        'NvChad/nvim-colorizer.lua',
-        config = function ()
-            require 'colorizer'.setup {
-            }
-        end,
-    },
-
-    {
         'nvim-tree/nvim-tree.lua',
         lazy = false,
         pin = true,
@@ -185,45 +253,33 @@ require('lazy').setup({
         }
     },
 
+    -- session manager
     -- {
-    --     'nvim-neo-tree/neo-tree.nvim',
-    --     branch = 'v3.x',
-    --     dependencies = {
-    --         'nvim-lua/plenary.nvim',
-    --         'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
-    --         'MunifTanjim/nui.nvim',
+    --     'rmagatti/auto-session',
+    --     opts = {
+    --         log_level = 'error',
+    --         cwd_change_handling = {
+    --             post_cwd_changed_hook = function () -- example refreshing the lualine status line _after_ the cwd changes
+    --                 require('lualine').refresh()    -- refresh lualine so the new session name is displayed in the status bar
+    --             end,
+    --             post_restore_cmds = {
+    --                 -- function ()
+    --                 --     local nvim_tree = require('nvim-tree')
+    --                 --     nvim_tree.change_dir(vim.fn.getcwd())
+    --                 -- end,
+    --                 -- 'NvimTreeOpen'
+    --             }
+    --         },
     --     }
     -- },
-
-    -- Startpage
-    -- {
-    --     'mhinz/vim-startify',
-    -- },
-
-    -- session manager
-    {
-        'rmagatti/auto-session',
-        opts = {
-            log_level = 'error',
-            cwd_change_handling = {
-                post_cwd_changed_hook = function () -- example refreshing the lualine status line _after_ the cwd changes
-                    require('lualine').refresh()    -- refresh lualine so the new session name is displayed in the status bar
-                end,
-                post_restore_cmds = {
-                    -- function ()
-                    --     local nvim_tree = require('nvim-tree')
-                    --     nvim_tree.change_dir(vim.fn.getcwd())
-                    -- end,
-                    -- 'NvimTreeOpen'
-                }
-            },
-        }
-    },
     -- {
     --     "folke/persistence.nvim",
     --     event = "BufReadPre",                          -- this will only start session saving when an actual file was opened
     --     opts = {
     --         dir = vim.fn.stdpath('data') .. '/session/' -- add any custom options here
+    {
+        'ThePrimeagen/git-worktree.nvim'
+    },
 
     {
         -- Adds git related signs to the gutter, as well as utilities for managing changes
@@ -236,7 +292,7 @@ require('lazy').setup({
                 delete       = { text = '┃' },
                 topdelete    = { text = '‾' },
                 changedelete = { text = '~' },
-                untracked    = { text = '┇' },
+                untracked    = { text = '╏' },
             },
             on_attach = function (bufnr)
                 vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk,
@@ -260,6 +316,29 @@ require('lazy').setup({
 
     -- Theme inspired by Atom
     {
+        'catppuccin/nvim',
+        name = 'catppuccin',
+        opts = {
+            no_italic = true,
+            flavour = 'mocha', -- latte, frappe, macchiato, mocha
+            background = {     -- :h background
+                light = 'latte',
+                dark = 'mocha',
+            },
+            transparent_background = true, -- disables setting the background color.
+            -- show_end_of_buffer = false,     -- shows the '~' characters after the end of buffers
+            -- term_colors = false,            -- sets terminal colors (e.g. `g:terminal_color_0`)
+            -- dim_inactive = {
+            --     enabled = false,            -- dims the background color of inactive window
+            --     shade = 'dark',
+            --     percentage = 0.15,          -- percentage of the shade to apply to the inactive window
+            -- },
+            -- no_bold = false,                -- Force no bold
+            -- no_underline = false,           -- Force no underline
+        }
+    },
+
+    {
         -- Theme inspired by Atom
         'shaunsingh/nord.nvim',
         --     config = function ()
@@ -282,10 +361,26 @@ require('lazy').setup({
     -- Indentation
     {
         'lukas-reineke/indent-blankline.nvim',
+        main = 'ibl',
         opts = {
-            char = '│',
-            show_trailing_blankline_indent = false,
-        },
+            indent = {
+                char = '│',
+            },
+            scope = {
+                enabled = false,
+                show_start = false,
+                show_end = false,
+            }
+            -- show_trailing_blankline_indent = false,
+        }
+    },
+
+    -- show color
+    {
+        'norcalli/nvim-colorizer.lua',
+        config = function ()
+            require 'colorizer'.setup()
+        end,
     },
 
     -- Automatically add pair for brackets
@@ -294,6 +389,15 @@ require('lazy').setup({
         event = 'InsertEnter',
         opts = {}
     },
+
+    -- Breadcrumb
+    -- {
+    --     'Bekaboo/dropbar.nvim',
+    --     -- optional, but required for fuzzy finder support
+    --     dependencies = {
+    --         'nvim-telescope/telescope-fzf-native.nvim'
+    --     }
+    -- },
 
     -- Diagnostics
     {
@@ -304,12 +408,19 @@ require('lazy').setup({
         },
     },
 
-    -- Add tabs
-    -- {
-    --     'akinsho/bufferline.nvim',
-    --     version = '*',
-    --     dependencies = { 'nvim-tree/nvim-web-devicons', 'moll/vim-bbye' },
-    -- },
+    {
+        'mizlan/delimited.nvim'
+    },
+
+    {
+        'folke/todo-comments.nvim',
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+        }
+    },
 
     {
         'ThePrimeagen/harpoon',
@@ -347,6 +458,19 @@ require('lazy').setup({
     },
 
     {
+        'utilyre/barbecue.nvim',
+        name = 'barbecue',
+        version = '*',
+        dependencies = {
+            'SmiteshP/nvim-navic',
+            'nvim-tree/nvim-web-devicons', -- optional dependency
+        },
+        opts = {
+            -- configurations go here
+        },
+    },
+
+    {
         -- Highlight, edit, and navigate code
         'nvim-treesitter/nvim-treesitter',
         lazy = true,
@@ -357,9 +481,9 @@ require('lazy').setup({
         build = ':TSUpdate',
     },
 
-    {
-        'nvim-treesitter/nvim-treesitter-context'
-    }
+    -- {
+    --     'nvim-treesitter/nvim-treesitter-context'
+    -- }
 }, {})
 
 
@@ -370,10 +494,14 @@ require('plugins/config/lsp')
 require('plugins/config/cmp')
 require('plugins/config/lualine')
 require('plugins/config/nvim-tree')
+require('plugins/config/snippet')
+require('plugins/config/scheme')
+require('plugins/config/bbq')
+require('plugins/config/nonels')
+-- require('plugins/config/colorizer')
 -- require('plugins/config/neotree')
 -- require('plugins/config/bufferline')
-require('plugins/config/snippet')
-require('plugins/config/theme')
-require('plugins/config/startify')
+-- require('plugins/config/leap')
+-- require('plugins/config/startify')
 -- require('plugins/config/noice')
-require('plugins/config/fidget')
+-- require('plugins/config/fidget')

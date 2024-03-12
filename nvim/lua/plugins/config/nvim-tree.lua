@@ -103,7 +103,7 @@ nvim_tree.setup {
                     staged = '✓',
                     unmerged = '',
                     renamed = '➜',
-                    untracked = '',
+                    untracked = '',
                     deleted = '',
                     ignored = '◌',
                 },
@@ -123,12 +123,12 @@ nvim_tree.setup {
             -- error = "",
             hint = '',
             info = '',
-            warning = '',
+            warning = '',
             error = '',
         },
     },
     view = {
-        width = 30,
+        width = 40,
         side = 'left',
     },
     git = {

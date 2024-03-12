@@ -14,7 +14,7 @@ g.nord_disable_background = true
 g.nord_italic = false
 g.nord_uniform_diff_background = true
 
--- vim.g.gruvbox_material_background = 'soft'
+g.gruvbox_material_background = 'medium'
 g.gruvbox_material_transparent_background = 1
 g.gruvbox_material_better_performance = 1
 
