@@ -99,8 +99,8 @@ show_always = false
 [directory]
 read_only = " "
 read_only_style = "palette3" 
-format = '[\[](palette0 bold)[$path](palette6)[$read_only]($read_only_style)[\]](palette1 bold) '
-truncation_length = 1
+format = '[\[](palette0)[$path](palette6 bold)[$read_only]($read_only_style)[\]](palette1) '
+# truncation_length = 1
 
 [git_branch]
 style = "palette1"

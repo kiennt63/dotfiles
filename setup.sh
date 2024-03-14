@@ -3,7 +3,7 @@
 OS=$1
 
 # normal universial stuff
-sudo apt install -y  zsh kitty build-essential awesome xclip redshift libevent-dev pavucontrol maim sysstat ripgrep bat fd-find
+sudo apt install -y  zsh kitty build-essential awesome xclip redshift libevent-dev pavucontrol maim sysstat ripgrep bat fd-find qalc gpaste xdotool
 
 # install rustup
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | zsh
@@ -69,11 +69,12 @@ if [[ "$OS" = "linux" ]]; then
     ln -sf $HOME/dotfiles/ranger ~/.config
     ln -sf $HOME/dotfiles/rofi ~/.config
     ln -sf $HOME/dotfiles/binaries/nvim.appimage ~/.local/bin/vim
-    ln -sf $HOME/dotfiles/.gtkrc-2.0 ~
-    ln -sf $HOME/dotfiles/.gtkrc-2.0.mine ~
-    ln -sf $HOME/dotfiles/.Xresources ~
+    ln -sf $HOME/dotfiles/.gtkrc-2.0 ~/.gtkrc-2.0
+    ln -sf $HOME/dotfiles/.Xresources ~/.Xresources
 
-    ln -sf $HOME/dotfiles/binaries/pamixer ~/.local/bin
+    ln -sf $HOME/dotfiles/binaries/pamixer ~/.local/bin/pamixer
+    ln -sf $HOME/dotfiles/rofi/binaries/rofi-power-menu ~/.local/bin/rofi-power-menu
+    ln -sf $HOME/dotfiles/rofi/binaries/rofi-gpaste ~/.local/bin/rofi-gpaste
     ln -sf /usr/bin/batcat ~/.local/bin/cat
     sh $HOME/dotfiles/prerequisites/keyd_setup.sh
     sh $HOME/dotfiles/prerequisites/font_setup.sh
