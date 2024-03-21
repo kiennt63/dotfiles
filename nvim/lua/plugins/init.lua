@@ -47,7 +47,7 @@ require('lazy').setup({
     {
         'p00f/clangd_extensions.nvim',
         lazy = true,
-        config = function () end,
+        config = function() end,
         opts = {
             inlay_hints = {
                 inline = false,
@@ -92,10 +92,10 @@ require('lazy').setup({
             'TmuxNavigatePrevious',
         },
         keys = {
-            { '<c-h>',  '<cmd><C-U>TmuxNavigateLeft<cr>' },
-            { '<c-j>',  '<cmd><C-U>TmuxNavigateDown<cr>' },
-            { '<c-k>',  '<cmd><C-U>TmuxNavigateUp<cr>' },
-            { '<c-l>',  '<cmd><C-U>TmuxNavigateRight<cr>' },
+            { '<c-h>', '<cmd><C-U>TmuxNavigateLeft<cr>' },
+            { '<c-j>', '<cmd><C-U>TmuxNavigateDown<cr>' },
+            { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>' },
+            { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
             { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
         },
     },
@@ -104,9 +104,9 @@ require('lazy').setup({
 
     {
         'goolord/alpha-nvim',
-        config = function ()
-            require 'alpha'.setup(require 'alpha.themes.dashboard'.config)
-        end
+        config = function()
+            require('alpha').setup(require('alpha.themes.dashboard').config)
+        end,
     },
 
     -- {
@@ -144,11 +144,11 @@ require('lazy').setup({
         'kylechui/nvim-surround',
         version = '*', -- Use for stability; omit to use `main` branch for the latest features
         event = 'VeryLazy',
-        config = function ()
+        config = function()
             require('nvim-surround').setup {
                 -- Configuration here, or leave empty to use defaults
             }
-        end
+        end,
     },
 
     -- {
@@ -202,20 +202,20 @@ require('lazy').setup({
     -- lsp progress bar
     {
         'linrongbin16/lsp-progress.nvim',
-        config = function ()
-            require('lsp-progress').setup({})
-        end
+        config = function()
+            require('lsp-progress').setup {}
+        end,
     },
 
     {
         'shortcuts/no-neck-pain.nvim',
         opts = {
-            width = 120
-        }
+            width = 120,
+        },
     },
 
     -- whichkey
-    { 'folke/which-key.nvim',  opts = {} },
+    { 'folke/which-key.nvim', opts = {} },
 
     {
         'nvim-tree/nvim-web-devicons',
@@ -224,22 +224,22 @@ require('lazy').setup({
                 ['cu'] = {
                     icon = '',
                     color = '#76b900',
-                    name = 'Cuda'
+                    name = 'Cuda',
                 },
                 ['log'] = {
                     icon = '󱂅',
-                    name = 'Log'
-                }
+                    name = 'Log',
+                },
             },
             override_by_filename = {
                 ['.dockerignore'] = {
                     icon = '',
-                    name = 'DOCKERFILE'
+                    name = 'DOCKERFILE',
                 },
                 ['dockerfile'] = {
                     icon = '',
-                    name = 'DOCKERFILE'
-                }
+                    name = 'DOCKERFILE',
+                },
             },
         },
     },
@@ -250,7 +250,7 @@ require('lazy').setup({
         pin = true,
         dependencies = {
             'nvim-tree/nvim-web-devicons',
-        }
+        },
     },
 
     -- session manager
@@ -278,7 +278,7 @@ require('lazy').setup({
     --     opts = {
     --         dir = vim.fn.stdpath('data') .. '/session/' -- add any custom options here
     {
-        'ThePrimeagen/git-worktree.nvim'
+        'ThePrimeagen/git-worktree.nvim',
     },
 
     {
@@ -287,27 +287,34 @@ require('lazy').setup({
         opts = {
             -- See `:help gitsigns.txt`
             signs = {
-                add          = { text = '┃' },
-                change       = { text = '┃' },
-                delete       = { text = '┃' },
-                topdelete    = { text = '‾' },
+                add = { text = '┃' },
+                change = { text = '┃' },
+                delete = { text = '┃' },
+                topdelete = { text = '‾' },
                 changedelete = { text = '~' },
-                untracked    = { text = '╏' },
+                untracked = { text = '╏' },
             },
-            on_attach = function (bufnr)
-                vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk,
-                    { buffer = bufnr, desc = 'Preview git hunk' })
+            on_attach = function(bufnr)
+                vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Preview git hunk' })
 
                 -- don't override the built-in and fugitive keymaps
                 local gs = package.loaded.gitsigns
-                vim.keymap.set({ 'n', 'v' }, ']c', function ()
-                    if vim.wo.diff then return ']c' end
-                    vim.schedule(function () gs.next_hunk() end)
+                vim.keymap.set({ 'n', 'v' }, ']c', function()
+                    if vim.wo.diff then
+                        return ']c'
+                    end
+                    vim.schedule(function()
+                        gs.next_hunk()
+                    end)
                     return '<Ignore>'
                 end, { expr = true, buffer = bufnr, desc = 'Jump to next hunk' })
-                vim.keymap.set({ 'n', 'v' }, '[c', function ()
-                    if vim.wo.diff then return '[c' end
-                    vim.schedule(function () gs.prev_hunk() end)
+                vim.keymap.set({ 'n', 'v' }, '[c', function()
+                    if vim.wo.diff then
+                        return '[c'
+                    end
+                    vim.schedule(function()
+                        gs.prev_hunk()
+                    end)
                     return '<Ignore>'
                 end, { expr = true, buffer = bufnr, desc = 'Jump to previous hunk' })
             end,
@@ -321,7 +328,7 @@ require('lazy').setup({
         opts = {
             no_italic = true,
             flavour = 'mocha', -- latte, frappe, macchiato, mocha
-            background = {     -- :h background
+            background = { -- :h background
                 light = 'latte',
                 dark = 'mocha',
             },
@@ -335,7 +342,7 @@ require('lazy').setup({
             -- },
             -- no_bold = false,                -- Force no bold
             -- no_underline = false,           -- Force no underline
-        }
+        },
     },
 
     {
@@ -370,16 +377,16 @@ require('lazy').setup({
                 enabled = false,
                 show_start = false,
                 show_end = false,
-            }
+            },
             -- show_trailing_blankline_indent = false,
-        }
+        },
     },
 
     -- show color
     {
         'norcalli/nvim-colorizer.lua',
-        config = function ()
-            require 'colorizer'.setup()
+        config = function()
+            require('colorizer').setup()
         end,
     },
 
@@ -387,7 +394,7 @@ require('lazy').setup({
     {
         'windwp/nvim-autopairs',
         event = 'InsertEnter',
-        opts = {}
+        opts = {},
     },
 
     -- Breadcrumb
@@ -404,12 +411,12 @@ require('lazy').setup({
         'folke/trouble.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons' },
         opts = {
-            position = 'right'
+            position = 'right',
         },
     },
 
     {
-        'mizlan/delimited.nvim'
+        'mizlan/delimited.nvim',
     },
 
     {
@@ -419,7 +426,7 @@ require('lazy').setup({
             -- your configuration comes here
             -- or leave it empty to use the default settings
             -- refer to the configuration section below
-        }
+        },
     },
 
     {
@@ -428,8 +435,8 @@ require('lazy').setup({
         opts = {
             menu = {
                 width = math.floor(vim.api.nvim_win_get_width(0) / 2),
-            }
-        }
+            },
+        },
     },
 
     -- "gc" to comment visual regions/lines
@@ -444,7 +451,7 @@ require('lazy').setup({
             {
                 'nvim-telescope/telescope-fzf-native.nvim',
                 build = 'make',
-                cond = function ()
+                cond = function()
                     return vim.fn.executable 'make' == 1
                 end,
             },
@@ -486,18 +493,17 @@ require('lazy').setup({
     -- }
 }, {})
 
-
 -- custom configurations
-require('plugins/config/telescope')
-require('plugins/config/treesitter')
-require('plugins/config/lsp')
-require('plugins/config/cmp')
-require('plugins/config/lualine')
-require('plugins/config/nvim-tree')
-require('plugins/config/snippet')
-require('plugins/config/scheme')
-require('plugins/config/bbq')
-require('plugins/config/nonels')
+require 'plugins/config/telescope'
+require 'plugins/config/treesitter'
+require 'plugins/config/lsp'
+require 'plugins/config/cmp'
+require 'plugins/config/lualine'
+require 'plugins/config/nvim-tree'
+require 'plugins/config/snippet'
+require 'plugins/config/scheme'
+require 'plugins/config/bbq'
+require 'plugins/config/nonels'
 -- require('plugins/config/colorizer')
 -- require('plugins/config/neotree')
 -- require('plugins/config/bufferline')

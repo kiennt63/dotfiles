@@ -1,7 +1,7 @@
-local separator_glyphs = require('plugins/config/lualine/separator')
+local separator_glyphs = require 'plugins/config/lualine/separator'
 
-require('lsp-progress').setup({
-    client_format = function (client_name, spinner, series_messages)
+require('lsp-progress').setup {
+    client_format = function(client_name, spinner, series_messages)
         if #series_messages == 0 then
             return nil
         end
@@ -10,7 +10,7 @@ require('lsp-progress').setup({
             body = spinner .. ' ' .. table.concat(series_messages, ', '),
         }
     end,
-    format = function (client_messages)
+    format = function(client_messages)
         --- @param name string
         --- @param msg string?
         --- @return string
@@ -26,16 +26,12 @@ require('lsp-progress').setup({
         end
 
         if #lsp_clients > 0 then
-            table.sort(lsp_clients, function (a, b)
+            table.sort(lsp_clients, function(a, b)
                 return a.name < b.name
             end)
             local builder = {}
             for _, cli in ipairs(lsp_clients) do
-                if
-                    type(cli) == 'table'
-                    and type(cli.name) == 'string'
-                    and string.len(cli.name) > 0
-                then
+                if type(cli) == 'table' and type(cli.name) == 'string' and string.len(cli.name) > 0 then
                     if messages_map[cli.name] then
                         table.insert(builder, stringify(cli.name, messages_map[cli.name]))
                     else
@@ -49,14 +45,14 @@ require('lsp-progress').setup({
         end
         return ''
     end,
-})
+}
 
 require('lualine').setup {
     options = {
         icons_enabled = true,
         theme = 'auto',
         section_separators = { left = separator_glyphs.close, right = separator_glyphs.open },
-        component_separators = { left = '', right = '' },
+        component_separators = { left = separator_glyphs.close, right = separator_glyphs.open },
         -- component_separators = { left = '', right = ''},
         -- section_separators = { left = '', right = ''},
         -- component_separators = { left = '', right = '' },
@@ -73,7 +69,7 @@ require('lualine').setup {
             statusline = 1000,
             tabline = 1000,
             winbar = 1000,
-        }
+        },
     },
     sections = {
         lualine_a = {
@@ -83,15 +79,15 @@ require('lualine').setup {
                 separator = { left = separator_glyphs.open, right = separator_glyphs.close },
                 right_padding = 0,
                 symbols = {
-                    modified = '●'
-                }
+                    modified = '●',
+                },
             },
         },
         lualine_b = {
             { 'branch', icon = { '󰊢' } },
             {
                 'diff',
-                source = function ()
+                source = function()
                     ---@diagnostic disable-next-line: undefined-field
                     local gitsigns = vim.b.gitsigns_status_dict
                     if gitsigns then
@@ -105,7 +101,7 @@ require('lualine').setup {
                 -- symbols = { added = ' ', modified = ' ', removed = ' ' },
                 symbols = { added = ' ', modified = '󰻂 ', removed = ' ' },
                 cond = nil,
-            }
+            },
         },
 
         lualine_c = {
@@ -113,16 +109,17 @@ require('lualine').setup {
                 'diagnostics',
                 sources = { 'nvim_diagnostic' },
                 symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
-                cond = function ()
+                cond = function()
                     return vim.fn.winwidth(0) > 70
                 end,
             },
+            require('lsp-progress').progress,
         },
         -- lualine_d = {require('auto-session-library').current_session_name},
         lualine_x = {
             -- components.treesitter,
             {
-                function (msg)
+                function(msg)
                     msg = msg or 'LS Inactive'
                     local buf_clients = vim.lsp.get_active_clients()
                     if next(buf_clients) == nil then
@@ -156,13 +153,13 @@ require('lualine').setup {
                     return '[' .. table.concat(unique_client_names, ', ') .. ']'
                 end,
                 color = { gui = 'bold' },
-                cond = function ()
+                cond = function()
                     return vim.fn.winwidth(0) > 70
                 end,
             },
             {
                 'filetype',
-                cond = function ()
+                cond = function()
                     return vim.fn.winwidth(0) > 70
                 end,
             },
@@ -170,7 +167,8 @@ require('lualine').setup {
         -- lualine_x = {'searchcount'},
         lualine_y = { 'progress' },
         lualine_z = {
-            { 'location', separator = { left = separator_glyphs.open, right = separator_glyphs.close }, left_padding = 0 } }
+            { 'location', separator = { left = separator_glyphs.open, right = separator_glyphs.close }, left_padding = 0 },
+        },
     },
     inactive_sections = {
         lualine_a = {},
@@ -178,10 +176,10 @@ require('lualine').setup {
         lualine_c = { 'filename' },
         lualine_x = { 'location' },
         lualine_y = {},
-        lualine_z = {}
+        lualine_z = {},
     },
     tabline = {},
     winbar = {},
     inactive_winbar = {},
-    extensions = {}
+    extensions = {},
 }

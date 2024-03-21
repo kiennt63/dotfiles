@@ -7,19 +7,19 @@
 --     close_timeout = 1000,
 -- }
 
-local util = require('lspconfig/util')
+local util = require 'lspconfig/util'
 
-local on_attach = function (_, bufnr)
+local on_attach = function(_, bufnr)
     -- require 'lsp_signature'.on_attach(signature_setup, bufnr)
 
-    local nmap = function (keys, func, desc)
+    local nmap = function(keys, func, desc)
         if desc then
             desc = 'LSP: ' .. desc
         end
         vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
     end
 
-    local imap = function (keys, func, desc)
+    local imap = function(keys, func, desc)
         if desc then
             desc = 'LSP: ' .. desc
         end
@@ -42,18 +42,20 @@ local on_attach = function (_, bufnr)
     imap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
     -- Format code
-    nmap('<space>lf', function () vim.lsp.buf.format { async = true } end, 'Format')
+    nmap('<space>lf', function()
+        vim.lsp.buf.format { async = true }
+    end, 'Format')
 
     -- Lesser used LSP functionality
     nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
     nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
     nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-    nmap('<leader>wl', function ()
+    nmap('<leader>wl', function()
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, '[W]orkspace [L]ist Folders')
 
     -- Create a command `:Format` local to the LSP buffer
-    vim.api.nvim_buf_create_user_command(bufnr, 'Format', function (_)
+    vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
         vim.lsp.buf.format()
     end, { desc = 'Format current buffer with LSP' })
 end
@@ -69,26 +71,43 @@ end
 local servers = {
     clangd = {
         filetypes = {
-            'c', 'cpp', 'objc', 'objcpp', 'cuda'
+            'c',
+            'cpp',
+            'objc',
+            'objcpp',
+            'cuda',
         },
         -- capabilities = {
         --     offsetEncoding = { 'utf-16' },
         -- },
-        root_dir = {
-            '.clangd',
-            '.clang-tidy',
-            '.clang-format',
-            'compile_commands.json',
-            'compile_flags.txt',
-            'configure.ac',
-            '.git',
-            'build',
-            'build_x64_linux',
-            'build_aarch64_linux'
-        },
+        -- root_dir = util.root_pattern(
+        --     '.clangd',
+        --     '.clang-tidy',
+        --     '.clang-format',
+        --     'compile_commands.json',
+        --     'compile_flags.txt',
+        --     'configure.ac',
+        --     '.git',
+        --     'build',
+        --     'build_x64_linux',
+        --     'build_aarch64_linux'
+        -- ),
+        -- root_dir = {
+        --     '.clangd',
+        --     '.clang-tidy',
+        --     '.clang-format',
+        --     'compile_commands.json',
+        --     'compile_flags.txt',
+        --     'configure.ac',
+        --     '.git',
+        --     'build',
+        --     'build_x64_linux',
+        --     'build_aarch64_linux',
+        -- },
         cmd = {
             'clangd',
             '--background-index',
+            '--offset-encoding=utf-16',
             '--clang-tidy',
             '--header-insertion=iwyu',
             '--completion-style=detailed',
@@ -130,7 +149,7 @@ local servers = {
                 defaultConfig = {
                     indent_style = 'space',
                     indent_size = '4',
-                }
+                },
             },
             workspace = { checkThirdParty = false },
             telemetry = { enable = false },
@@ -140,15 +159,18 @@ local servers = {
             },
         },
     },
-    bashls = {}
+    bashls = {},
 }
 
 -- Setup neovim lua configuration
 require('neodev').setup()
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+-- capabilities.offsetEncoding = { 'utf-16' }
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+capabilities.offsetEncoding = { 'utf-16' }
 
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
@@ -158,24 +180,25 @@ mason_lspconfig.setup {
 }
 
 mason_lspconfig.setup_handlers {
-    function (server_name)
+    function(server_name)
         require('lspconfig')[server_name].setup {
             capabilities = capabilities,
             on_attach = on_attach,
             settings = servers[server_name],
             filetypes = (servers[server_name] or {}).filetypes,
+            cmd = (servers[server_name] or {}).cmd,
+            root_dir = (servers[server_name] or {}).root_dir,
         }
-    end
+    end,
 }
 
-require('lspconfig').cmake.setup({
-    root_dir = util.root_pattern('build', 'build_x64_linux', 'build_aarch64_linux')
-})
+require('lspconfig').cmake.setup {
+    root_dir = util.root_pattern('build', 'build_x64_linux', 'build_aarch64_linux'),
+}
 
-
-require('clangd_extensions').setup({
+require('clangd_extensions').setup {
     inlay_hints = {
-        inline = vim.fn.has('nvim-0.10') == 1,
+        inline = vim.fn.has 'nvim-0.10' == 1,
         -- Options other than `highlight' and `priority' only work
         -- if `inline' is disabled
         -- Only show inlay hints for the current line
@@ -254,7 +277,7 @@ require('clangd_extensions').setup({
     symbol_info = {
         border = 'none',
     },
-})
+}
 
 local signs = { Error = '', Warn = '', Hint = '', Info = '' }
 for type, icon in pairs(signs) do
@@ -268,23 +291,22 @@ end
 --     }
 -- })
 
-vim.diagnostic.config({
+vim.diagnostic.config {
     virtual_text = {
         prefix = '', -- ■ 
         suffix = '',
-        format = function (diagnostic)
+        format = function(diagnostic)
             return '● ' .. diagnostic.message .. ' '
         end,
     },
-})
+}
 
-vim.lsp.handlers['textDocument/publishDiagnostics'] =
-    vim.lsp.with(
-        vim.lsp.diagnostic.on_publish_diagnostics,
-        {
-            underline = false
-        }
-    )
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    underline = {
+        severity = vim.diagnostic.severity.WARN,
+    },
+    virtual_text = { severity = vim.diagnostic.severity.ERROR },
+})
 
 -- vim.o.updatetime = 250
 -- vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
