@@ -102,10 +102,63 @@ require('lazy').setup({
 
     -- { 'ggandor/leap.nvim' },
 
+    -- {
+    --     'goolord/alpha-nvim',
+    --     config = function()
+    --         require('alpha').setup(require('alpha.themes.dashboard').config)
+    --     end,
+    -- },
+
     {
-        'goolord/alpha-nvim',
+        'echasnovski/mini.starter',
+        version = '*',
         config = function()
-            require('alpha').setup(require('alpha.themes.dashboard').config)
+            local starter = require 'mini.starter'
+            starter.setup {
+                silent = true,
+                evaluate_single = true,
+                -- items = {
+                --     starter.sections.telescope(),
+                -- },
+                items = {
+                    {
+                        name = 'git',
+                        action = ':Telescope git_files',
+                        section = '',
+                    },
+                    {
+                        name = 'todo',
+                        action = ':TodoTelescope',
+                        section = '',
+                    },
+                    {
+                        name = 'files',
+                        action = "lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))",
+                        section = '',
+                    },
+                    {
+                        name = 'pinned',
+                        action = 'lua require("harpoon.ui").toggle_quick_menu()',
+                        section = '',
+                    },
+                    {
+                        name = 'explore',
+                        action = ':NvimTreeOpen',
+                        section = '',
+                    },
+                    {
+                        name = 'quit',
+                        action = ':q',
+                        section = ' ',
+                    },
+                },
+                header = '',
+                footer = '',
+                content_hooks = {
+                    starter.gen_hook.adding_bullet(),
+                    starter.gen_hook.aligning('center', 'center'),
+                },
+            }
         end,
     },
 

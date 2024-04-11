@@ -59,6 +59,7 @@ require('lualine').setup {
         -- section_separators = { left = '', right = '' },
         disabled_filetypes = {
             'alpha',
+            'starter',
             statusline = {},
             winbar = {},
         },
