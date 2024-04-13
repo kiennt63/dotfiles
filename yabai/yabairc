@@ -21,11 +21,10 @@ sudo yabai --load-sa
 
 # yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
 #################### Status bar ####################
-# SPACEBAR_HEIGHT=34
-# yabai -m config external_bar all:$SPACEBAR_HEIGHT:0
+SPACEBAR_HEIGHT=32
+yabai -m config external_bar all:$SPACEBAR_HEIGHT:0
 
 yabai -m config                                                     \
-    mouse_follows_focus             on                              \
     window_placement                second_child                    \
     window_shadow                   off                             \
     window_opacity                  on                              \
@@ -55,6 +54,7 @@ yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info
 yabai -m rule --add label="Alfred" app="^Alfred$" manage=off
 yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off
 yabai -m rule --add label="System Preferences" app="^System Preferences$" manage=off
+yabai -m rule --add label="System Settings" app="^System Settings$" manage=off
 yabai -m rule --add label="App Store" app="^App Store$" manage=off
 yabai -m rule --add label="Activity Monitor" app="^Activity Monitor$" manage=off
 yabai -m rule --add label="Calculator" app="^Calculator$" manage=off
@@ -88,4 +88,4 @@ yabai -m signal --add event=display_changed action="focus_window"
 set +x
 printf "yabai: configuration loaded...\\n"
 
-borders active_color=0xff81A1C1 inactive_color=0xff4C566A width=4.0 hidpi=on &
+borders active_color=0xff7daea3 inactive_color=0xff5a524c width=4.0 hidpi=on &

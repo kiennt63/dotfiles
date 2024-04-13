@@ -1,0 +1,126 @@
+# Get editor completions based on the config schema
+# "$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = false
+command_timeout = 150
+
+format = """
+$directory\
+$git_branch\
+$git_commit\
+$git_status\
+$git_metrics\
+$conda\
+$cmd_duration\
+$line_break\
+$character"""
+
+# format = """
+# [╭](bold palette1)$directory$git_branch$git_status$cmd_duration
+# [╰─>](bold palette1) """
+
+# format = """
+# [╭](bold palette0)$directory
+# [│](bold palette1) $git_branch$git_status$cmd_duration
+# [╰─>](bold palette5) """
+
+palette = 'gruvbox'
+
+[palettes.catppuccin]
+palette0  = '#f2cdcd'
+palette1  = '#b4befe'
+palette2  = '#f9e2af'
+palette3  = '#eba0ac'
+palette4  = '#eba0ac'
+palette5  = '#b4befe'
+palette6  = '#89b4fa'
+palette7  = '#f2cdcd'
+palette8  = '#b4befe'
+palette9  = '#cdd6f4'
+palette10 = '#bac2de'
+palette11 = '#a6adc8'
+palette12 = '#313244'
+palette13 = '#45475a'
+palette14 = '#585b70'
+palette15 = '#1e1e2e'
+
+[palettes.nord]
+palette0  = '#B48EAD'
+palette1  = '#A3BE8C'
+palette2  = '#EBCB8B'
+palette3  = '#D08770'
+palette4  = '#BF616A'
+palette5  = '#81A1C1'
+palette6  = '#88C0D0'
+palette7  = '#8FBCBB'
+palette8  = '#5E81AC'
+palette9  = '#ECEFF4'
+palette10 = '#E5E9F0'
+palette11 = '#D8DEE9'
+palette12 = '#2E3440'
+palette13 = '#3B4252'
+palette14 = '#434C5E'
+palette15 = '#242933'
+
+[palettes.gruvbox]
+palette0  = '#d3868b'
+palette1  = '#a9b665'
+palette2  = '#d8a657'
+palette3  = '#e78a4e'
+palette4  = '#ea6962'
+palette5  = '#7daea3'
+palette6  = '#7daea3'
+palette7  = '#a9b665'
+palette8  = '#a9b665'
+palette9  = '#ddc7a1'
+palette10 = '#d4be98'
+palette11 = '#a89984'
+palette12 = '#32302f'
+palette13 = '#45403d'
+palette14 = '#5a524c'
+palette15 = '#282828'
+
+
+
+[character]
+success_symbol = "[└─](bold palette0)[](bold palette6)[](bold palette1)"
+error_symbol = "[✘](bold palette3)"
+vimcmd_symbol = "[✘](bold palette1)"
+vimcmd_replace_one_symbol = "[✘](bold palette1)"
+vimcmd_replace_symbol = "[✘](bold palette1)"
+vimcmd_visual_symbol = "[✘](bold palette1)"
+
+[username]
+format = '[\[](palette1 bold)[$user](palette6 bold)[\]](palette1 bold) '
+disabled = true
+show_always = false
+
+[directory]
+read_only = " "
+read_only_style = "palette3" 
+format = '[\[](palette0)[$path](palette6 bold)[$read_only]($read_only_style)[\]](palette1) '
+# truncation_length = 1
+
+[git_branch]
+style = "palette1"
+symbol = "󰊢 "
+format = "[$symbol$branch(:$remote_branch)]($style) "
+truncation_length = 15
+
+[git_status]
+disabled = false
+ahead = "[⇡${count}](palette1)"
+diverged = "[⇕⇡${ahead_count}⇣${behind_count}](palette1)"
+behind = "[⇣${count}](palette1)"
+modified = "[!${count}](palette2)"
+staged = "[+${count}](palette0)"
+deleted = "[!✘${count}](palette3)"
+untracked = "[?${count}](palette5)"
+format = '([[\[](palette1)$ahead$behind$staged$modified$deleted$untracked$ahead_behind[\]](palette1)]($style) )'
+
+[cmd_duration]
+disabled = true
+
+[conda]
+symbol = " "

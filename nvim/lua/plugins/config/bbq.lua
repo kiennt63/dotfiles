@@ -3,6 +3,8 @@ vim.opt.updatetime = 200
 
 require('barbecue').setup({
     create_autocmd = false, -- prevent barbecue from updating itself automatically
+    attach_navic = true,
+    show_navic = true,
     symbols = {
         separator = '',
         modified = '●'

@@ -28,10 +28,11 @@ sketchybar --default icon.font="SF Pro:Semibold:15.0"   \
 
 # Left items
 source ${ITEM_DIR}/spaces.sh
+
 source ${ITEM_DIR}/front_app.sh
 
 # Middle items
-source $ITEM_DIR/media.sh
+# source $ITEM_DIR/media.sh
 
 # Right items
 source ${ITEM_DIR}/calendar.sh
