@@ -16,10 +16,10 @@ config.window_background_opacity = 1.0
 config.window_close_confirmation = "NeverPrompt"
 config.use_fancy_tab_bar = false
 config.enable_scroll_bar = false
-config.window_padding = {
-	top = 10,
-	bottom = 2,
-}
+-- config.window_padding = {
+-- 	top = 10,
+-- 	bottom = 2,
+-- }
 
 -- Font
 
