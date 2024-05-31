@@ -77,6 +77,8 @@ if [[ "$OS" = "linux" ]]; then
     ln -sf $HOME/dotfiles/rofi/binaries/rofi-gpaste ~/.local/bin/rofi-gpaste
     ln -sf /usr/bin/batcat ~/.local/bin/cat
     sh $HOME/dotfiles/prerequisites/keyd_setup.sh
+    sudo mkdir -p /etc/keyd
+    sudo cp $HOME/dotfiles/keyd/default.conf /etc/keyd
     sh $HOME/dotfiles/prerequisites/font_setup.sh
 fi
 

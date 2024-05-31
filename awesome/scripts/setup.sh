@@ -24,7 +24,7 @@ xset r rate 250 35
 xset s off -dpms
 
 # map capslock to escape
-setxkbmap -option caps:escape
+# setxkbmap -option caps:escape
 
 # disable mouse accel
 for id in $(xinput --list | \
