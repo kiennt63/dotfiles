@@ -22,5 +22,4 @@ source $HOME/dotfiles/zsh/theme.sh
 eval "$(zoxide init zsh)"
 
 # Cute fetch on start-up
-# bunnyfetch
 pokemon-colorscripts --random --no-title

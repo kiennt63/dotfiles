@@ -14,3 +14,4 @@ export NDK=$HOME/Android/Sdk/ndk/21.3.6528147
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/mpc/3rdparty/rti_connext_dds-6.0.1/lib/x64Linux4gcc7.3.0
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/mpc/3rdparty/easy_profiler/lib/x64_linux
+export CLANG_FORMAT_STYLE=~/dotfiles/.clang-format

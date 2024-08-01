@@ -18,6 +18,6 @@ custom.night1     = "#45475a"
 custom.night2     = "#585b70"
 custom.night3     = "#1e1e2e"
 
-custom.wallpaper = "~/dotfiles/wallpapers/tetris_catppuccin.png"
+custom.wallpaper = "~/dotfiles/wallpapers/spooky_spill.jpg"
 
 return custom

@@ -153,8 +153,9 @@ keymap('n', '<leader>o',
 keymap('n', '<leader>fg',
     ":lua require('telescope').extensions.live_grep_args.live_grep_args({ layout_stategy = 'vertical' })<CR>",
     opts)
+keymap('n', '<leader>fs', ':Telescope git_status<cr>', opts)
 keymap('n', '<leader>fw', live_grep_args_shortcuts.grep_word_under_cursor, opts)
-keymap('v', '<leader>fs', live_grep_args_shortcuts.grep_visual_selection, opts)
+keymap('v', '<leader>fw', live_grep_args_shortcuts.grep_visual_selection, opts)
 
 keymap('n', '<leader>fr', require('telescope.builtin').resume, { desc = '[F]ind [R]resume' })
 

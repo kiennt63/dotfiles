@@ -106,7 +106,7 @@ format = '[\[](palette0)[$path](palette6 bold)[$read_only]($read_only_style)[\]]
 style = "palette1"
 symbol = "󰊢 "
 format = "[$symbol$branch(:$remote_branch)]($style) "
-truncation_length = 15
+truncation_length = 30
 
 [git_status]
 disabled = false

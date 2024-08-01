@@ -93,3 +93,47 @@ au('FileType', {
 --     pattern = '*.h',
 --     command = "silent! lua vim.lsp.buf.format()"
 -- })
+
+-- -- Define a custom save function
+-- _G.save_if_changed = function()
+--   if vim.bo.modified then
+--     vim.cmd('write')
+--   else
+--     print("No changes made")
+--   end
+--   -- Always trigger LSP updates
+--   local clients = vim.lsp.get_active_clients()
+--   for _, client in pairs(clients) do
+--     if client.server_capabilities.documentFormattingProvider then
+--       vim.lsp.buf.format({ async = true })
+--     end
+--   end
+-- end
+--
+-- -- Create an augroup to avoid duplicate autocommands
+-- local group = vim.api.nvim_create_augroup("AutoSaveGroup", { clear = true })
+--
+-- -- Create an autocommand that intercepts the BufWriteCmd event
+-- vim.api.nvim_create_autocmd("BufWriteCmd", {
+--   group = group,
+--   pattern = "*", -- Apply to all files
+--   callback = function()
+--     _G.save_if_changed()
+--     -- Do not stop the command, allow the default behavior to proceed if needed
+--   end,
+-- })
+
+-- Define a custom save function
+-- _G.save_if_changed = function()
+--   if vim.bo.modified then
+--     vim.cmd('write')
+--   else
+--     print("no changes made")
+--   end
+-- end
+--
+-- -- Override the default :w command
+-- vim.cmd([[
+--   command! W lua save_if_changed()
+--   cabbrev w W
+-- ]])
