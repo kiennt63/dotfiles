@@ -17,7 +17,7 @@ custom.night1     = "#45403d"
 custom.night2     = "#5a524c"
 custom.night3     = "#282828"
 
-custom.wallpaper = "~/dotfiles/wallpapers/tetris_gruvbox.png"
+custom.wallpaper = "~/dotfiles/wallpapers/gruvbox_finalizer.png"
 
 custom.taglist_bg = "#00000000"
 

@@ -12,7 +12,7 @@ config.cursor_thickness = 2
 -- Window
 config.enable_tab_bar = false
 config.window_decorations = "None"
-config.window_background_opacity = 0.9
+config.window_background_opacity = 0.6
 config.window_close_confirmation = 'NeverPrompt'
 config.use_fancy_tab_bar = false
 config.enable_scroll_bar = false
@@ -29,7 +29,7 @@ config.window_padding = {
 -- config.color_schemes = {
 --     ['custom'] = scheme,
 -- }
--- config.color_scheme = 'custom'
+-- config.color_scheme = 'Catppuccin Mocha'
 
 config.color_scheme = 'Catppuccin Mocha'
 

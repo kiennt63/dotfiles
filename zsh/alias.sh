@@ -12,19 +12,20 @@ alias g="git"
 alias lg="lazygit"
 
 # dds
-alias ddsbag="/opt/mpc/3rdparty/vinai_middleware/1.5.1/utilities/ddsbag/x64-linux/ddsbag"
-alias ddstopic='f(){ (cd /opt/dds_utilities/ddstopic/x64-linux && ./ddstopic "$@");  unset -f f; }; f'
+alias ddsbag="/home/kiennt63/ins/vinai_middleware/1.5.1/utilities/ddsbag/x64-linux/ddsbag"
+alias ddstopic='f(){ (cd /home/kiennt63/ins/vinai_middleware/1.5.1/utilities/ddstopic/x64-linux && ./ddstopic "$@");  unset -f f; }; f'
 
 # save rm
 alias rm="rm -i"
 
 # grep
-# alias grep="grep --color=always"
+alias grep="grep --color=always"
 
 # tmux 
 alias ts="tmux new -s"
-alias ta="tmux attach -t"
+alias ta="tmux attach"
 alias tl="tmux ls"
+alias tksv="tmux kill-server"
 alias tn='tmux new -s $(pwd | sed "s/.*\/\.\?//g")'
 alias t="sesh connect"
 
@@ -63,3 +64,4 @@ alias quanta="export ROS_IP=192.168.0.10; export ROS_MASTER_URI=http://192.168.0
 alias ssh-quanta="ssh nvidia@192.168.0.10"
 
 alias mamba="micromamba"
+alias mm="micromamba"

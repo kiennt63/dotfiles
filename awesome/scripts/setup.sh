@@ -3,7 +3,7 @@
 # setup dual monitor
 num_monitor=$(xrandr | grep " connected " | awk '{ print$1 }' | wc -l)
 
-if [[ $num_monitor -ge 2 ]]; then
+if [[ 1 -eq 1 ]]; then
     xrandr --output DP-0 --off --output DP-1 --off \
 	   --output DP-3 --off --output DP-5 --off --output HDMI-0 --off \
 	   --output DP-2 --primary --mode 3840x2160 --rate 60 --pos 2880x0 --rotate normal \
@@ -35,10 +35,15 @@ done
 
 for id in $(xinput --list | sed -n '/Logitech USB Receiver.*pointer/s/.*=\([0-9]\+\).*/\1/p')
 do
-	xinput --set-prop $id "libinput Accel Profile Enabled" 0, 1
+    xinput --set-prop $id "libinput Accel Speed" 0.3
+    xinput --set-prop $id "libinput Accel Profile Enabled" 0, 1
 done
 
 
 
 # redshift
 redshift -P -O 3500
+
+# default audio in/out
+pactl set-default-sink alsa_output.pci-0000_01_00.1.hdmi-stereo-extra1
+pactl set-default-source alsa_input.usb-3142_fifine_Microphone-00.analog-stereo
