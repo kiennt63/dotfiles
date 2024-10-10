@@ -28,9 +28,10 @@ xset s off -dpms
 
 # disable mouse accel
 for id in $(xinput --list | \
-    sed -n '/Logitech G304.*pointer/s/.*=\([0-9]\+\).*/\1/p')
+    sed -n '/Logitech G304.*/s/.*=\([0-9]\+\).*/\1/p')
 do
-	xinput --set-prop $id "libinput Accel Profile Enabled" 0, 1
+    xinput --set-prop $id "libinput Accel Speed" 0.0
+    xinput --set-prop $id "libinput Accel Profile Enabled" 0, 1
 done
 
 for id in $(xinput --list | sed -n '/Logitech USB Receiver.*pointer/s/.*=\([0-9]\+\).*/\1/p')

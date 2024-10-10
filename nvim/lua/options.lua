@@ -18,7 +18,9 @@ g.gruvbox_material_background = 'medium'
 g.gruvbox_material_transparent_background = 1
 g.gruvbox_material_better_performance = 1
 
-o.scrolloff = 4
+g.everforest_transparent_background = 1
+
+o.scrolloff = 10
 o.sessionoptions = 'buffers,curdir,tabpages,winsize'
 -- o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 o.cursorline = true

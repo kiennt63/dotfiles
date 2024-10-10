@@ -267,8 +267,16 @@ require('lazy').setup({
         },
     },
 
-    -- whichkey
-    { 'folke/which-key.nvim', opts = {} },
+    -- -- whichkey
+    {
+        'folke/which-key.nvim',
+        opts = {
+
+            delay = function(ctx)
+                return ctx.plugin and 0 or 1000
+            end,
+        },
+    },
 
     {
         'nvim-tree/nvim-web-devicons',
@@ -393,18 +401,43 @@ require('lazy').setup({
             --     shade = 'dark',
             --     percentage = 0.15,          -- percentage of the shade to apply to the inactive window
             -- },
-            no_bold = false,                -- Force no bold
-            no_underline = true,           -- Force no underline
+            no_bold = false, -- Force no bold
+            no_underline = true, -- Force no underline
         },
     },
 
     {
         -- Theme inspired by Atom
-        'shaunsingh/nord.nvim',
+        'kiennt63/nightfox.nvim',
+        --     config = function ()
+        --         vim.cmd.colorscheme 'nord'
+        --     end,
+        opts = {
+            options = {
+                transparent = true,
+            },
+        },
+    },
+
+    {
+        'gbprod/nord.nvim',
+    },
+
+    {
+        -- Theme inspired by Atom
+        'sainnhe/everforest',
         --     config = function ()
         --         vim.cmd.colorscheme 'nord'
         --     end,
     },
+
+    -- {
+    --     -- Theme inspired by Atom
+    --     'shaunsingh/nord.nvim',
+    --     --     config = function ()
+    --     --         vim.cmd.colorscheme 'nord'
+    --     --     end,
+    -- },
 
     {
         'kiennt63/gruvbox-material',

@@ -143,3 +143,10 @@ vim.g.maplocalleader = ' '
 
 vim.keymap.set('n', '<leader>e', ':NvimTreeOpen<cr>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>b', ':NvimTreeToggle<cr>', { noremap = true, silent = true })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "NvimTree_1",
+  callback = function()
+    vim.opt_local.cursorline = false
+  end
+})

@@ -53,7 +53,7 @@ require('lualine').setup {
         theme = 'auto',
         section_separators = { left = separator_glyphs.close, right = separator_glyphs.open },
         -- component_separators = { left = separator_glyphs.close, right = separator_glyphs.open },
-        component_separators = { left = '', right = ''},
+        component_separators = { left = '', right = '' },
         -- section_separators = { left = '', right = ''},
         -- component_separators = { left = '', right = '' },
         -- section_separators = { left = '', right = '' },

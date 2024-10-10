@@ -12,3 +12,5 @@
 
 [delta]
     features = flexible
+[http]
+	postBuffer = 524288000

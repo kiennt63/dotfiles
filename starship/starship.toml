@@ -25,7 +25,43 @@ $character"""
 # [│](bold palette1) $git_branch$git_status$cmd_duration
 # [╰─>](bold palette5) """
 
-palette = 'catppuccin'
+palette = 'nordfox'
+
+[palettes.everforest]
+palette0  = '#d699b6'
+palette1  = '#7fbbb3'
+palette2  = '#dbbc7f'
+palette3  = '#e67e80'
+palette4  = '#e67e80'
+palette5  = '#7fbbb3'
+palette6  = '#83c092'
+palette7  = '#d699b6'
+palette8  = '#7fbbb3'
+palette9  = '#d3c6aa'
+palette10 = '#9da9a0'
+palette11 = '#859289'
+palette12 = '#2d353b'
+palette13 = '#3d484d'
+palette14 = '#4f585e'
+palette15 = '#232a2e'
+
+[palettes.nordfox]
+palette0  = '#b48ead'
+palette1  = '#a3be8c'
+palette2  = '#ebcb8b'
+palette3  = '#bf616a'
+palette4  = '#bf616a'
+palette5  = '#a3be8c'
+palette6  = '#81a1c1'
+palette7  = '#b48ead'
+palette8  = '#a3be8c'
+palette9  = '#cdd6f4'
+palette10 = '#bac2de'
+palette11 = '#a6adc8'
+palette12 = '#313244'
+palette13 = '#45475a'
+palette14 = '#585b70'
+palette15 = '#1e1e2e'
 
 [palettes.catppuccin]
 palette0  = '#f2cdcd'
@@ -84,7 +120,8 @@ palette15 = '#282828'
 
 
 [character]
-success_symbol = "[└─](bold palette0)[](bold palette6)[](bold palette1)"
+# success_symbol = "[└─](bold palette0)[](bold palette6)[](bold palette1)"
+success_symbol = "[➜](bold palette6)"
 error_symbol = "[✘](bold palette3)"
 vimcmd_symbol = "[✘](bold palette1)"
 vimcmd_replace_one_symbol = "[✘](bold palette1)"
@@ -99,13 +136,14 @@ show_always = false
 [directory]
 read_only = " "
 read_only_style = "palette3" 
-format = '[\[](palette0)[$path](palette6 bold)[$read_only]($read_only_style)[\]](palette1) '
-# truncation_length = 1
+# format = '[\[](palette0)[$path](palette6 bold)[$read_only]($read_only_style)[\]](palette1) '
+format = '[$path](palette6 bold)[$read_only]($read_only_style) '
+truncation_length = 100
 
 [git_branch]
 style = "palette1"
-symbol = "󰊢 "
-format = "[$symbol$branch(:$remote_branch)]($style) "
+symbol = ""
+format = "[$symbol$branch(:$remote_branch)]($style)"
 truncation_length = 30
 
 [git_status]
