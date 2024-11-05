@@ -3,7 +3,6 @@ local opts = { noremap = true, silent = true }
 -- Shorten function name
 local keymap = vim.keymap.set
 
-
 --Remap space as leader key
 keymap('', '<Space>', '<Nop>', opts)
 vim.g.mapleader = ' '
@@ -13,6 +12,39 @@ vim.g.maplocalleader = ' '
 
 -- LSP
 keymap('n', '<leader>lt', ':ClangdSwitchSourceHeader<cr>', opts)
+
+-- debugger
+local dap = require 'dap'
+vim.keymap.set('n', '<leader>dc', dap.continue, {})
+vim.keymap.set('n', '<leader>dn', dap.step_over, {})
+vim.keymap.set('n', '<leader>di', dap.step_into, {})
+vim.keymap.set('n', '<leader>do', dap.step_out, {})
+vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, {})
+
+-- vim.keymap.set('n', '<leader>lp', function()
+--     require('dap').set_breakpoint(nil, nil, vim.fn.input 'Log point message: ')
+-- end)
+-- vim.keymap.set('n', '<leader>dr', function()
+--     require('dap').repl.open()
+-- end)
+-- vim.keymap.set('n', '<leader>dl', function()
+--     require('dap').run_last()
+-- end)
+-- vim.keymap.set({ 'n', 'v' }, '<leader>dh', function()
+--     require('dap.ui.widgets').hover()
+-- end)
+-- vim.keymap.set({ 'n', 'v' }, '<leader>dp', function()
+--     require('dap.ui.widgets').preview()
+-- end)
+-- vim.keymap.set('n', '<leader>df', function()
+--     local widgets = require 'dap.ui.widgets'
+--     widgets.centered_float(widgets.frames)
+-- end)
+-- vim.keymap.set('n', '<leader>ds', function()
+--     local widgets = require 'dap.ui.widgets'
+--     widgets.centered_float(widgets.scopes)
+-- end)
+-- vim.keymap.set('n', '<leader>B', dap.set_breakpoint, {})
 
 -- -- Open sidebar
 -- vim.keymap.set('n', '<leader>e', ':NvimTreeOpen<cr>', { noremap = true, silent = true })
@@ -125,11 +157,11 @@ keymap('n', '<leader>t', ':TroubleToggle<cr>', opts)
 keymap('n', '<leader>ld', '<cmd>lua vim.diagnostic.open_float(nil, {focus=false})<cr>', { desc = '[L]SP [D]iagnostic' })
 keymap('n', '[d', require('delimited').goto_prev, opts)
 keymap('n', ']d', require('delimited').goto_next, opts)
-keymap('n', '[D', function ()
-    require('delimited').goto_prev({ severity = vim.diagnostic.severity.ERROR })
+keymap('n', '[D', function()
+    require('delimited').goto_prev { severity = vim.diagnostic.severity.ERROR }
 end, opts)
-keymap('n', ']D', function ()
-    require('delimited').goto_next({ severity = vim.diagnostic.severity.ERROR })
+keymap('n', ']D', function()
+    require('delimited').goto_next { severity = vim.diagnostic.severity.ERROR }
 end, opts)
 
 -- =======================================================
@@ -142,28 +174,31 @@ end, opts)
 
 -- Telescope
 -- keymap("n", "<leader>F", "<cmd>Telescope find_files<cr>", opts)
-local live_grep_args_shortcuts = require('telescope-live-grep-args.shortcuts')
-keymap('n', '<leader>ff',
-    "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>",
-    opts)
-keymap('n', '<leader>o',
-    "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>",
-    opts)
+local live_grep_args_shortcuts = require 'telescope-live-grep-args.shortcuts'
+-- keymap('n', '<leader>ff',
+--     "<cmd>lua require('fzf-lua').files()<cr>",
+--     opts)
+-- keymap('n', '<leader>o',
+--     "<cmd>lua require('fzf-lua').files()<cr>",
+--     opts)
+-- keymap('n', '<leader>ff', "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
+keymap('n', '<leader>o', "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
 -- keymap('n', '<leader>fg', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", opts)
 keymap('n', '<leader>fg',
     ":lua require('telescope').extensions.live_grep_args.live_grep_args({ layout_stategy = 'vertical' })<CR>",
     opts)
+keymap('n', '<leader>fg',
+    ":lua require('fzf-lua').live_grep()<CR>",
+    opts)
 keymap('n', '<leader>fs', ':Telescope git_status<cr>', opts)
-keymap('n', '<leader>fw', live_grep_args_shortcuts.grep_word_under_cursor, opts)
+keymap('n', '<leader>fw', '<cmd>lua require("fzf-lua").live_grep({ search = vim.fn.expand("<cword>") })<cr>', opts)
 keymap('v', '<leader>fw', live_grep_args_shortcuts.grep_visual_selection, opts)
 
 keymap('n', '<leader>fr', require('telescope.builtin').resume, { desc = '[F]ind [R]resume' })
 
 -- Git workstree
-keymap('n', '<leader>wt', "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>",
-    { desc = '[W]ork[T]ree' })
-keymap('n', '<leader>wc', "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>",
-    { desc = '[W]orktree [C]reate' })
+keymap('n', '<leader>wt', "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>", { desc = '[W]ork[T]ree' })
+keymap('n', '<leader>wc', "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>", { desc = '[W]orktree [C]reate' })
 
 -- File manager
 keymap('n', '<leader>fq', ':RnvimrToggle<cr>', opts)
@@ -183,3 +218,8 @@ keymap('n', '<leader>gp', ':Gitsigns prev_hunk<cr>', opts)
 
 -- Noice (messages and notification)
 keymap('n', '<leader>nd', ':NoiceDismiss<cr>', opts)
+
+-- symbol (aeriel)
+keymap('n', '<leader>sp', '<cmd>AerialPrev<CR>', opts)
+keymap('n', '<leader>sn', '<cmd>AerialNext<CR>', opts)
+keymap('n', '<leader>st', '<cmd>AerialToggle<CR>', opts)

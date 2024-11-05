@@ -9,17 +9,17 @@
 
 local util = require 'lspconfig/util'
 
-local on_attach = function(_, bufnr)
+local on_attach = function (_, bufnr)
     -- require 'lsp_signature'.on_attach(signature_setup, bufnr)
 
-    local nmap = function(keys, func, desc)
+    local nmap = function (keys, func, desc)
         if desc then
             desc = 'LSP: ' .. desc
         end
         vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
     end
 
-    local imap = function(keys, func, desc)
+    local imap = function (keys, func, desc)
         if desc then
             desc = 'LSP: ' .. desc
         end
@@ -42,7 +42,7 @@ local on_attach = function(_, bufnr)
     imap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
     -- Format code
-    nmap('<space>lf', function()
+    nmap('<space>lf', function ()
         vim.lsp.buf.format { async = true }
     end, 'Format')
 
@@ -50,12 +50,12 @@ local on_attach = function(_, bufnr)
     nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
     nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
     nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-    nmap('<leader>wl', function()
+    nmap('<leader>wl', function ()
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end, '[W]orkspace [L]ist Folders')
 
     -- Create a command `:Format` local to the LSP buffer
-    vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+    vim.api.nvim_buf_create_user_command(bufnr, 'Format', function (_)
         vim.lsp.buf.format()
     end, { desc = 'Format current buffer with LSP' })
 end
@@ -125,7 +125,7 @@ local servers = {
 
     glsl_analyzer = {},
 
-    pyright = {},
+    -- pyright = {},
     -- rust_analyzer = {
     --     ['rust-analyzer'] = {
     --         cargo = {
@@ -139,6 +139,28 @@ local servers = {
     -- },
     -- tsserver = {},
     -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+
+    -- pylsp = {
+    --     ignore={'E501', 'E231'},
+    --
+    -- },
+    --
+
+    -- pylsp = {
+    --     plugins = {
+    --         pyflakes = { enabled = true },
+    --         -- pylint = {args = {'--ignore=E501,E231', '-'}, enabled=true, debounce=200},
+    --         pylsp_mypy = { enabled = false },
+    --         pycodestyle = {
+    --             enabled = true,
+    --             ignore = { 'E501', 'E231' },
+    --             maxLineLength = 120
+    --         },
+    --         yapf = { enabled = true }
+    --     }
+    -- },
+
+
 
     lua_ls = {
         Lua = {
@@ -182,7 +204,7 @@ mason_lspconfig.setup {
 }
 
 mason_lspconfig.setup_handlers {
-    function(server_name)
+    function (server_name)
         require('lspconfig')[server_name].setup {
             capabilities = capabilities,
             on_attach = on_attach,
@@ -204,6 +226,58 @@ require('lspconfig').cmake.setup {
             },
         },
     },
+}
+
+-- require('lspconfig').pylsp.setup {
+--     on_attach = on_attach,
+--     plugins = {
+--         -- jedi_completion = {fuzzy = true},
+--         -- jedi_completion = {eager=true},
+--         jedi_completion = {
+--             include_params = true,
+--         },
+--         jedi_signature_help = { enabled = true },
+--         -- jedi = {
+--         --     extra_paths = { '~/projects/work_odoo/odoo14', '~/projects/work_odoo/odoo14' },
+--         --     -- environment = {"odoo"},
+--         -- },
+--         pyflakes = { enabled = true },
+--         -- pylint = {args = {'--ignore=E501,E231', '-'}, enabled=true, debounce=200},
+--         pylsp_mypy = { enabled = false },
+--         pycodestyle = {
+--             enabled = true,
+--             ignore = { 'E501', 'E231' },
+--             maxLineLength = 120 },
+--         yapf = { enabled = true }
+--     }
+-- }
+
+require 'lspconfig'.pylsp.setup {
+    on_attach = on_attach,
+    settings = {
+        pylsp = {
+            plugins = {
+                -- jedi_completion = {fuzzy = true},
+                -- jedi_completion = {eager=true},
+                jedi_completion = {
+                    include_params = true,
+                },
+                jedi_signature_help = { enabled = true },
+                -- jedi = {
+                --     extra_paths = { '~/projects/work_odoo/odoo14', '~/projects/work_odoo/odoo14' },
+                --     -- environment = {"odoo"},
+                -- },
+                pyflakes = { enabled = true },
+                -- pylint = {args = {'--ignore=E501,E231', '-'}, enabled=true, debounce=200},
+                pylsp_mypy = { enabled = false },
+                pycodestyle = {
+                    enabled = true,
+                    ignore = { 'E501', 'E231', 'W293', 'E266' },
+                    maxLineLength = 120 },
+                yapf = { enabled = true }
+            }
+        }
+    }
 }
 
 require('clangd_extensions').setup {
@@ -313,13 +387,13 @@ end
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
     underline = {
-        severity = vim.diagnostic.severity.WARN,
+        severity = vim.diagnostic.severity.ERROR,
     },
     virtual_text = {
         severity = vim.diagnostic.severity.ERROR,
         prefix = '', -- ■ 
         suffix = '',
-        format = function(diagnostic)
+        format = function (diagnostic)
             return '● ' .. diagnostic.message .. ' '
         end,
     },

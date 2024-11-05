@@ -28,6 +28,16 @@ require('lazy').setup({
         },
     },
 
+    {
+        'stevearc/aerial.nvim',
+        opts = {},
+        -- Optional dependencies
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter',
+            'nvim-tree/nvim-web-devicons',
+        },
+    },
+
     -- {
     --     'jay-babu/mason-null-ls.nvim',
     --     event = { 'BufReadPre', 'BufNewFile' },
@@ -80,6 +90,22 @@ require('lazy').setup({
         'mrcjkb/rustaceanvim',
         version = '^4', -- Recommended
         ft = { 'rust' },
+    },
+
+    -- debugger
+    {
+        'mfussenegger/nvim-dap-python',
+        ft = 'python',
+        dependencies = {
+            'mfussenegger/nvim-dap',
+            'rcarriga/nvim-dap-ui',
+            'nvim-neotest/nvim-nio',
+        },
+        -- config = function(_, opts)
+        --     local path = '~/.local/share/nvim/mason/packages/debugpy/venv/bin/python'
+        --     require('dap-python').setup(path)
+        --     -- require('core.utils').load_mappings 'dap_python'
+        -- end,
     },
 
     {
@@ -419,9 +445,9 @@ require('lazy').setup({
         },
     },
 
-    {
-        'gbprod/nord.nvim',
-    },
+    -- {
+    --     'gbprod/nord.nvim',
+    -- },
 
     {
         -- Theme inspired by Atom
@@ -551,6 +577,16 @@ require('lazy').setup({
     },
 
     {
+        'ibhagwan/fzf-lua',
+        -- optional for icon support
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        config = function()
+            -- calling `setup` is optional for customization
+            require('fzf-lua').setup {}
+        end,
+    },
+
+    {
         'utilyre/barbecue.nvim',
         name = 'barbecue',
         version = '*',
@@ -583,6 +619,7 @@ require('lazy').setup({
 require 'plugins/config/telescope'
 require 'plugins/config/treesitter'
 require 'plugins/config/lsp'
+require 'plugins/config/dap'
 require 'plugins/config/cmp'
 require 'plugins/config/lualine'
 require 'plugins/config/nvim-tree'

@@ -135,7 +135,7 @@ show_always = false
 
 [directory]
 read_only = " "
-read_only_style = "palette3" 
+read_only_style = "palette3"
 # format = '[\[](palette0)[$path](palette6 bold)[$read_only]($read_only_style)[\]](palette1) '
 format = '[$path](palette6 bold)[$read_only]($read_only_style) '
 truncation_length = 100
@@ -147,7 +147,7 @@ format = "[$symbol$branch(:$remote_branch)]($style)"
 truncation_length = 30
 
 [git_status]
-disabled = false
+disabled = true
 ahead = "[⇡${count}](palette1)"
 diverged = "[⇕⇡${ahead_count}⇣${behind_count}](palette1)"
 behind = "[⇣${count}](palette1)"
@@ -161,4 +161,7 @@ format = '([[\[](palette1)$ahead$behind$staged$modified$deleted$untracked$ahead_
 disabled = true
 
 [conda]
-symbol = " "
+style = "palette2"
+symbol = "  "
+disabled = false
+format = '[$symbol$environment]($style)'

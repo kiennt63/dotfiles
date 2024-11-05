@@ -1,1 +1,2 @@
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
+source ~/powerlevel10k/powerlevel10k.zsh-theme
