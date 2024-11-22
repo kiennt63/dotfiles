@@ -25,7 +25,7 @@ alias grep="grep --color=always"
 alias ts="tmux new -s"
 alias ta="tmux attach -t"
 alias tl="tmux ls"
-alias tn='tmux new -s $(pwd | sed "s/.*\/\.\?//g")'
+alias tn='tmux new -s $(pwd | sed "s/.*\///g")'
 alias t="sesh connect"
 
 # file management
@@ -62,4 +62,6 @@ alias ssh-xavier="ssh nvidia@10.111.194.199"
 alias quanta="export ROS_IP=192.168.0.10; export ROS_MASTER_URI=http://192.168.0.10:11311"
 alias ssh-quanta="ssh nvidia@192.168.0.10"
 
-alias mamba="micromamba"
+# conda env
+alias ca="conda activate"
+alias cde="conda deactivate"
