@@ -20,7 +20,7 @@ g.gruvbox_material_better_performance = 1
 
 g.everforest_transparent_background = 1
 
-o.scrolloff = 10
+o.scrolloff = 20
 o.sessionoptions = 'buffers,curdir,tabpages,winsize'
 -- o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal"
 o.cursorline = true
@@ -44,6 +44,7 @@ o.autowriteall = true
 -- o.breakindent = true
 o.noswapfile = true
 o.pumheight = 15
+o.splitright = true
 
 vim.opt.fillchars = { eob = " "}
 

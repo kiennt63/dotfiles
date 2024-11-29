@@ -78,6 +78,11 @@ end
 
 nvim_tree.setup {
     on_attach = on_attach,
+    actions = {
+        open_file = {
+            resize_window = false,
+        },
+    },
     update_focused_file = {
         enable = true,
         update_cwd = false,
@@ -144,9 +149,9 @@ vim.g.maplocalleader = ' '
 vim.keymap.set('n', '<leader>e', ':NvimTreeOpen<cr>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>b', ':NvimTreeToggle<cr>', { noremap = true, silent = true })
 
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "NvimTree_1",
-  callback = function()
-    vim.opt_local.cursorline = false
-  end
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'NvimTree_1',
+    callback = function ()
+        vim.opt_local.cursorline = false
+    end
 })

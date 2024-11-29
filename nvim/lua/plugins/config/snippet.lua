@@ -1,42 +1,99 @@
-local ls = require("luasnip")
+local ls = require('luasnip')
 -- some shorthands...
-local snip = ls.snippet
-local node = ls.snippet_node
-local text = ls.text_node
-local insert = ls.insert_node
-local func = ls.function_node
-local choice = ls.choice_node
-local dynamicn = ls.dynamic_node
-local rep = require("luasnip.extras").rep
+local s = ls.snippet
+local t = ls.text_node
+local i = ls.insert_node
+local f = ls.function_node
+local rep = require('luasnip.extras').rep
+local fmt = require('luasnip.extras.fmt').fmt
 
-local date = function() return { os.date('%Y-%m-%d') } end
+local function current_date()
+    return os.date('%d-%b-%Y') -- Formats date as "08-Nov-2024"
+end
+
+local function relative_filepath()
+    local filepath = vim.fn.expand('%:p') -- Get absolute path
+    local cwd = vim.fn.getcwd()           -- Get current working directory
+
+    -- If filepath starts with cwd, make it relative
+    if filepath:sub(1, #cwd) == cwd then
+        return filepath:sub(#cwd + 2) -- Remove cwd and leading slash
+    else
+        return filepath               -- Return absolute path if it can't be made relative
+    end
+end
 
 ls.add_snippets(nil, {
     all = {
-        snip({
-            trig = "guard",
-            namr = "C++ Header Guard",
-            dscr = "C++ header guard for VinAI repo",
+        s({
+            trig = 'head',
+            namr = 'omnivision copyright',
+            dscr = 'omnivision copyright',
         }, {
-            text({  "/*",
-                    " * Copyright (c) 2020 - 2021, VinAI. All rights reserved. All information",
-                    " * information contained herein is proprietary and confidential to VinAI.",
-                    " * Any use, reproduction, or disclosure without the written permission",
-                    " * of VinAI is prohibited.",
-                    " */",
-                    "",
-                "#ifndef " }), insert(1, "GUARD_H"), text({ "",
-                "#define " }), rep(1), text({ "",
-                "",
-                "namespace "}), insert(2, "namespace"), text({ "{",
-                "",
-                ""}),
-                insert(0),
-                text({"",
-                "",
-                "} // "}), rep(2), text({ "",
-                "",
-                "#endif // " }), rep(1), text({ "" })
+            t({ '# ****************************************************************************',
+                '# *',
+                '# * Copyright (c) 2018 OmniVision Technologies, Inc.',
+                '# * The material in this file is subject to copyright. It may not',
+                '# * be used, copied or transferred by any means without the prior written',
+                '# * approval of OmniVision Technologies, Inc.',
+                '# *',
+                '# * OMNIVISION TECHNOLOGIES, INC. DISCLAIMS ALL WARRANTIES WITH REGARD TO',
+                '# * THIS SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND',
+                '# * FITNESS, IN NO EVENT SHALL OMNIVISION TECHNOLOGIES, INC. BE LIABLE FOR',
+                '# * ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER',
+                '# * RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF',
+                '# * CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN',
+                '# * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.',
+                '# *',
+                '# ****************************************************************************',
+                '# @files      ' }), f(relative_filepath, {}), t({ '',
+            '# @brief      ' }), i(1, 'description'), t({ '',
+            '# @version    ' }), i(2, '0.1'), t({ '',
+            '# @date       ' }), f(current_date, {}), t({ '',
+            '',
+            '' }), i(3)
         }),
+        s({
+            trig = 'guard',
+            namr = 'C++ Header Guard',
+            dscr = 'C++ header guard for VinAI repo',
+        }, {
+            t({ '/*',
+                ' * Copyright (c) 2020 - 2021, VinAI. All rights reserved. All information',
+                ' * information contained herein is proprietary and confidential to VinAI.',
+                ' * Any use, reproduction, or disclosure without the written permission',
+                ' * of VinAI is prohibited.',
+                ' */',
+                '',
+                '#ifndef ' }), i(1, 'GUARD_H'), t({ '',
+            '#define ' }), rep(1), t({ '',
+            '',
+            'namespace ' }), i(2, 'namespace'), t({ '{',
+            '',
+            '' }),
+            i(0),
+            t({ '',
+                '',
+                '} // ' }), rep(2), t({ '',
+            '',
+            '#endif // ' }), rep(1), t({ '' })
+        }),
+        s(
+            'pycls',
+            fmt(
+                    [[
+                    class {}:
+                        def __init__(self, {}):
+                            {}
+                    ]],
+                {
+                    i(1, 'ClassName'),        -- Class name
+                    i(2, 'arg1, arg2, arg3'), -- Constructor arguments
+                    i(3, fmt('self.{} = {}\n        self.{} = {}\n        self.{} = {}',
+                        { i(4, 'arg1'), i(4), i(5, 'arg2'), i(5), i(6, 'arg3'), i(6) })
+                    ),
+                }
+            )
+        ),
     },
 })

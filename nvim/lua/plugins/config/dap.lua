@@ -49,20 +49,20 @@ vim.api.nvim_create_autocmd('BufEnter', {
   callback = function()
     if dap.session() ~= nil then
       -- DAP session is active: set buffer-local keymap for Ctrl+n
-      vim.keymap.set('n', '<C-n>', function()
+      vim.keymap.set('n', '<A-S-n>', function()
         dap.step_over()
       end, { silent = true, buffer = true })
-      vim.keymap.set('n', '<C-i>', function()
+      vim.keymap.set('n', '<A-S-i>', function()
         dap.step_into()
       end, { silent = true, buffer = true })
-      vim.keymap.set('n', '<C-o>', function()
+      vim.keymap.set('n', '<A-S-o>', function()
         dap.step_out()
       end, { silent = true, buffer = true })
     else
       -- No DAP session: unmap <C-n> if it exists
-      pcall(function() vim.api.nvim_buf_del_keymap(0, 'n', '<C-n>') end)
-      pcall(function() vim.api.nvim_buf_del_keymap(0, 'n', '<C-i>') end)
-      pcall(function() vim.api.nvim_buf_del_keymap(0, 'n', '<C-o>') end)
+      pcall(function() vim.api.nvim_buf_del_keymap(0, 'n', '<A-S-n>') end)
+      pcall(function() vim.api.nvim_buf_del_keymap(0, 'n', '<A-S-i>') end)
+      pcall(function() vim.api.nvim_buf_del_keymap(0, 'n', '<A-S-o>') end)
     end
   end,
 })

@@ -155,15 +155,48 @@ keymap('n', '<leader>t', ':TroubleToggle<cr>', opts)
 
 -- Diagnostic
 keymap('n', '<leader>ld', '<cmd>lua vim.diagnostic.open_float(nil, {focus=false})<cr>', { desc = '[L]SP [D]iagnostic' })
-keymap('n', '[d', require('delimited').goto_prev, opts)
-keymap('n', ']d', require('delimited').goto_next, opts)
-keymap('n', '[D', function()
-    require('delimited').goto_prev { severity = vim.diagnostic.severity.ERROR }
+
+keymap('n', '[d', function ()
+    vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARN, wrap = true })
 end, opts)
-keymap('n', ']D', function()
-    require('delimited').goto_next { severity = vim.diagnostic.severity.ERROR }
+keymap('n', ']d', function ()
+    vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.WARN, wrap = true })
+end, opts)
+keymap('n', '[D', function ()
+    vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR, wrap = true })
+end, opts)
+keymap('n', ']D', function ()
+    vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR, wrap = true })
 end, opts)
 
+-- keymap('n', '[d', require('delimited').goto_prev, opts)
+-- keymap('n', ']d', require('delimited').goto_next, opts)
+-- keymap('n', '[D', function ()
+--     require('delimited').goto_prev { severity = vim.diagnostic.severity.ERROR }
+-- end, opts)
+-- keymap('n', ']D', function ()
+--     require('delimited').goto_next { severity = vim.diagnostic.severity.ERROR }
+-- end, opts)
+--
+-- local M = {}
+--
+-- M.pos_equal = function (p1, p2)
+--   local r1, c1 = unpack(p1)
+--   local r2, c2 = unpack(p2)
+--   return r1 == r2 and c1 == c2
+-- end
+--
+-- M.goto_error_then_hint = function ()
+--   local pos = vim.api.nvim_win_get_cursor(0)
+--   vim.diagnostic.goto_next( {severity=vim.diagnostic.severity.ERROR, wrap = true} )
+--   local pos2 = vim.api.nvim_win_get_cursor(0)
+--   if ( M.pos_equal(pos, pos2)) then
+--     vim.diagnostic.goto_next( {wrap = true} )
+--   end
+-- end
+--
+-- return M
+--
 -- =======================================================
 -- Terminal --
 -- Better terminal navigation
@@ -182,23 +215,34 @@ local live_grep_args_shortcuts = require 'telescope-live-grep-args.shortcuts'
 --     "<cmd>lua require('fzf-lua').files()<cr>",
 --     opts)
 -- keymap('n', '<leader>ff', "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
-keymap('n', '<leader>o', "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
+keymap('n', '<leader>o',
+    "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>",
+    opts)
 -- keymap('n', '<leader>fg', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", opts)
 keymap('n', '<leader>fg',
     ":lua require('telescope').extensions.live_grep_args.live_grep_args({ layout_stategy = 'vertical' })<CR>",
     opts)
-keymap('n', '<leader>fg',
-    ":lua require('fzf-lua').live_grep()<CR>",
-    opts)
+-- keymap('n', '<leader>fg',
+--     ":lua require('fzf-lua').live_grep()<CR>",
+--     opts)
 keymap('n', '<leader>fs', ':Telescope git_status<cr>', opts)
-keymap('n', '<leader>fw', '<cmd>lua require("fzf-lua").live_grep({ search = vim.fn.expand("<cword>") })<cr>', opts)
+-- keymap('n', '<leader>fw', '<cmd>lua require("fzf-lua").live_grep({ search = vim.fn.expand("<cword>") })<cr>', opts)
+-- keymap('n', '<leader>fw', live_grep_args_shortcuts.grep_word_under_cursor, { quote = false, postfix = '' })
+keymap('n', '<leader>fw', function ()
+    live_grep_args_shortcuts.grep_word_under_cursor({
+        quote = false,
+        postfix = ''
+    })
+end, opts)
 keymap('v', '<leader>fw', live_grep_args_shortcuts.grep_visual_selection, opts)
 
 keymap('n', '<leader>fr', require('telescope.builtin').resume, { desc = '[F]ind [R]resume' })
 
 -- Git workstree
-keymap('n', '<leader>wt', "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>", { desc = '[W]ork[T]ree' })
-keymap('n', '<leader>wc', "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>", { desc = '[W]orktree [C]reate' })
+keymap('n', '<leader>wt', "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>",
+    { desc = '[W]ork[T]ree' })
+keymap('n', '<leader>wc', "<cmd>lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>",
+    { desc = '[W]orktree [C]reate' })
 
 -- File manager
 keymap('n', '<leader>fq', ':RnvimrToggle<cr>', opts)
