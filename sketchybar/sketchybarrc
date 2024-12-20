@@ -5,26 +5,26 @@ source $HOME/dotfiles/sketchybar/plugins/palette.sh
 PLUGIN_DIR="$HOME/dotfiles/sketchybar/plugins"
 ITEM_DIR="$HOME/dotfiles/sketchybar/items"
 
-sketchybar --bar height=42        \
-                 blur_radius=30   \
-                 position=top     \
-                 padding_left=10  \
-                 padding_right=10 \
-                 color=0x00ffffff
+sketchybar --bar height=42 \
+    blur_radius=30 \
+    position=top \
+    padding_left=10 \
+    padding_right=10 \
+    color=0x00ffffff
 
-sketchybar --default icon.font="SF Pro:Semibold:15.0"   \
-                     icon.color=${PALETTE0}             \
-                     label.font="SF Pro:Semibold:15.0"  \
-                     label.color=${PALETTE0}            \
-                     background.color=${PALETTE1}       \
-                     background.corner_radius=5         \
-                     background.height=24               \
-                     padding_left=5                     \
-                     padding_right=5                    \
-                     label.padding_left=4               \
-                     label.padding_right=10             \
-                     icon.padding_left=10               \
-                     icon.padding_right=4
+sketchybar --default icon.font="Maple Mono:Semibold:15.0" \
+    icon.color=${PALETTE0} \
+    label.font="Maple Mono:Semibold:15.0" \
+    label.color=${PALETTE0} \
+    background.color=${PALETTE1} \
+    background.corner_radius=10 \
+    background.height=24 \
+    padding_left=5 \
+    padding_right=5 \
+    label.padding_left=4 \
+    label.padding_right=10 \
+    icon.padding_left=11 \
+    icon.padding_right=10
 
 # Left items
 source ${ITEM_DIR}/spaces.sh

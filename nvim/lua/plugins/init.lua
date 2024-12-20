@@ -28,6 +28,16 @@ require('lazy').setup({
         },
     },
 
+    {
+        'stevearc/aerial.nvim',
+        opts = {},
+        -- Optional dependencies
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter',
+            'nvim-tree/nvim-web-devicons',
+        },
+    },
+
     -- {
     --     'jay-babu/mason-null-ls.nvim',
     --     event = { 'BufReadPre', 'BufNewFile' },
@@ -40,6 +50,50 @@ require('lazy').setup({
     --     end,
     -- },
 
+    -- QoL plugins
+    -- {
+    --     'folke/snacks.nvim',
+    --     priority = 1000,
+    --     lazy = false,
+    --     ---@type snacks.Config
+    --     opts = {
+    --         bigfile = { enabled = true },
+    --         zen = { enabled = true },
+    --         -- dashboard = { enabled = true },
+    --         -- indent = { enabled = true },
+    --         -- input = { enabled = true },
+    --         -- notifier = {
+    --         --     enabled = true,
+    --         --     timeout = 3000,
+    --         -- },
+    --         quickfile = { enabled = true },
+    --         -- scroll = { enabled = true },
+    --         -- statuscolumn = { enabled = true },
+    --         -- words = { enabled = true },
+    --         -- styles = {
+    --         -- notification = {
+    --         -- wo = { wrap = true } -- Wrap notifications
+    --         -- },
+    --         -- },
+    --     },
+    --     keys = {
+    --         {
+    --             '<leader>z',
+    --             function()
+    --                 Snacks.zen()
+    --             end,
+    --             desc = 'Toggle Zen Mode',
+    --         },
+    --         {
+    --             '<leader>Z',
+    --             function()
+    --                 Snacks.zen.zoom()
+    --             end,
+    --             desc = 'Toggle Zoom',
+    --         },
+    --     },
+    -- },
+    -- idk
     {
         'nvimtools/none-ls.nvim',
     },
@@ -80,6 +134,22 @@ require('lazy').setup({
         'mrcjkb/rustaceanvim',
         version = '^4', -- Recommended
         ft = { 'rust' },
+    },
+
+    -- debugger
+    {
+        'mfussenegger/nvim-dap-python',
+        ft = 'python',
+        dependencies = {
+            'mfussenegger/nvim-dap',
+            'rcarriga/nvim-dap-ui',
+            'nvim-neotest/nvim-nio',
+        },
+        -- config = function(_, opts)
+        --     local path = '~/.local/share/nvim/mason/packages/debugpy/venv/bin/python'
+        --     require('dap-python').setup(path)
+        --     -- require('core.utils').load_mappings 'dap_python'
+        -- end,
     },
 
     {
@@ -204,6 +274,13 @@ require('lazy').setup({
         end,
     },
 
+    -- keep some line after eof
+    {
+        'Aasim-A/scrollEOF.nvim',
+        event = { 'CursorMoved', 'WinScrolled' },
+        opts = {},
+    },
+
     -- {
     --     'j-hui/fidget.nvim',
     --     opts = {
@@ -263,12 +340,20 @@ require('lazy').setup({
     {
         'shortcuts/no-neck-pain.nvim',
         opts = {
-            width = 120,
+            width = 100,
         },
     },
 
-    -- whichkey
-    { 'folke/which-key.nvim', opts = {} },
+    -- -- whichkey
+    -- {
+    --     'folke/which-key.nvim',
+    --     opts = {
+    --
+    --         delay = function (ctx)
+    --             return ctx.plugin and 0 or 1000
+    --         end,
+    --     },
+    -- },
 
     {
         'nvim-tree/nvim-web-devicons',
@@ -330,9 +415,9 @@ require('lazy').setup({
     --     event = "BufReadPre",                          -- this will only start session saving when an actual file was opened
     --     opts = {
     --         dir = vim.fn.stdpath('data') .. '/session/' -- add any custom options here
-    {
-        'ThePrimeagen/git-worktree.nvim',
-    },
+    -- {
+    --     'ThePrimeagen/git-worktree.nvim',
+    -- },
 
     {
         -- Adds git related signs to the gutter, as well as utilities for managing changes
@@ -380,31 +465,55 @@ require('lazy').setup({
         name = 'catppuccin',
         opts = {
             no_italic = true,
-            flavour = 'mocha', -- latte, frappe, macchiato, mocha
             background = { -- :h background
                 light = 'latte',
                 dark = 'mocha',
             },
             transparent_background = true, -- disables setting the background color.
             -- show_end_of_buffer = false,     -- shows the '~' characters after the end of buffers
-            -- term_colors = false,            -- sets terminal colors (e.g. `g:terminal_color_0`)
             -- dim_inactive = {
+            -- term_colors = false,            -- sets terminal colors (e.g. `g:terminal_color_0`)
             --     enabled = false,            -- dims the background color of inactive window
             --     shade = 'dark',
             --     percentage = 0.15,          -- percentage of the shade to apply to the inactive window
             -- },
-            -- no_bold = false,                -- Force no bold
-            -- no_underline = false,           -- Force no underline
+            no_bold = false, -- Force no bold
+            no_underline = true, -- Force no underline
         },
     },
 
     {
         -- Theme inspired by Atom
-        'shaunsingh/nord.nvim',
+        'kiennt63/nightfox.nvim',
+        --     config = function ()
+        --         vim.cmd.colorscheme 'nord'
+        --     end,
+        opts = {
+            options = {
+                transparent = true,
+            },
+        },
+    },
+
+    -- {
+    --     'gbprod/nord.nvim',
+    -- },
+
+    {
+        -- Theme inspired by Atom
+        'sainnhe/everforest',
         --     config = function ()
         --         vim.cmd.colorscheme 'nord'
         --     end,
     },
+
+    -- {
+    --     -- Theme inspired by Atom
+    --     'shaunsingh/nord.nvim',
+    --     --     config = function ()
+    --     --         vim.cmd.colorscheme 'nord'
+    --     --     end,
+    -- },
 
     {
         'kiennt63/gruvbox-material',
@@ -419,29 +528,29 @@ require('lazy').setup({
     },
 
     -- Indentation
-    {
-        'lukas-reineke/indent-blankline.nvim',
-        main = 'ibl',
-        opts = {
-            indent = {
-                char = '│',
-            },
-            scope = {
-                enabled = false,
-                show_start = false,
-                show_end = false,
-            },
-            -- show_trailing_blankline_indent = false,
-        },
-    },
+    -- {
+    --     'lukas-reineke/indent-blankline.nvim',
+    --     main = 'ibl',
+    --     opts = {
+    --         indent = {
+    --             char = '│',
+    --         },
+    --         scope = {
+    --             enabled = false,
+    --             show_start = false,
+    --             show_end = false,
+    --         },
+    --         -- show_trailing_blankline_indent = false,
+    --     },
+    -- },
 
     -- show color
-    {
-        'norcalli/nvim-colorizer.lua',
-        config = function()
-            require('colorizer').setup()
-        end,
-    },
+    -- {
+    --     'norcalli/nvim-colorizer.lua',
+    --     config = function ()
+    --         require('colorizer').setup()
+    --     end,
+    -- },
 
     -- Automatically add pair for brackets
     {
@@ -468,9 +577,9 @@ require('lazy').setup({
         },
     },
 
-    {
-        'mizlan/delimited.nvim',
-    },
+    -- {
+    --     'mizlan/delimited.nvim',
+    -- },
 
     {
         'folke/todo-comments.nvim',
@@ -484,16 +593,25 @@ require('lazy').setup({
 
     {
         'ThePrimeagen/harpoon',
-        dependencies = { 'nvim-lua/plenary.nvim', 'moll/vim-bbye' },
-        opts = {
-            menu = {
-                width = math.floor(vim.api.nvim_win_get_width(0) / 1.5),
-            },
-        },
+        commit = 'e76cb03',
+        dependencies = { 'nvim-lua/plenary.nvim' },
     },
 
     -- "gc" to comment visual regions/lines
     { 'numToStr/Comment.nvim', opts = {} },
+
+    -- doc generator
+    {
+        'kkoomen/vim-doge',
+        build = function()
+            vim.fn['doge#install']() -- Installs the required binaries for vim-doge
+        end,
+        config = function()
+            -- Configure Doge for Python docstrings
+            vim.g.doge_doc_standard_python = 'doxygen'
+        end,
+        lazy = false, -- Ensure it's loaded for all file types (set to true if you only want it for specific types)
+    },
 
     -- Fuzzy Finder (files, lsp, etc)
     {
@@ -516,6 +634,16 @@ require('lazy').setup({
             },
         },
     },
+
+    -- {
+    --     'ibhagwan/fzf-lua',
+    --     -- optional for icon support
+    --     dependencies = { 'nvim-tree/nvim-web-devicons' },
+    --     config = function ()
+    --         -- calling `setup` is optional for customization
+    --         require('fzf-lua').setup {}
+    --     end,
+    -- },
 
     {
         'utilyre/barbecue.nvim',
@@ -550,6 +678,7 @@ require('lazy').setup({
 require 'plugins/config/telescope'
 require 'plugins/config/treesitter'
 require 'plugins/config/lsp'
+require 'plugins/config/dap'
 require 'plugins/config/cmp'
 require 'plugins/config/lualine'
 require 'plugins/config/nvim-tree'
@@ -557,6 +686,7 @@ require 'plugins/config/snippet'
 require 'plugins/config/scheme'
 require 'plugins/config/bbq'
 require 'plugins/config/nonels'
+require 'plugins/config/harpoon'
 -- require('plugins/config/colorizer')
 -- require('plugins/config/neotree')
 -- require('plugins/config/bufferline')

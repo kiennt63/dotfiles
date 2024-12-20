@@ -15,6 +15,7 @@ local function filename_first(_, path)
     return string.format('%s\t\t%s', tail, parent)
 end
 
+local lga_actions = require('telescope-live-grep-args.actions')
 
 require('telescope').setup {
     pickers = {
@@ -35,11 +36,20 @@ require('telescope').setup {
         prompt_prefix = ' ',
         selection_caret = ' ',
         mappings = {
-            i = {
+            i = { -- Insert mode mappings
                 ['<c-u>'] = false,
                 ['<c-d>'] = false,
-            },
-        },
+                ['<C-i>'] = function (prompt_bufnr)
+                    local opts = require('telescope.actions.state').get_current_picker(prompt_bufnr).finder
+                    if opts.ignore == true then
+                        opts.ignore = false
+                        print('Including ignored files')
+                    else
+                        opts.ignore = true
+                        print('Excluding ignored files')
+                    end
+                end,
+            } },
         -- layout_strategy = 'vertical',
         layout_config = {
             width = 0.9,
@@ -57,9 +67,19 @@ require('telescope').setup {
     },
     extensions = {
         live_grep_args = {
+            auto_quoting = true, -- enable/disable auto-quoting
             vimgrep_arguments = { 'rg', '--hidden', '--color=never', '--no-heading', '--with-filename', '--line-number',
                 '--column', '--smart-case', },
-            path_display = filename_first
+            path_display = filename_first,
+            mappings = { -- extend mappings
+                i = {
+                    ['<C-k>'] = lga_actions.quote_prompt(),
+                    ['<C-i>'] = lga_actions.quote_prompt({ postfix = ' --iglob ' }),
+                    ['<C-e>'] = lga_actions.quote_prompt({ postfix = ' -g !doc -g !quartz/kernel -g !*.md' }),
+                    -- freeze the current list and start a fuzzy search in the frozen list
+                    -- ['<C-space>'] = actions.to_fuzzy_refine,
+                },
+            },
             -- auto_quoting = true, -- enable/disable auto-quoting
             -- define mappings, e.g.
             -- theme = "dropdown", -- use dropdown theme
@@ -67,6 +87,7 @@ require('telescope').setup {
             -- layout_strategy = 'vertical',
             -- layout_config = { mirror=true }, -- mirror preview pane
         }
+
     }
 }
 
