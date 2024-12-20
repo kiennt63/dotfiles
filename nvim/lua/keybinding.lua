@@ -3,6 +3,8 @@ local opts = { noremap = true, silent = true }
 -- Shorten function name
 local keymap = vim.keymap.set
 
+local harpoon = require('harpoon')
+
 --Remap space as leader key
 keymap('', '<Space>', '<Nop>', opts)
 vim.g.mapleader = ' '
@@ -70,33 +72,37 @@ keymap('n', '<esc><esc>', ':noh<cr>', opts)
 keymap('n', '<S-h>', ':bprevious<CR>', opts)
 keymap('n', '<S-l>', ':bnext<CR>', opts)
 keymap('n', '<leader>bd', ':Bdelete<CR>', opts)
--- keymap('n', '<A-1>', "<cmd>lua require('bufferline').go_to_buffer(1, true)<cr>", opts)
--- keymap('n', '<A-2>', "<cmd>lua require('bufferline').go_to_buffer(2, true)<cr>", opts)
--- keymap('n', '<A-3>', "<cmd>lua require('bufferline').go_to_buffer(3, true)<cr>", opts)
--- keymap('n', '<A-4>', "<cmd>lua require('bufferline').go_to_buffer(4, true)<cr>", opts)
--- keymap('n', '<A-5>', "<cmd>lua require('bufferline').go_to_buffer(5, true)<cr>", opts)
--- keymap('n', '<A-6>', "<cmd>lua require('bufferline').go_to_buffer(6, true)<cr>", opts)
--- keymap('n', '<A-7>', "<cmd>lua require('bufferline').go_to_buffer(7, true)<cr>", opts)
--- keymap('n', '<A-8>', "<cmd>lua require('bufferline').go_to_buffer(8, true)<cr>", opts)
--- keymap('n', '<A-9>', "<cmd>lua require('bufferline').go_to_buffer(9, true)<cr>", opts)
--- keymap("n", "<A-n>", "<cmd>BufferLineCycleNext<CR>", opts)
--- keymap("n", "<A-p>", "<cmd>BufferLineCyclePrev<CR>", opts)
--- keymap('n', '<leader>bp', '<cmd>BufferLineTogglePin<CR>', opts)
--- keymap('n', '<leader>bl', '<cmd>b#<CR>', opts)
-
 -- Navigate harpoon
-keymap('n', '<A-1>', '<cmd>lua require("harpoon.ui").nav_file(1)<cr>', opts)
-keymap('n', '<A-2>', '<cmd>lua require("harpoon.ui").nav_file(2)<cr>', opts)
-keymap('n', '<A-3>', '<cmd>lua require("harpoon.ui").nav_file(3)<cr>', opts)
-keymap('n', '<A-4>', '<cmd>lua require("harpoon.ui").nav_file(4)<cr>', opts)
-keymap('n', '<A-5>', '<cmd>lua require("harpoon.ui").nav_file(5)<cr>', opts)
-keymap('n', '<A-6>', '<cmd>lua require("harpoon.ui").nav_file(6)<cr>', opts)
-keymap('n', '<A-7>', '<cmd>lua require("harpoon.ui").nav_file(7)<cr>', opts)
-keymap('n', '<A-8>', '<cmd>lua require("harpoon.ui").nav_file(8)<cr>', opts)
-keymap('n', '<A-9>', '<cmd>lua require("harpoon.ui").nav_file(9)<cr>', opts)
+-- keymap('n', '<A-1>', '<cmd>lua require("harpoon.ui").nav_file(1)<cr>', opts)
+-- keymap('n', '<A-2>', '<cmd>lua require("harpoon.ui").nav_file(2)<cr>', opts)
+-- keymap('n', '<A-3>', '<cmd>lua require("harpoon.ui").nav_file(3)<cr>', opts)
+-- keymap('n', '<A-4>', '<cmd>lua require("harpoon.ui").nav_file(4)<cr>', opts)
+-- keymap('n', '<A-5>', '<cmd>lua require("harpoon.ui").nav_file(5)<cr>', opts)
+-- keymap('n', '<A-6>', '<cmd>lua require("harpoon.ui").nav_file(6)<cr>', opts)
+-- keymap('n', '<A-7>', '<cmd>lua require("harpoon.ui").nav_file(7)<cr>', opts)
+-- keymap('n', '<A-8>', '<cmd>lua require("harpoon.ui").nav_file(8)<cr>', opts)
+-- keymap('n', '<A-9>', '<cmd>lua require("harpoon.ui").nav_file(9)<cr>', opts)
+--
+-- keymap('n', '<leader>bp', '<cmd>lua require("harpoon.mark").add_file()<cr>', opts)
+-- keymap('n', '<leader>fh', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', opts)
 
-keymap('n', '<leader>bp', '<cmd>lua require("harpoon.mark").add_file()<cr>', opts)
-keymap('n', '<leader>fh', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', opts)
+-- -- Navigate harpoon
+keymap('n', '<A-1>', function () harpoon:list():select(1) end, opts)
+keymap('n', '<A-2>', function () harpoon:list():select(2) end, opts)
+keymap('n', '<A-3>', function () harpoon:list():select(3) end, opts)
+keymap('n', '<A-4>', function () harpoon:list():select(4) end, opts)
+keymap('n', '<A-5>', function () harpoon:list():select(5) end, opts)
+keymap('n', '<A-6>', function () harpoon:list():select(6) end, opts)
+keymap('n', '<A-7>', function () harpoon:list():select(7) end, opts)
+keymap('n', '<A-8>', function () harpoon:list():select(8) end, opts)
+keymap('n', '<A-9>', function () harpoon:list():select(9) end, opts)
+
+keymap('n', '<leader>bp', function () harpoon:list():add() end, opts)
+keymap('n', '<leader>fh', function () harpoon.ui:toggle_quick_menu(harpoon:list()) end, opts)
+
+keymap('n', '<C-S-P>', function () harpoon:list():prev() end, opts)
+keymap('n', '<C-S-N>', function () harpoon:list():next() end, opts)
+
 
 -- =======================================================
 -- Saving and stuff
@@ -251,10 +257,11 @@ keymap('n', '<leader>fq', ':RnvimrToggle<cr>', opts)
 keymap('v', '//', [[y/\V<c-r>=escape(@",'/\')<cr><cr>]], opts)
 
 -- Focus mode (centering window)
-keymap('n', '<leader>np', ':NoNeckPain<cr>', opts)
+keymap('n', '<leader>z', ':NoNeckPain<cr>', opts)
 
 -- Git sign
 keymap('n', '<leader>gs', ':Gitsigns preview_hunk<cr>', opts)
+keymap('n', '<leader>gd', ':Gitsigns reset_hunk<cr>', opts)
 keymap('n', '<leader>gb', ':Gitsigns toggle_current_line_blame<cr>', opts)
 keymap('n', '<leader>gb', ':Gitsigns toggle_current_line_blame<cr>', opts)
 keymap('n', '<leader>gn', ':Gitsigns next_hunk<cr>', opts)

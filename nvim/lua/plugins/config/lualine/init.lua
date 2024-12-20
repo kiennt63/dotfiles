@@ -1,4 +1,5 @@
 local separator_glyphs = require 'plugins/config/lualine/separator'
+local harpoon = require 'harpoon'
 
 -- require('lsp-progress').setup {
 --     client_format = function(client_name, spinner, series_messages)
@@ -84,8 +85,9 @@ require('lualine').setup {
                 },
             },
         },
+
         lualine_b = {
-            { 'branch', icon = { '󰊢' } },
+            { 'branch', icon = { '' } },
             {
                 'diff',
                 source = function()
@@ -114,14 +116,41 @@ require('lualine').setup {
                     return vim.fn.winwidth(0) > 70
                 end,
             },
+            -- { 'harpoon2' },
             -- require('lsp-progress').progress,
         },
         -- lualine_d = {require('auto-session-library').current_session_name},
         lualine_x = {
-            -- components.treesitter,
+            {
+                function()
+                    local current_file = vim.fn.expand '%:p'
+
+                    local result = {}
+                    for id, item in ipairs(harpoon:list().items) do
+                        local file_path = vim.fn.fnamemodify(item.value, ':p')
+                        local shortened = vim.fn.fnamemodify(file_path, ':t'):sub(1, 15) -- Shorten filename
+
+                        -- if file_path == current_file then
+                        --     table.insert(result, string.format('%%#lualine_c_diagnostics_hint_normal# [ %d - %s] %%*', id, shortened))
+                        -- else
+                        --     table.insert(result, string.format('%%#lualine_c_normal#  %d - %s %%*', id, shortened))
+                        --     -- table.insert(result, string.format('  %d - %s ', id, shortened))
+                        -- end
+                        if file_path == current_file then
+                            table.insert(result, string.format(' [ %d %s] ', id, shortened))
+                        else
+                            table.insert(result, string.format('   %d %s  ', id, shortened))
+                            -- table.insert(result, string.format('  %d - %s ', id, shortened))
+                        end
+                    end
+
+                    local combined_string = table.concat(result, '')
+                    return combined_string
+                end,
+            },
             {
                 function(msg)
-                    msg = msg or 'LS Inactive'
+                    msg = msg or 'lsp inactive'
                     local buf_clients = vim.lsp.get_active_clients()
                     if next(buf_clients) == nil then
                         -- TODO: clean up this if statement

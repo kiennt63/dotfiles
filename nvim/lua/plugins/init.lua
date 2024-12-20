@@ -50,6 +50,50 @@ require('lazy').setup({
     --     end,
     -- },
 
+    -- QoL plugins
+    -- {
+    --     'folke/snacks.nvim',
+    --     priority = 1000,
+    --     lazy = false,
+    --     ---@type snacks.Config
+    --     opts = {
+    --         bigfile = { enabled = true },
+    --         zen = { enabled = true },
+    --         -- dashboard = { enabled = true },
+    --         -- indent = { enabled = true },
+    --         -- input = { enabled = true },
+    --         -- notifier = {
+    --         --     enabled = true,
+    --         --     timeout = 3000,
+    --         -- },
+    --         quickfile = { enabled = true },
+    --         -- scroll = { enabled = true },
+    --         -- statuscolumn = { enabled = true },
+    --         -- words = { enabled = true },
+    --         -- styles = {
+    --         -- notification = {
+    --         -- wo = { wrap = true } -- Wrap notifications
+    --         -- },
+    --         -- },
+    --     },
+    --     keys = {
+    --         {
+    --             '<leader>z',
+    --             function()
+    --                 Snacks.zen()
+    --             end,
+    --             desc = 'Toggle Zen Mode',
+    --         },
+    --         {
+    --             '<leader>Z',
+    --             function()
+    --                 Snacks.zen.zoom()
+    --             end,
+    --             desc = 'Toggle Zoom',
+    --         },
+    --     },
+    -- },
+    -- idk
     {
         'nvimtools/none-ls.nvim',
     },
@@ -57,7 +101,7 @@ require('lazy').setup({
     {
         'p00f/clangd_extensions.nvim',
         lazy = true,
-        config = function () end,
+        config = function() end,
         opts = {
             inlay_hints = {
                 inline = false,
@@ -118,10 +162,10 @@ require('lazy').setup({
             'TmuxNavigatePrevious',
         },
         keys = {
-            { '<c-h>',  '<cmd><C-U>TmuxNavigateLeft<cr>' },
-            { '<c-j>',  '<cmd><C-U>TmuxNavigateDown<cr>' },
-            { '<c-k>',  '<cmd><C-U>TmuxNavigateUp<cr>' },
-            { '<c-l>',  '<cmd><C-U>TmuxNavigateRight<cr>' },
+            { '<c-h>', '<cmd><C-U>TmuxNavigateLeft<cr>' },
+            { '<c-j>', '<cmd><C-U>TmuxNavigateDown<cr>' },
+            { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>' },
+            { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
             { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
         },
     },
@@ -138,7 +182,7 @@ require('lazy').setup({
     {
         'echasnovski/mini.starter',
         version = '*',
-        config = function ()
+        config = function()
             local starter = require 'mini.starter'
             starter.setup {
                 silent = true,
@@ -223,11 +267,18 @@ require('lazy').setup({
         'kylechui/nvim-surround',
         version = '*', -- Use for stability; omit to use `main` branch for the latest features
         event = 'VeryLazy',
-        config = function ()
+        config = function()
             require('nvim-surround').setup {
                 -- Configuration here, or leave empty to use defaults
             }
         end,
+    },
+
+    -- keep some line after eof
+    {
+        'Aasim-A/scrollEOF.nvim',
+        event = { 'CursorMoved', 'WinScrolled' },
+        opts = {},
     },
 
     -- {
@@ -279,17 +330,17 @@ require('lazy').setup({
     -- },
 
     -- lsp progress bar
-    -- {
-    --     'linrongbin16/lsp-progress.nvim',
-    --     config = function ()
-    --         require('lsp-progress').setup {}
-    --     end,
-    -- },
+    {
+        'linrongbin16/lsp-progress.nvim',
+        config = function()
+            require('lsp-progress').setup {}
+        end,
+    },
 
     {
         'shortcuts/no-neck-pain.nvim',
         opts = {
-            width = 120,
+            width = 100,
         },
     },
 
@@ -381,26 +432,25 @@ require('lazy').setup({
                 changedelete = { text = '~' },
                 untracked = { text = '╏' },
             },
-            on_attach = function (bufnr)
-                vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk,
-                    { buffer = bufnr, desc = 'Preview git hunk' })
+            on_attach = function(bufnr)
+                vim.keymap.set('n', '<leader>hp', require('gitsigns').preview_hunk, { buffer = bufnr, desc = 'Preview git hunk' })
 
                 -- don't override the built-in and fugitive keymaps
                 local gs = package.loaded.gitsigns
-                vim.keymap.set({ 'n', 'v' }, ']c', function ()
+                vim.keymap.set({ 'n', 'v' }, ']c', function()
                     if vim.wo.diff then
                         return ']c'
                     end
-                    vim.schedule(function ()
+                    vim.schedule(function()
                         gs.next_hunk()
                     end)
                     return '<Ignore>'
                 end, { expr = true, buffer = bufnr, desc = 'Jump to next hunk' })
-                vim.keymap.set({ 'n', 'v' }, '[c', function ()
+                vim.keymap.set({ 'n', 'v' }, '[c', function()
                     if vim.wo.diff then
                         return '[c'
                     end
-                    vim.schedule(function ()
+                    vim.schedule(function()
                         gs.prev_hunk()
                     end)
                     return '<Ignore>'
@@ -415,20 +465,19 @@ require('lazy').setup({
         name = 'catppuccin',
         opts = {
             no_italic = true,
-            flavour = 'mocha', -- latte, frappe, macchiato, mocha
-            background = {     -- :h background
+            background = { -- :h background
                 light = 'latte',
                 dark = 'mocha',
             },
             transparent_background = true, -- disables setting the background color.
             -- show_end_of_buffer = false,     -- shows the '~' characters after the end of buffers
-            -- term_colors = false,            -- sets terminal colors (e.g. `g:terminal_color_0`)
             -- dim_inactive = {
+            -- term_colors = false,            -- sets terminal colors (e.g. `g:terminal_color_0`)
             --     enabled = false,            -- dims the background color of inactive window
             --     shade = 'dark',
             --     percentage = 0.15,          -- percentage of the shade to apply to the inactive window
             -- },
-            no_bold = false,     -- Force no bold
+            no_bold = false, -- Force no bold
             no_underline = true, -- Force no underline
         },
     },
@@ -544,16 +593,25 @@ require('lazy').setup({
 
     {
         'ThePrimeagen/harpoon',
-        dependencies = { 'nvim-lua/plenary.nvim', 'moll/vim-bbye' },
-        opts = {
-            menu = {
-                width = math.floor(vim.api.nvim_win_get_width(0) / 1.5),
-            },
-        },
+        commit = 'e76cb03',
+        dependencies = { 'nvim-lua/plenary.nvim' },
     },
 
     -- "gc" to comment visual regions/lines
     { 'numToStr/Comment.nvim', opts = {} },
+
+    -- doc generator
+    {
+        'kkoomen/vim-doge',
+        build = function()
+            vim.fn['doge#install']() -- Installs the required binaries for vim-doge
+        end,
+        config = function()
+            -- Configure Doge for Python docstrings
+            vim.g.doge_doc_standard_python = 'doxygen'
+        end,
+        lazy = false, -- Ensure it's loaded for all file types (set to true if you only want it for specific types)
+    },
 
     -- Fuzzy Finder (files, lsp, etc)
     {
@@ -564,7 +622,7 @@ require('lazy').setup({
             {
                 'nvim-telescope/telescope-fzf-native.nvim',
                 build = 'make',
-                cond = function ()
+                cond = function()
                     return vim.fn.executable 'make' == 1
                 end,
             },
@@ -628,6 +686,7 @@ require 'plugins/config/snippet'
 require 'plugins/config/scheme'
 require 'plugins/config/bbq'
 require 'plugins/config/nonels'
+require 'plugins/config/harpoon'
 -- require('plugins/config/colorizer')
 -- require('plugins/config/neotree')
 -- require('plugins/config/bufferline')
