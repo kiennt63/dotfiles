@@ -7,3 +7,6 @@
 [submodule "tmux"]
 	path = tmux
 	url = git@github.com:kiennt63/tmux.git
+[submodule "nvim"]
+	path = nvim
+	url = git@github.com:kiennt63/nvim.git
