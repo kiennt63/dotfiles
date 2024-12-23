@@ -1,6 +1,5 @@
 local separator_glyphs = require 'plugins/config/lualine/separator'
-local harpoon = require 'harpoon'
-
+local harpoon_files = require 'harpoon_files'
 -- require('lsp-progress').setup {
 --     client_format = function(client_name, spinner, series_messages)
 --         if #series_messages == 0 then
@@ -67,11 +66,11 @@ require('lualine').setup {
         ignore_focus = { 'NvimTree', 'alpha' },
         always_divide_middle = true,
         globalstatus = true,
-        refresh = {
-            statusline = 1000,
-            tabline = 1000,
-            winbar = 1000,
-        },
+        -- refresh = {
+        --     statusline = 1000,
+        --     tabline = 1000,
+        --     winbar = 1000,
+        -- },
     },
     sections = {
         lualine_a = {
@@ -116,37 +115,12 @@ require('lualine').setup {
                     return vim.fn.winwidth(0) > 70
                 end,
             },
-            -- { 'harpoon2' },
             -- require('lsp-progress').progress,
         },
         -- lualine_d = {require('auto-session-library').current_session_name},
         lualine_x = {
             {
-                function()
-                    local current_file = vim.fn.expand '%:p'
-
-                    local result = {}
-                    for id, item in ipairs(harpoon:list().items) do
-                        local file_path = vim.fn.fnamemodify(item.value, ':p')
-                        local shortened = vim.fn.fnamemodify(file_path, ':t'):sub(1, 15) -- Shorten filename
-
-                        -- if file_path == current_file then
-                        --     table.insert(result, string.format('%%#lualine_c_diagnostics_hint_normal# [ %d - %s] %%*', id, shortened))
-                        -- else
-                        --     table.insert(result, string.format('%%#lualine_c_normal#  %d - %s %%*', id, shortened))
-                        --     -- table.insert(result, string.format('  %d - %s ', id, shortened))
-                        -- end
-                        if file_path == current_file then
-                            table.insert(result, string.format(' [ %d %s] ', id, shortened))
-                        else
-                            table.insert(result, string.format('   %d %s  ', id, shortened))
-                            -- table.insert(result, string.format('  %d - %s ', id, shortened))
-                        end
-                    end
-
-                    local combined_string = table.concat(result, '')
-                    return combined_string
-                end,
+                harpoon_files.lualine_component,
             },
             {
                 function(msg)

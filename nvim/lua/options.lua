@@ -42,7 +42,7 @@ o.shiftwidth = 4
 o.expandtab = true
 o.autowriteall = true
 -- o.breakindent = true
-o.noswapfile = true
+-- o.noswapfile = true
 o.pumheight = 15
 o.splitright = true
 

@@ -25,6 +25,7 @@ require('lazy').setup({
             { 'williamboman/mason.nvim', config = true },
             'williamboman/mason-lspconfig.nvim',
             'folke/neodev.nvim',
+            'saghen/blink.cmp',
         },
     },
 
@@ -50,50 +51,6 @@ require('lazy').setup({
     --     end,
     -- },
 
-    -- QoL plugins
-    -- {
-    --     'folke/snacks.nvim',
-    --     priority = 1000,
-    --     lazy = false,
-    --     ---@type snacks.Config
-    --     opts = {
-    --         bigfile = { enabled = true },
-    --         zen = { enabled = true },
-    --         -- dashboard = { enabled = true },
-    --         -- indent = { enabled = true },
-    --         -- input = { enabled = true },
-    --         -- notifier = {
-    --         --     enabled = true,
-    --         --     timeout = 3000,
-    --         -- },
-    --         quickfile = { enabled = true },
-    --         -- scroll = { enabled = true },
-    --         -- statuscolumn = { enabled = true },
-    --         -- words = { enabled = true },
-    --         -- styles = {
-    --         -- notification = {
-    --         -- wo = { wrap = true } -- Wrap notifications
-    --         -- },
-    --         -- },
-    --     },
-    --     keys = {
-    --         {
-    --             '<leader>z',
-    --             function()
-    --                 Snacks.zen()
-    --             end,
-    --             desc = 'Toggle Zen Mode',
-    --         },
-    --         {
-    --             '<leader>Z',
-    --             function()
-    --                 Snacks.zen.zoom()
-    --             end,
-    --             desc = 'Toggle Zoom',
-    --         },
-    --     },
-    -- },
-    -- idk
     {
         'nvimtools/none-ls.nvim',
     },
@@ -245,17 +202,42 @@ require('lazy').setup({
     --     -- config = function (_, opts) require 'lsp_signature'.setup(opts) end
     -- },
 
+    -- {
+    --     -- Autocompletion
+    --     'hrsh7th/nvim-cmp',
+    --     dependencies = {
+    --         'L3MON4D3/LuaSnip',
+    --         'saadparwaiz1/cmp_luasnip',
+    --         'hrsh7th/cmp-nvim-lsp',
+    --         'hrsh7th/cmp-path',
+    --         'hrsh7th/cmp-buffer',
+    --         'rafamadriz/friendly-snippets',
+    --     },
+    -- },
     {
-        -- Autocompletion
-        'hrsh7th/nvim-cmp',
-        dependencies = {
-            'L3MON4D3/LuaSnip',
-            'saadparwaiz1/cmp_luasnip',
-            'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-path',
-            'hrsh7th/cmp-buffer',
-            'rafamadriz/friendly-snippets',
+        'saghen/blink.cmp',
+        -- optional: provides snippets for the snippet source
+        dependencies = 'rafamadriz/friendly-snippets',
+
+        version = '*',
+
+        opts = {
+            keymap = { preset = 'super-tab' },
+            appearance = {
+                use_nvim_cmp_as_default = true,
+                nerd_font_variant = 'normal',
+            },
+
+            sources = {
+                default = { 'lsp', 'path', 'snippets', 'buffer' },
+                cmdline = {},
+            },
+
+            completion = {
+                list = { selection = 'auto_insert' },
+            }
         },
+        opts_extend = { 'sources.default' },
     },
 
     -- {
@@ -281,54 +263,6 @@ require('lazy').setup({
         opts = {},
     },
 
-    -- {
-    --     'j-hui/fidget.nvim',
-    --     opts = {
-    --         -- options
-    --     },
-    -- },
-
-    -- notification
-    -- {
-    --     'folke/noice.nvim',
-    --     event = 'VeryLazy',
-    --     opts = {
-    --         lsp = {
-    --             progress = {
-    --                 enabled = false,
-    --             },
-    --             override = {
-    --                 ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
-    --                 ['vim.lsp.util.stylize_markdown'] = true,
-    --                 ['cmp.entry.get_documentation'] = true, -- requires hrsh7th/nvim-cmp
-    --             },
-    --         },
-    --         -- you can enable a preset for easier configuration
-    --         presets = {
-    --             bottom_search = true,         -- use a classic bottom cmdline for search
-    --             command_palette = true,       -- position the cmdline and popupmenu together
-    --             long_message_to_split = true, -- long messages will be sent to a split
-    --             inc_rename = false,           -- enables an input dialog for inc-rename.nvim
-    --             lsp_doc_border = false,       -- add a border to hover docs and signature help
-    --         },
-    --     },
-    --     dependencies = {
-    --         -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-    --         'MunifTanjim/nui.nvim',
-    --         -- OPTIONAL:
-    --         --   `nvim-notify` is only needed, if you want to use the notification view.
-    --         --   If not available, we use `mini` as the fallback
-    --         'rcarriga/nvim-notify',
-    --     },
-    --     config = function ()
-    --         ---@diagnostic disable-next-line: missing-fields
-    --         require('notify').setup({
-    --             background_colour = '#000000',
-    --             stages = 'static'
-    --         })
-    --     end,
-    -- },
-
     -- lsp progress bar
     {
         'linrongbin16/lsp-progress.nvim',
@@ -345,15 +279,15 @@ require('lazy').setup({
     },
 
     -- -- whichkey
-    -- {
-    --     'folke/which-key.nvim',
-    --     opts = {
-    --
-    --         delay = function (ctx)
-    --             return ctx.plugin and 0 or 1000
-    --         end,
-    --     },
-    -- },
+    {
+        'folke/which-key.nvim',
+        opts = {
+
+            delay = function (ctx)
+                return ctx.plugin and 0 or 1000
+            end,
+        },
+    },
 
     {
         'nvim-tree/nvim-web-devicons',
@@ -646,6 +580,16 @@ require('lazy').setup({
     -- },
 
     {
+        'kiennt63/harpoon-files.nvim',
+        dependencies = {
+            { 'ThePrimeagen/harpoon', branch = 'harpoon2' },
+        },
+        opts = {
+            max_length = 20,
+        },
+    },
+
+    {
         'utilyre/barbecue.nvim',
         name = 'barbecue',
         version = '*',
@@ -679,10 +623,10 @@ require 'plugins/config/telescope'
 require 'plugins/config/treesitter'
 require 'plugins/config/lsp'
 require 'plugins/config/dap'
-require 'plugins/config/cmp'
+-- require 'plugins/config/cmp'
 require 'plugins/config/lualine'
 require 'plugins/config/nvim-tree'
-require 'plugins/config/snippet'
+-- require 'plugins/config/snippet'
 require 'plugins/config/scheme'
 require 'plugins/config/bbq'
 require 'plugins/config/nonels'

@@ -1,12 +1,3 @@
--- local signature_setup = {
---     log_path = vim.fn.expand('$HOME') .. '/tmp/sig.log',
---     debug = true,
---     hint_enable = false,
---     handler_opts = { border = 'rounded' },
---     max_width = 30,
---     close_timeout = 1000,
--- }
-
 local util = require 'lspconfig/util'
 
 local on_attach = function(_, bufnr)
@@ -77,33 +68,6 @@ local servers = {
             'objcpp',
             'cuda',
         },
-        -- capabilities = {
-        --     offsetEncoding = { 'utf-16' },
-        -- },
-        -- root_dir = util.root_pattern(
-        --     '.clangd',
-        --     '.clang-tidy',
-        --     '.clang-format',
-        --     'compile_commands.json',
-        --     'compile_flags.txt',
-        --     'configure.ac',
-        --     '.git',
-        --     'build',
-        --     'build_x64_linux',
-        --     'build_aarch64_linux'
-        -- ),
-        -- root_dir = {
-        --     '.clangd',
-        --     '.clang-tidy',
-        --     '.clang-format',
-        --     'compile_commands.json',
-        --     'compile_flags.txt',
-        --     'configure.ac',
-        --     '.git',
-        --     'build',
-        --     'build_x64_linux',
-        --     'build_aarch64_linux',
-        -- },
         cmd = {
             'clangd',
             '--background-index',
@@ -124,21 +88,6 @@ local servers = {
     },
 
     glsl_analyzer = {},
-
-    -- pyright = {},
-    -- rust_analyzer = {
-    --     ['rust-analyzer'] = {
-    --         cargo = {
-    --             allFeatures = true,
-    --         },
-    --         diagnostics = {
-    --             enable = true;
-    --         }
-    --     },
-    --     filetypes = 'rust'
-    -- },
-    -- tsserver = {},
-    -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
     lua_ls = {
         Lua = {
@@ -162,17 +111,54 @@ local servers = {
         },
     },
     bashls = {},
+
+    cmake = {
+        root_dir = util.root_pattern('build', 'build_x64_linux', 'build_aarch64_linux'),
+        settings = {
+            cmake = {
+                format = {
+                    enable = true, -- Enables formatting
+                },
+            },
+        },
+    },
+
+    pylsp = {
+        settings = {
+            pylsp = {
+                plugins = {
+                    jedi_completion = {
+                        include_params = true,
+                    },
+                    jedi_signature_help = { enabled = true },
+                    pyflakes = { enabled = true },
+                    pylint = { args = { '--ignore=E501,E231', '-' }, enabled = true, debounce = 200 },
+                    pylsp_mypy = { enabled = true },
+                    pycodestyle = {
+                        enabled = true,
+                        ignore = { 'E501', 'E231', 'W293', 'E266' },
+                        maxLineLength = 88,
+                    },
+                    autopep8 = {
+                        enabled = false,
+                    },
+                    yapf = {
+                        enabled = false,
+                    },
+                    black = {
+                        enabled = false,
+                    },
+                },
+            },
+        },
+    },
 }
 
 -- Setup neovim lua configuration
 require('neodev').setup()
 
--- nvim-cmp supports additional completion capabilities, so broadcast that to servers
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+local capabilities = require('blink.cmp').get_lsp_capabilities()
 -- capabilities.offsetEncoding = { 'utf-16' }
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.offsetEncoding = { 'utf-16' }
 
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
@@ -192,49 +178,6 @@ mason_lspconfig.setup_handlers {
             root_dir = (servers[server_name] or {}).root_dir,
         }
     end,
-}
-
-require('lspconfig').cmake.setup {
-    on_attach = on_attach,
-    root_dir = util.root_pattern('build', 'build_x64_linux', 'build_aarch64_linux'),
-    settings = {
-        cmake = {
-            format = {
-                enable = true, -- Enables formatting
-            },
-        },
-    },
-}
-
-require('lspconfig').pylsp.setup {
-    on_attach = on_attach,
-    settings = {
-        pylsp = {
-            plugins = {
-                jedi_completion = {
-                    include_params = true,
-                },
-                jedi_signature_help = { enabled = true },
-                pyflakes = { enabled = true },
-                pylint = { args = { '--ignore=E501,E231', '-' }, enabled = true, debounce = 200 },
-                pylsp_mypy = { enabled = true },
-                pycodestyle = {
-                    enabled = true,
-                    ignore = { 'E501', 'E231', 'W293', 'E266' },
-                    maxLineLength = 88,
-                },
-                autopep8 = {
-                    enabled = false,
-                },
-                yapf = {
-                    enabled = false,
-                },
-                black = {
-                    enabled = false,
-                },
-            },
-        },
-    },
 }
 
 require('clangd_extensions').setup {
@@ -289,47 +232,6 @@ for type, icon in pairs(signs) do
     local hl = 'DiagnosticSign' .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
-
--- vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
---     underline = {
---         severity = { min = vim.diagnostic.severity.ERROR },
---     },
---     virtual_text = {
---         severity = { min = vim.diagnostic.severity.ERROR },
---         prefix = '', -- ■ 
---         suffix = '',
---         format = function(diagnostic)
---             return '● ' .. diagnostic.message .. ' '
---         end,
---     },
---     severity_override = function(diagnostic)
---         -- Check for unused variable patterns in the diagnostic message
---         if diagnostic.message:match "local variable '%w+' is assigned to but never used" then
---             return vim.lsp.protocol.DiagnosticSeverity.Hint -- Map to Hint
---         end
---         return diagnostic.severity -- Keep default severity for others
---     end,
--- })
-
--- vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
---     underline = {
---         severity = { min = vim.diagnostic.severity.ERROR },
---     },
---     virtual_text = {
---         severity = { min = vim.diagnostic.severity.ERROR },
---         prefix = '',
---         suffix = '',
---         format = function(diagnostic)
---             return '● ' .. diagnostic.message .. ' '
---         end,
---     },
---     signs = true,
---     update_in_insert = false,
---     severity = {
---         -- This is the key change
---         ['unused-local'] = vim.diagnostic.severity.HINT,
---     },
--- })
 
 vim.diagnostic.config {
     severity_sort = true,
