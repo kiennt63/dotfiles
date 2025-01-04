@@ -19,7 +19,7 @@
 # everforest
 export PALETTE0=0xff272e33
 export PALETTE1=0xff272e33
-export PALETTE2=0xff495156
+export   ACCENT=0xff83c092
 export PALETTE3=0xff374145
 export PALETTE4=0xffd3c6aa
 export PALETTE5=0xff374145

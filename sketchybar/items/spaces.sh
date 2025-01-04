@@ -15,7 +15,7 @@ for sid in $(aerospace list-workspaces --all); do
         label.padding_right=0 \
         background.color=${PALETTE5} \
         background.drawing=off \
-        click_script="sketchybar --reload" \
+        click_script="aerospace workspace $sid" \
         script="$CONFIG_DIR/plugins/aerospace.sh $sid"
 done
 
