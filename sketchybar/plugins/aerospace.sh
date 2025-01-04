@@ -32,31 +32,23 @@ done < <(echo "$INFO" | jq -r ".[] | select(.workspace == \"$1\") | .[\"app-name
 if [[ $has_app = 1 ]]; then
     if [ "$1" = "$FOCUSED_WORKSPACE" ]; then
         sketchybar --set $NAME background.drawing=on \
-            background.color=${PALETTE1} \
+            background.color=${PALETTE5} \
             label="$icon_strip" \
-            label.padding_right=20 \
-            label.color=${PALETTE0} \
-            icon.color=${PALETTE0}
+            label.padding_right=15
     else
         sketchybar --set $NAME background.drawing=off \
             label="$icon_strip" \
-            label.color=${PALETTE1} \
-            label.padding_right=20 \
-            icon.color=${PALETTE1}
+            label.padding_right=15
     fi
 else
     if [ "$1" = "$FOCUSED_WORKSPACE" ]; then
         sketchybar --set $NAME background.drawing=on \
-            background.color=${PALETTE1} \
-            label="$icon_strip" \
+            background.color=${PALETTE5} \
             label.padding_right=0 \
-            label.color=${PALETTE0} \
-            icon.color=${PALETTE0}
+            label="$icon_strip"
     else
         sketchybar --set $NAME background.drawing=off \
-            label="$icon_strip" \
-            label.color=${PALETTE1} \
             label.padding_right=0 \
-            icon.color=${PALETTE1}
+            label="$icon_strip"
     fi
 fi
