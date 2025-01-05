@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-source $HOME/dotfiles/sketchybar/plugins/palette.sh
+source $HOME/dotfiles/sketchybar/schemes/palette.sh
 
-if [[ $SENDER = "space_windows_change" ]]; then
+if [[ $SENDER = "space_windows_change" || $SENDER = "aerospace_window_moved" ]]; then
     WIN_STATUS=$(aerospace list-windows --all --json --format "%{app-name} %{workspace}")
 
     has_app=0

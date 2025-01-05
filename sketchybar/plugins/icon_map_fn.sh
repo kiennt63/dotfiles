@@ -244,7 +244,7 @@ function __icon_map() {
         icon_result=":google_chrome:"
         ;;
    "Ghostty")
-        icon_result=":terminal:"
+        icon_result=":iterm:"
         ;;
    "Grammarly Editor")
         icon_result=":grammarly:"

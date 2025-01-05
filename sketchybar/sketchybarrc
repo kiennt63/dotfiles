@@ -1,9 +1,8 @@
 #!/bin/sh
 
-source $HOME/dotfiles/sketchybar/plugins/palette.sh
+source $HOME/dotfiles/sketchybar/schemes/palette.sh
 
 PLUGIN_DIR="$HOME/dotfiles/sketchybar/plugins"
-ITEM_DIR="$HOME/dotfiles/sketchybar/items"
 
 sketchybar --bar height=48 \
     position=top \
@@ -12,10 +11,10 @@ sketchybar --bar height=48 \
     color=0x00ffffff
 
 sketchybar --default icon.font="Maple Mono:Semibold:15.0" \
-    icon.color=${PALETTE4} \
+    icon.color=${FG0} \
     label.font="Maple Mono:Semibold:15.0" \
-    label.color=${PALETTE4} \
-    background.color=${PALETTE1} \
+    label.color=${FG0} \
+    background.color=${BG0} \
     background.corner_radius=8 \
     background.height=30 \
     padding_left=0 \
@@ -26,17 +25,17 @@ sketchybar --default icon.font="Maple Mono:Semibold:15.0" \
     icon.padding_right=12
 
 # Left items
-source ${ITEM_DIR}/spaces.sh
+source $HOME/dotfiles/sketchybar/items/spaces.sh
 
-source ${ITEM_DIR}/front_app.sh
+source $HOME/dotfiles/sketchybar/items/front_app.sh
 
 # Middle items
 # source $ITEM_DIR/media.sh
 
 # Right items
-source ${ITEM_DIR}/calendar.sh
-source ${ITEM_DIR}/volume.sh
-source ${ITEM_DIR}/battery.sh
-source ${ITEM_DIR}/cpu.sh
+source $HOME/dotfiles/sketchybar/items/calendar.sh
+source $HOME/dotfiles/sketchybar/items/volume.sh
+source $HOME/dotfiles/sketchybar/items/battery.sh
+source $HOME/dotfiles/sketchybar/items/cpu.sh
 
 sketchybar --update
