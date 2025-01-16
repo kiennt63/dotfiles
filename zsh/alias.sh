@@ -22,6 +22,7 @@ alias rm="rm -i"
 alias grep="grep --color=always"
 
 # tmux 
+alias tksv="tmux kill-server"
 alias ts="tmux new -s"
 alias ta="tmux attach -t"
 alias tl="tmux ls"
@@ -39,7 +40,8 @@ function ya() {
 }
 
 # vim
-alias v="vim"
+alias v="nvim"
+alias vim="nvim"
 
 # exa
 alias ls="eza --icons --group-directories-first"
