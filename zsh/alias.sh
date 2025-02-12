@@ -24,7 +24,7 @@ alias grep="grep --color=always"
 # tmux 
 alias tksv="tmux kill-server"
 alias ts="tmux new -s"
-alias ta="tmux attach -t"
+alias ta="tmux attach"
 alias tl="tmux ls"
 alias tn='tmux new -s $(pwd | sed "s/.*\///g")'
 alias t="sesh connect"
@@ -51,7 +51,7 @@ alias la="eza -l --icons --group-directories-first -a"
 alias tree="eza --icons -T -L"
 
 alias untar="tar -xvf"
-alias c="xclip -selection clipboard"
+alias c="pbcopy"
 alias untar="tar -xvf"
 alias wheel_speed="sh <(curl -s http://www.nicknorton.net/mousewheel.sh)"
 alias feh="feh -xdZ -B #2E3440"
@@ -67,3 +67,7 @@ alias ssh-quanta="ssh nvidia@192.168.0.10"
 # conda env
 alias ca="conda activate"
 alias cde="conda deactivate"
+
+# rust
+alias cb="cargo build"
+alias cr="cargo run"

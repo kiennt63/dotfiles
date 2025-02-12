@@ -1,5 +1,7 @@
 #!/bin/sh
 
 sketchybar --add item volume right \
-           --set volume script="$PLUGIN_DIR/volume.sh" \
-           --subscribe volume volume_change \
+    --subscribe volume volume_change \
+    --subscribe volume mouse.scrolled \
+    --subscribe volume mouse.clicked \
+    --set volume script="$PLUGIN_DIR/volume.sh"

@@ -4,91 +4,117 @@ THEME=$1
 if [[ $THEME = "catppuccin" ]]; then
     echo "Changing the theme to CATPPUCCIN"
     # neovim
-    sudo ln -sf "$HOME/dotfiles/nvim/lua/plugins/config/scheme/catppuccin.lua" "$HOME/dotfiles/nvim/lua/plugins/config/scheme/init.lua"
-    # awesomewm
-    sudo ln -sf "$HOME/dotfiles/awesome/theme/catppuccin.lua" "$HOME/dotfiles/awesome/theme/palette.lua"
-    # kitty
-    sudo ln -sf "$HOME/dotfiles/kitty/themes/mocha.conf" "$HOME/dotfiles/kitty/themes/theme.conf"
+    ln -sf "$HOME/dotfiles/nvim/lua/plugins/config/scheme/catppuccin.lua" "$HOME/dotfiles/nvim/lua/plugins/config/scheme/init.lua"
     # startpage
-    sudo ln -sf "$HOME/dotfiles/startpages/raichu_startpage/css/catppuccin.css" "$HOME/dotfiles/startpages/raichu_startpage/css/vars.css"
+    ln -sf "$HOME/dotfiles/startpages/raichu_startpage/css/catppuccin.css" "$HOME/dotfiles/startpages/raichu_startpage/css/vars.css"
     #gitconfig
-    sudo ln -sf "$HOME/dotfiles/git/nord.gitconfig" "$HOME/dotfiles/git/theme.gitconfig"
+    ln -sf "$HOME/dotfiles/git/nord.gitconfig" "$HOME/dotfiles/git/theme.gitconfig"
     # tmux
-    sudo ln -sf "$HOME/dotfiles/tmux/themes/src/catppuccin.conf" "$HOME/dotfiles/tmux/themes/src/palette.conf"
-    # dunst
-    sudo ln -sf "$HOME/dotfiles/dunst/nord" "$HOME/dotfiles/dunst/dunstrc"
+    ln -sf "$HOME/dotfiles/tmux/themes/src/catppuccin.conf" "$HOME/dotfiles/tmux/themes/src/palette.conf"
     # fzf
-    sudo ln -sf "$HOME/dotfiles/zsh/fzf/catppuccin.sh" "$HOME/dotfiles/zsh/fzf/init.sh"
-    # rofi
-    sudo ln -sf "$HOME/dotfiles/rofi/themes/catppuccin.rasi" "$HOME/dotfiles/rofi/themes/palette.rasi"
-    # gnome theme and stuff
-    sed -i 's/gtk-theme-name=.*/gtk-theme-name=Catppuccin-Mocha-Standard-Lavender-Dark/g' "$HOME/dotfiles/gnome/gtk-3.0/settings.ini" 
-    sed -i 's/gtk-theme-name=.*/gtk-theme-name="Catppuccin-Mocha-Standard-Lavender-Dark/g' "$HOME/dotfiles/gnome/.gtkrc-2.0"
+    ln -sf "$HOME/dotfiles/zsh/fzf/catppuccin.sh" "$HOME/dotfiles/zsh/fzf/init.sh"
+    # sketchybar
+    ln -sf "$HOME/dotfiles/sketchybar/schemes/catppuccin.sh" "$HOME/dotfiles/sketchybar/schemes/palette.sh"
     # starship
-    sed -i "s/palette =.*/palette = 'catppuccin'/g" "$HOME/dotfiles/starship/starship.toml"
+    sed -i '' "s/palette =.*/palette = 'catppuccin'/g" "$HOME/dotfiles/starship/starship.toml"
     # wezterm
-    sed -i "s/color_scheme =.*/color_scheme = 'Catppuccin Mocha'/g" "$HOME/dotfiles/.wezterm.lua"
+    sed -i '' "s/color_scheme =.*/color_scheme = 'Catppuccin Mocha'/g" "$HOME/dotfiles/.wezterm.lua"
+    # ghostty
+    sed -i '' "s/theme =.*/theme = catppuccin-mocha/g" "$HOME/dotfiles/ghostty/config"
+    # aerospace border
+    sed -i '' "s/ active_color=[^ ]* [^ ]*/ active_color=0xaa89b4fa inactive_color=0x77313244/g" "$HOME/dotfiles/aerospace/.aerospace.toml"
 elif [[ $THEME = "nord" ]]; then
+    echo "Changing the theme to NORD"
     # neovim
-    sudo ln -sf "$HOME/dotfiles/nvim/lua/plugins/config/scheme/nord.lua" "$HOME/dotfiles/nvim/lua/plugins/config/scheme/init.lua"
-    # awesomewm
-    sudo ln -sf "$HOME/dotfiles/awesome/theme/nord.lua" "$HOME/dotfiles/awesome/theme/palette.lua"
-    # kitty
-    sudo ln -sf "$HOME/dotfiles/kitty/themes/nord.conf" "$HOME/dotfiles/kitty/themes/theme.conf"
+    ln -sf "$HOME/dotfiles/nvim/lua/plugins/config/scheme/nord.lua" "$HOME/dotfiles/nvim/lua/plugins/config/scheme/init.lua"
     # startpage
-    sudo ln -sf "$HOME/dotfiles/startpages/raichu_startpage/css/nord.css" "$HOME/dotfiles/startpages/raichu_startpage/css/vars.css"
+    ln -sf "$HOME/dotfiles/startpages/raichu_startpage/css/nord.css" "$HOME/dotfiles/startpages/raichu_startpage/css/vars.css"
     #gitconfig
-    sudo ln -sf "$HOME/dotfiles/git/nord.gitconfig" "$HOME/dotfiles/git/theme.gitconfig"
+    ln -sf "$HOME/dotfiles/git/nord.gitconfig" "$HOME/dotfiles/git/theme.gitconfig"
     # tmux
-    sudo ln -sf "$HOME/dotfiles/tmux/themes/src/nord.conf" "$HOME/dotfiles/tmux/themes/src/palette.conf"
-    # dunst
-    sudo ln -sf "$HOME/dotfiles/dunst/nord" "$HOME/dotfiles/dunst/dunstrc"
+    ln -sf "$HOME/dotfiles/tmux/themes/src/nord.conf" "$HOME/dotfiles/tmux/themes/src/palette.conf"
     # fzf
-    sudo ln -sf "$HOME/dotfiles/zsh/fzf/nord.sh" "$HOME/dotfiles/zsh/fzf/init.sh"
-    # rofi
-    sudo ln -sf "$HOME/dotfiles/rofi/themes/nord.rasi" "$HOME/dotfiles/rofi/themes/palette.rasi"
-    # gnome theme and stuff
-    sed -i 's/gtk-theme-name=.*/gtk-theme-name=Nordic-darker-v40/g' "$HOME/dotfiles/gnome/gtk-3.0/settings.ini" 
-    sed -i 's/gtk-theme-name=.*/gtk-theme-name="Nordic-darker-v40"/g' "$HOME/dotfiles/gnome/.gtkrc-2.0"
+    ln -sf "$HOME/dotfiles/zsh/fzf/nord.sh" "$HOME/dotfiles/zsh/fzf/init.sh"
+    # sketchybar
+    ln -sf "$HOME/dotfiles/sketchybar/schemes/nord.sh" "$HOME/dotfiles/sketchybar/schemes/palette.sh"
     # starship
-    sed -i "s/palette =.*/palette = 'nord'/g" "$HOME/dotfiles/starship/starship.toml"
+    sed -i '' "s/palette =.*/palette = 'nord'/g" "$HOME/dotfiles/starship/starship.toml"
     # wezterm
-    sed -i "s/color_scheme =.*/color_scheme = 'nord'/g" "$HOME/dotfiles/.wezterm.lua"
+    sed -i '' "s/color_scheme =.*/color_scheme = 'nord'/g" "$HOME/dotfiles/.wezterm.lua"
+    # ghostty
+    sed -i '' "s/theme =.*/theme = nordfox/g" "$HOME/dotfiles/ghostty/config"
+    # aerospace border
+    sed -i '' "s/ active_color=[^ ]* [^ ]*/ active_color=0xaa81a1c1 inactive_color=0x773b4252/g" "$HOME/dotfiles/aerospace/.aerospace.toml"
 elif [[ $THEME = "gruvbox" ]]; then
+    echo "Changing the theme to GRUVBOX"
     # neovim
-    sudo ln -sf "$HOME/dotfiles/nvim/lua/plugins/config/scheme/gruvbox.lua" "$HOME/dotfiles/nvim/lua/plugins/config/scheme/init.lua"
-    # awesomewm
-    # sudo ln -sf "$HOME/dotfiles/awesome/theme/gruvbox.lua" "$HOME/dotfiles/awesome/theme/palette.lua"
-    # kitty
-    sudo ln -sf "$HOME/dotfiles/kitty/themes/gruvbox-material-dark-medium.conf" "$HOME/dotfiles/kitty/themes/theme.conf"
+    ln -sf "$HOME/dotfiles/nvim/lua/plugins/config/scheme/gruvbox.lua" "$HOME/dotfiles/nvim/lua/plugins/config/scheme/init.lua"
     # startpage
-    sudo ln -sf "$HOME/dotfiles/startpages/raichu_startpage/css/gruvbox.css" "$HOME/dotfiles/startpages/raichu_startpage/css/vars.css"
-    # gitconfig
-    sudo ln -sf "$HOME/dotfiles/git/gruvbox.gitconfig" "$HOME/dotfiles/git/theme.gitconfig"
+    ln -sf "$HOME/dotfiles/startpages/raichu_startpage/css/gruvbox.css" "$HOME/dotfiles/startpages/raichu_startpage/css/vars.css"
+    #gitconfig
+    ln -sf "$HOME/dotfiles/git/gruvbox.gitconfig" "$HOME/dotfiles/git/theme.gitconfig"
     # tmux
-    sudo ln -sf "$HOME/dotfiles/tmux/themes/src/gruvbox.conf" "$HOME/dotfiles/tmux/themes/src/palette.conf"
-    # dunst
-    # sudo ln -sf "$HOME/dotfiles/dunst/gruvbox" "$HOME/dotfiles/dunst/dunstrc"
+    ln -sf "$HOME/dotfiles/tmux/themes/src/gruvbox.conf" "$HOME/dotfiles/tmux/themes/src/palette.conf"
     # fzf
-    sudo ln -sf "$HOME/dotfiles/zsh/fzf/gruvbox.sh" "$HOME/dotfiles/zsh/fzf/init.sh"
-    # rofi
-    # sudo ln -sf "$HOME/dotfiles/rofi/themes/gruvbox.rasi" "$HOME/dotfiles/rofi/themes/palette.rasi"
-    # gnome theme and stuff
-    # sed -i 's/gtk-theme-name=.*/gtk-theme-name=Gruvbox-Dark-BL/g' "$HOME/dotfiles/gnome/gtk-3.0/settings.ini" 
-    # sed -i 's/gtk-theme-name=.*/gtk-theme-name="Gruvbox-Dark-BL/g' "$HOME/dotfiles/gnome/.gtkrc-2.0"
+    ln -sf "$HOME/dotfiles/zsh/fzf/gruvbox.sh" "$HOME/dotfiles/zsh/fzf/init.sh"
+    # sketchybar
+    ln -sf "$HOME/dotfiles/sketchybar/schemes/gruvbox.sh" "$HOME/dotfiles/sketchybar/schemes/palette.sh"
     # starship
-    sed -i "s/palette =.*/palette = 'gruvbox'/g" "$HOME/dotfiles/starship/starship.toml"
+    sed -i '' "s/palette =.*/palette = 'gruvbox'/g" "$HOME/dotfiles/starship/starship.toml"
     # wezterm
-    sed -i "s/color_scheme =.*/color_scheme = 'Gruvbox Material (Gogh)'/g" "$HOME/dotfiles/.wezterm.lua"
-
-    # sudo ln -sf "$HOME/dotfiles/nvim/lua/plugins/config/gruvbox.lua" "$HOME/dotfiles/nvim/lua/plugins/config/theme.lua"
-    # sudo ln -sf "$HOME/dotfiles/awesome/theme/gruvbox-material.lua" "$HOME/dotfiles/awesome/theme/theme.lua"
-    # sudo ln -sf "$HOME/dotfiles/kitty/themes/gruvbox-material-dark-medium.conf" "$HOME/dotfiles/kitty/themes/theme.conf"
-    # sudo ln -sf "$HOME/dotfiles/git/gruvbox.gitconfig" "$HOME/dotfiles/git/theme.gitconfig"
-    # sudo ln -sf "$HOME/dotfiles/startpages/raichu_startpage/css/nord.css" "$HOME/dotfiles/startpages/raichu_startpage/css/vars.css"
-    # sudo ln -sf "$HOME/dotfiles/tmux/themes/src/gruvbox.conf" "$HOME/dotfiles/tmux/themes/src/palette.conf"
+    sed -i '' "s/color_scheme =.*/color_scheme = 'Gruvbox Material (Medium)'/g" "$HOME/dotfiles/.wezterm.lua"
+    # ghostty
+    sed -i '' "s/theme =.*/theme = gruvbox-material-medium/g" "$HOME/dotfiles/ghostty/config"
+    # aerospace border
+    sed -i '' "s/ active_color=[^ ]* [^ ]*/ active_color=0xaad4be98 inactive_color=0x7732302f/g" "$HOME/dotfiles/aerospace/.aerospace.toml"
+elif [[ $THEME = "everforest" ]]; then
+    echo "Changing the theme to **EVERFOREST**"
+    # neovim
+    ln -sf "$HOME/dotfiles/nvim/lua/plugins/config/scheme/everforest.lua" "$HOME/dotfiles/nvim/lua/plugins/config/scheme/init.lua"
+    # startpage
+    ln -sf "$HOME/dotfiles/startpages/raichu_startpage/css/everforest.css" "$HOME/dotfiles/startpages/raichu_startpage/css/vars.css"
+    #gitconfig
+    ln -sf "$HOME/dotfiles/git/gruvbox.gitconfig" "$HOME/dotfiles/git/theme.gitconfig"
+    # tmux
+    ln -sf "$HOME/dotfiles/tmux/themes/src/everforest.conf" "$HOME/dotfiles/tmux/themes/src/palette.conf"
+    # fzf
+    ln -sf "$HOME/dotfiles/zsh/fzf/everforest.sh" "$HOME/dotfiles/zsh/fzf/init.sh"
+    # sketchybar
+    ln -sf "$HOME/dotfiles/sketchybar/schemes/everforest.sh" "$HOME/dotfiles/sketchybar/schemes/palette.sh"
+    # starship
+    sed -i '' "s/palette =.*/palette = 'everforest'/g" "$HOME/dotfiles/starship/starship.toml"
+    # wezterm
+    sed -i '' "s/color_scheme =.*/color_scheme = 'everforest'/g" "$HOME/dotfiles/.wezterm.lua"
+    # ghostty
+    sed -i '' "s/theme =.*/theme = everforest/g" "$HOME/dotfiles/ghostty/config"
+    # aerospace border
+    sed -i '' "s/ active_color=[^ ]* [^ ]*/ active_color=0xaad3c6aa inactive_color=0x772e383c/g" "$HOME/dotfiles/aerospace/.aerospace.toml"
+elif [[ $THEME = "kanagawa" ]]; then
+    echo "Changing the theme to **KANAGAWA**"
+    # neovim
+    ln -sf "$HOME/dotfiles/nvim/lua/plugins/config/scheme/kanagawa.lua" "$HOME/dotfiles/nvim/lua/plugins/config/scheme/init.lua"
+    # startpage
+    ln -sf "$HOME/dotfiles/startpages/raichu_startpage/css/gruvbox.css" "$HOME/dotfiles/startpages/raichu_startpage/css/vars.css"
+    #gitconfig
+    ln -sf "$HOME/dotfiles/git/gruvbox.gitconfig" "$HOME/dotfiles/git/theme.gitconfig"
+    # tmux
+    ln -sf "$HOME/dotfiles/tmux/themes/src/kanagawa.conf" "$HOME/dotfiles/tmux/themes/src/palette.conf"
+    # fzf
+    ln -sf "$HOME/dotfiles/zsh/fzf/kanagawa.sh" "$HOME/dotfiles/zsh/fzf/init.sh"
+    # sketchybar
+    ln -sf "$HOME/dotfiles/sketchybar/schemes/gruvbox.sh" "$HOME/dotfiles/sketchybar/schemes/palette.sh"
+    # starship
+    sed -i '' "s/palette =.*/palette = 'everforest'/g" "$HOME/dotfiles/starship/starship.toml"
+    # wezterm
+    sed -i '' "s/color_scheme =.*/color_scheme = 'everforest'/g" "$HOME/dotfiles/.wezterm.lua"
+    # ghostty
+    sed -i '' "s/theme =.*/theme = Kanagawa Dragon/g" "$HOME/dotfiles/ghostty/config"
+    # aerospace border
+    sed -i '' "s/ active_color=[^ ]* [^ ]*/ active_color=0xaad3c6aa inactive_color=0x772e383c/g" "$HOME/dotfiles/aerospace/.aerospace.toml"
 else
     echo "Choosen theme not supported. Currently support"
     echo "1. nord"
-    echo "2. gruvbox"
+    echo "2. catppuccin"
+    echo "3. gruvbox"
+    echo "3. everforest"
 fi
