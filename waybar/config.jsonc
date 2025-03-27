@@ -3,9 +3,9 @@
     "layer": "top",
     "position": "top",
     "reload_style_on_change": true,
-    "modules-left": ["hyprland/workspaces"],
-    "modules-center": [],
-    "modules-right": ["pulseaudio", "network", "clock"],
+    "modules-left": ["custom/date", "clock", "custom/pacman"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": [ "pulseaudio", "bluetooth", "network"],
 
 
     "hyprland/workspaces": {
@@ -25,8 +25,14 @@
         "on-click": "swaync-client -t -sw",
         "escape": true
     },
+    "custom/date": {
+        "exec": "date '+%d %b %y'",
+        "interval": 60,
+        "format": "  {}",
+        "tooltip": false
+    },
     "clock": {
-        "format": "  {:%I:%M:%S %p}",
+        "format": "  {:%I:%M %p}",
         "interval": 1,   
         "tooltip-format": "<tt>{calendar}</tt>",
         "calendar": {
@@ -48,20 +54,22 @@
     },
     "pulseaudio": {
         "format": "{icon} {volume}%",
-        "format-muted": "󰝟",
+        "format-muted": " ",
         "format-icons": {
-            "default": [" ", " ", " "]
+            "default": [" ", " ", " "]
         },
-        "on-click": "pavucontrol",
+        "on-click": "pamixer -t",
+        "on-click-right": "pavucontrol",
         "on-scroll-up": "pamixer -i 5",
         "on-scroll-down": "pamixer -d 5"
     },
     "bluetooth": {
-        "format-on": "󰂯",
-        "format-off": "BT-off",
-        "format-disabled": "󰂲",
-        "format-connected-battery": "{device_battery_percentage}% 󰂯",
-        "format-alt": "{device_alias} 󰂯",
+        "format-on": " no device",
+        "format-off": "bt off",
+        "format-disabled": "󰂲 bt disabled",
+        "format-connected": " connected",
+        "format-connected-battery": " {device_battery_percentage}%",
+        "format-alt": " {device_alias}",
         "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
         "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}\n{device_address}",
@@ -89,11 +97,11 @@
         ],
     },
     "custom/pacman": {
-        "format": "󰅢 {}",
-        "interval": 30,   
+        "format": "󰅢  {}",
+        "interval": 60,   
         "exec": "checkupdates | wc -l",
         "exec-if": "exit 0",
-        "on-click": "kitty sh -c 'yay -Syu; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar",
+        // "on-click": "kitty sh -c 'yay -Syu; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar",
         "signal": 8,
         "tooltip": false,
     },
