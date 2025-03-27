@@ -1,10 +1,8 @@
-# See dunst(5) for all configuration options
-
 [global]
     monitor = 0
     follow = mouse
     width = (200, 500)
-    height = 300
+    height = (0, 300)
     origin = top-right
     offset = 25x85
     scale = 0
@@ -24,7 +22,7 @@
     idle_threshold = 0
 
     ### Text ###
-    font = Ligamononoki Nerd Font 12
+    font = MapleMono NF 23
     line_height = 0
     markup = full
 
@@ -71,12 +69,12 @@
 
     ### Icons ###
     enable_recursive_icon_lookup = true
-    icon_theme = Papirus-Light
+    icon_theme = Tela-circle
     icon_position = left
     min_icon_size = 32
     # Scale larger icons down to this size, set to 0 to disable
     max_icon_size = 32
-    icon_path = /usr/share/icons/Papirus-Light/16x16/status/:/usr/share/icons/Papirus-Light/16x16/devices/
+    icon_path = /usr/share/icons/Tela-circle
 
     ### History ###
     sticky_history = yes
@@ -97,22 +95,22 @@
     mouse_middle_click = close_current
     mouse_right_click = close_all
 
-custom.aurora0    = "#d3868b"
-custom.aurora1    = "#a9b665"
-custom.aurora2    = "#d8a657"
-custom.aurora3    = "#e78a4e"
-custom.aurora4    = "#ea6962"
-custom.frost0     = "#7daea3"
-custom.frost1     = "#89b482"
-custom.frost2     = "#a9b665"
-custom.frost3     = "#a9b665"
-custom.snow0      = "#ddc7a1"
-custom.snow1      = "#d4be98"
-custom.snow2      = "#a89984"
-custom.night0     = "#32302f"
-custom.night1     = "#45403d"
-custom.night2     = "#5a524c"
-custom.night3     = "#282828"
+# custom.aurora0    = "#d3868b"
+# custom.aurora1    = "#a9b665"
+# custom.aurora2    = "#d8a657"
+# custom.aurora3    = "#e78a4e"
+# custom.aurora4    = "#ea6962"
+# custom.frost0     = "#7daea3"
+# custom.frost1     = "#89b482"
+# custom.frost2     = "#a9b665"
+# custom.frost3     = "#a9b665"
+# custom.snow0      = "#ddc7a1"
+# custom.snow1      = "#d4be98"
+# custom.snow2      = "#a89984"
+# custom.night0     = "#32302f"
+# custom.night1     = "#45403d"
+# custom.night2     = "#5a524c"
+# custom.night3     = "#282828"
 
 [urgency_low]
     background = "#32302f"

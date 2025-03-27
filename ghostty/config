@@ -1,0 +1,86 @@
+theme = gruvbox-material-medium
+
+font-family = CommitMono
+font-family-italic = MonaspaceRadon
+font-size = 25
+# adjust-cell-height = 20%
+
+window-padding-x = 20
+window-padding-y = 10
+window-decoration = false
+macos-titlebar-style = hidden
+
+quit-after-last-window-closed = true
+confirm-close-surface = false
+
+background-opacity = 0.95
+background-blur = true
+background-blur-radius = 30
+
+mouse-hide-while-typing = true
+
+# handle keybinding for use of cmd as alt
+# keybind = cmd+j=text:\x1bj
+# keybind = cmd+k=text:\x1bk
+# keybind = cmd+s=text:\x1bs
+# keybind = cmd+i=text:\x1bi
+# keybind = cmd+h=text:\x1bh
+#
+# keybind = ctrl+cmd+h=text:\x1b\x08
+# keybind = ctrl+cmd+j=text:\x1b\x0a
+# keybind = ctrl+cmd+k=text:\x1b\x0b
+# keybind = ctrl+cmd+l=text:\x1b\x0c
+# keybind = ctrl+cmd+n=text:\x1b\x0e
+# keybind = ctrl+cmd+p=text:\x1b\x10
+#
+# keybind = cmd+shift+i=text:\x1bI
+# keybind = cmd+shift+o=text:\x1bO
+# keybind = cmd+shift+j=text:\x1bJ
+# keybind = cmd+shift+k=text:\x1bK
+# keybind = cmd+shift+s=text:\x1bS
+# keybind = cmd+shift+n=text:\x1bN
+# keybind = cmd+shift+p=text:\x1bP
+# keybind = cmd+shift+m=text:\x1bM
+#
+# keybind = cmd+one=text:\x1b1
+# keybind = cmd+two=text:\x1b2
+# keybind = cmd+three=text:\x1b3
+# keybind = cmd+four=text:\x1b4
+# keybind = cmd+five=text:\x1b5
+# keybind = cmd+six=text:\x1b6
+# keybind = cmd+seven=text:\x1b7
+# keybind = cmd+eight=text:\x1b8
+keybind = cmd+nine=text:\x1b9
+
+# handle keybinding for use of cmd as alt
+keybind = alt+j=text:\x1bj
+keybind = alt+k=text:\x1bk
+keybind = alt+s=text:\x1bs
+keybind = alt+i=text:\x1bi
+keybind = alt+h=text:\x1bh
+
+keybind = ctrl+alt+h=text:\x1b\x08
+keybind = ctrl+alt+j=text:\x1b\x0a
+keybind = ctrl+alt+k=text:\x1b\x0b
+keybind = ctrl+alt+l=text:\x1b\x0c
+keybind = ctrl+alt+n=text:\x1b\x0e
+keybind = ctrl+alt+p=text:\x1b\x10
+
+keybind = alt+shift+i=text:\x1bI
+keybind = alt+shift+o=text:\x1bO
+keybind = alt+shift+j=text:\x1bJ
+keybind = alt+shift+k=text:\x1bK
+keybind = alt+shift+s=text:\x1bS
+keybind = alt+shift+n=text:\x1bN
+keybind = alt+shift+p=text:\x1bP
+keybind = alt+shift+m=text:\x1bM
+
+keybind = alt+one=text:\x1b1
+keybind = alt+two=text:\x1b2
+keybind = alt+three=text:\x1b3
+keybind = alt+four=text:\x1b4
+keybind = alt+five=text:\x1b5
+keybind = alt+six=text:\x1b6
+keybind = alt+seven=text:\x1b7
+keybind = alt+eight=text:\x1b8
+keybind = alt+nine=text:\x1b9

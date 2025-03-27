@@ -1,0 +1,203 @@
+@import url('colors.css');
+
+* {
+    font-size:25px;
+    font-family: "Maple Mono NF";
+}
+window#waybar{
+    all:unset;
+}
+
+.modules-left {
+    padding: 0;
+    margin: 20 0 0 20;
+    border-radius:3px;
+    /* background: alpha(@bg0, 1.0); */
+    /* box-shadow: 0px 0px 4px -1px alpha(@bg2, .6); */
+}
+.modules-center {
+    padding: 0;
+    margin: 20 0 0 0;
+    border-radius:3px;
+    /* background: alpha(@bg0, 1.0); */
+    /* box-shadow: 0px 0px 4px -1px alpha(@bg2, .6); */
+}
+.modules-right {
+    padding: 0;
+    margin: 20 20 0 0;
+    border-radius: 3px;
+    /* background: alpha(@bg0, 1.0); */
+    /* box-shadow: 0px 0px 4px -1px alpha(@bg2, .6); */
+}
+tooltip {
+    background:@bg0;
+    color: @fg0;
+}
+#clock:hover, #custom-pacman:hover, #custom-notification:hover,#bluetooth:hover,#network:hover,#battery:hover, #cpu:hover,#memory:hover,#temperature:hover{
+    transition: all .3s ease;
+    color:@accent;
+}
+#custom-notification {
+    padding: 0px 10px;
+    transition: all .3s ease;
+    color:@fg0;
+}
+#clock{
+    margin: 0 0 0 0;
+    padding: 5 20px;
+    color: @palette5;
+    background: @bg0;
+    border-radius: 3px;
+    transition: all .3s ease;
+    border: 3px solid alpha(@palette5, .625);
+    /* box-shadow: 0px 0px 4px -1px alpha(@palette3, .6); */
+}
+#custom-pacman{
+    padding: 0px 10px;
+    transition: all .3s ease;
+    color:@fg0;
+
+}
+
+#workspaces {
+    margin:0 0 0 0;
+    padding: 0px 6px;
+    color:@fg0;
+    background: @bg0;
+    border-radius: 3px;
+    border: 3px solid alpha(@accent, .625);
+    /* box-shadow: 0px 0px 4px -1px alpha(@accent, .7); */
+}
+
+#workspaces button {
+    all:unset;
+    padding: 0 8 0 0px;
+    color: alpha(@accent, 0.8);
+    transition: all .2s ease;
+}
+
+#workspaces button:hover {
+    color: alpha(@accent, 1.0);
+    border: none;
+    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .625);
+    transition: all 1s ease;
+}
+
+#workspaces button.active {
+    color: alpha(@accent, 1.0);
+    border: none;
+    text-shadow: 0px 0px 4px rgba(0, 0, 0, .625);
+}
+
+#workspaces button.empty {
+    color: alpha(@accent, 0.4);
+    border: none;
+    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .2);
+}
+
+#workspaces button.empty:hover {
+    color: alpha(@accent, 0.4);
+    border: none;
+    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .625);
+    transition: all 1s ease;
+}
+
+#workspaces button.empty.active {
+    color: alpha(@accent, 1.0);
+    border: none;
+    text-shadow: 0px 0px 4px rgba(0, 0, 0, .625);
+}
+#bluetooth{
+    margin:0 0 0 0;
+    padding: 5px 20px;
+    transition: all .3s ease;
+    color:@fg0;
+    background: @bg0;
+    border-radius: 3px;
+
+}
+#pulseaudio{
+    margin: 0 20 0 0;
+    padding: 5px 20px;
+    transition: all .3s ease;
+    color:@palette3;
+    background: @bg0;
+    border-radius: 3px;
+    border: 3px solid alpha(@palette3, .625);
+    /* box-shadow: 0px 0px 4px -1px alpha(@palette4, .7); */
+}
+#network{
+    margin: 0 20 0 0;
+    padding: 5px 20px;
+    transition: all .3s ease;
+    color:@palette4;
+    background: @bg0;
+    border-radius: 3px;
+    border: 3px solid alpha(@palette4, .625);
+    /* box-shadow: 0px 0px 4px -1px alpha(@palette3, .7); */
+}
+#battery{
+    padding: 0px 10px;
+    transition: all .3s ease;
+    color:@fg0;
+
+
+}
+#battery.charging {
+    color: #26A65B;
+}
+
+#battery.warning:not(.charging) {
+    color: #ffbe61;
+}
+
+#battery.critical:not(.charging) {
+    color: #f53c3c;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+#group-expand{
+    padding: 0px 10px;
+    transition: all .3s ease; 
+}
+#custom-expand{
+    padding: 0px 10px;
+    color:alpha(@fg0,.2);
+    text-shadow: 0px 0px 4px rgba(0, 0, 0, .7);
+    transition: all .3s ease; 
+}
+#custom-expand:hover{
+    color:rgba(255,255,255,.2);
+    text-shadow: 0px 0px 4px rgba(255, 255, 255, .625);
+}
+#custom-colorpicker{
+    padding: 0px 10px;
+}
+#cpu,#memory,#temperature{
+    padding: 0px 10px;
+    transition: all .3s ease; 
+    color:@fg0;
+
+}
+#custom-endpoint{
+    color:transparent;
+    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, 1);
+
+}
+#tray{
+    padding: 0px 10px;
+    transition: all .3s ease; 
+
+}
+#tray menu * {
+    padding: 0px 10px;
+    transition: all .3s ease; 
+}
+
+#tray menu separator {
+    padding: 0px 10px;
+    transition: all .3s ease; 
+}

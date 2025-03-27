@@ -1,3 +1,3 @@
 #!/bin/bash
 
-maim -s -B --format png ~/pics/$(date +"%Y-%m-%d-%H-%M-%S").png
+maim -s -B --format png ~/pics/$(date +"%Y-%m-%d-%H-%M-%S").jpg

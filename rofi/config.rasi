@@ -1,7 +1,7 @@
 configuration {
     /* modes: [ combi ]; */
     /* combi-modes: [ window, drun, run ]; */
-    modi: "window,drun,run,ssh,calc";
+    modi: "window,drun,run,ssh";
 	display-drun: " ";
 	display-run: "  ";
 	display-window: " ";
